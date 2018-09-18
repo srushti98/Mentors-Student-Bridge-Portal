@@ -155,7 +155,7 @@
     var Msg ='<%=session.getAttribute("getAlert")%>';
     if (Msg != "null") {
         function alertName(){
-            alert("Your mentor has been  submitted");
+            alert("Mentor has been alloted");
         }
     }
 </script>
