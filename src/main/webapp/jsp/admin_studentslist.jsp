@@ -1,3 +1,9 @@
+<%@ page import="com.pict.database.DatabaseConnection" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="static java.lang.System.out" %>
+<%@ page import="java.sql.DriverManager" %>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -107,13 +113,13 @@
                 <a class="nav-link" href="/jsp/admin_profile.jsp">Allot mentor to Student</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="/jsp/admin_studentslist">View all Students<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/jsp/admin_studentslist.jsp">View all Students<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/jsp/admin_mentorslist">View all Mentors</a>
+                <a class="nav-link" href="/jsp/admin_mentorslist.jsp">View all Mentors</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/jsp/admin_allotmentlist">View Allotments</a>
+                <a class="nav-link" href="/jsp/admin_allotmentlist.jsp">View Allotments</a>
             </li>
         </ul>
         <a class="nav-link" href="#"><i class="material-icons">
@@ -129,72 +135,46 @@
         <thead>
         <tr>
             <th scope="col">Name</th>
-            <th scope="col">Column heading</th>
-            <th scope="col">Column heading</th>
-            <th scope="col">Column heading</th>
+            <th scope="col">Student_Id</th>
+            <th scope="col">rollno</th>
+            <
         </tr>
         </thead>
+        <%
+            Connection databaseConnection = DatabaseConnection.getDatabaseConnection();
+            Connection con;
+            PreparedStatement ps = null;
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+
+
+            PreparedStatement preparedStatement = null;
+
+            preparedStatement = con.prepareStatement("select mis_id,name,roll_no from student order by name");
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while(rs.next())
+            {
+                String fname = rs.getString("name");
+                String froll=rs.getString("roll_no");
+                String mis_id=rs.getString("mis_id");
+
+        %>
         <tbody>
         <tr class="table-active">
             <th scope="row">Active</th>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
+            <td><%=fname %></td>
+            <td><%=froll %>t</td>
+            <td><%=mis_id %></td>
         </tr>
-        <tr>
-            <th scope="row">Default</th>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-        </tr>
-        <tr class="table-primary">
-            <th scope="row">Primary</th>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-        </tr>
-        <tr class="table-secondary">
-            <th scope="row">Secondary</th>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-        </tr>
-        <tr class="table-success">
-            <th scope="row">Success</th>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-        </tr>
-        <tr class="table-danger">
-            <th scope="row">Danger</th>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-        </tr>
-        <tr class="table-warning">
-            <th scope="row">Warning</th>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-        </tr>
-        <tr class="table-info">
-            <th scope="row">Info</th>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-        </tr>
-        <tr class="table-light">
-            <th scope="row">Light</th>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-        </tr>
-        <tr class="table-dark">
-            <th scope="row">Dark</th>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-        </tr>
+        <%
+            }
+        %>
+
+
+
+
         </tbody>
     </table>
 

@@ -107,13 +107,13 @@
                 <a class="nav-link" href="/jsp/admin_profile.jsp">Allot mentor to Student</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/jsp/admin_studentslist">View all Students</a>
+                <a class="nav-link" href="/jsp/admin_studentslist.jsp">View all Students</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/jsp/admin_mentorslist">View all Mentors</a>
+                <a class="nav-link" href="/jsp/admin_mentorslist.jsp">View all Mentors</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/jsp/admin_allotmentlist">View Allotments</a>
+                <a class="nav-link" href="/jsp/admin_allotmentlist.jsp">View Allotments</a>
             </li>
         </ul>
         <a class="nav-link" href="#"><i class="material-icons">
