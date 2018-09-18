@@ -116,7 +116,7 @@
                 <a class="nav-link" href="/jsp/admin_studentslist.jsp">View all Students<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/jsp/admin_mentorslist.jsp">View all Mentors</a>
+                <a class="nav-link" href="/jsp/admin_mentorlist.jsp">View all Mentors</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/jsp/admin_allotmentlist.jsp">View Allotments</a>
@@ -134,10 +134,11 @@
     <table class="table table-hover" style="width: 1200px">
         <thead>
         <tr>
+            <th scope="col">rollno</th>
+
             <th scope="col">Name</th>
             <th scope="col">Student_Id</th>
-            <th scope="col">rollno</th>
-            <
+
         </tr>
         </thead>
         <%
@@ -150,7 +151,7 @@
 
             PreparedStatement preparedStatement = null;
 
-            preparedStatement = con.prepareStatement("select mis_id,name,roll_no from student order by name");
+            preparedStatement = con.prepareStatement("select mis_id,name,roll_no from student order by roll_no");
 
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -158,14 +159,15 @@
             {
                 String fname = rs.getString("name");
                 String froll=rs.getString("roll_no");
+                int frollint=Integer.parseInt(froll);
                 String mis_id=rs.getString("mis_id");
 
         %>
         <tbody>
-        <tr class="table-active">
-            <th scope="row">Active</th>
+        <tr class="table-primary">
+            <td><%=frollint %></td>
             <td><%=fname %></td>
-            <td><%=froll %>t</td>
+
             <td><%=mis_id %></td>
         </tr>
         <%

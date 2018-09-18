@@ -4,6 +4,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
+    <link href="/css/index.css" rel="stylesheet" type="text/css"/>
+
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script><title>Register!!!</title>
     <style>
         body {
@@ -110,7 +112,7 @@
                 <a class="nav-link" href="/jsp/admin_studentslist.jsp">View all Students</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/jsp/admin_mentorslist.jsp">View all Mentors</a>
+                <a class="nav-link" href="/jsp/admin_mentorlist.jsp">View all Mentors</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/jsp/admin_allotmentlist.jsp">View Allotments</a>
@@ -122,10 +124,48 @@
     </div>
 
 </nav>
+<div class="c1">
+    <div class="content" style="min-height: 600px;margin-top: 50px">
+        <div class="baner_image">
+            <div class="inner_baner_image" style="margin-left: 600px">
+                <div class="baner_content">
+                    <h1>Welcome to Admin Portal</h1>
+                    <p>View and Allot</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+</body>
+</html>
+
+
+<%
+    session.setMaxInactiveInterval(2);
+%>
+
+<script type="text/javascript">
+    var Msg ='<%=session.getAttribute("getAlert")%>';
+    if (Msg != "null") {
+        function alertName(){
+            alert("Your mentor has been  submitted");
+        }
+    }
+</script>
 
 
 
 
 
 </body>
+<script type="text/javascript"> window.onload = alertName; </script>
+
 </html>
+
