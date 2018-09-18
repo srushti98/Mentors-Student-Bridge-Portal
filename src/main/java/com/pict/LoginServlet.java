@@ -1,0 +1,110 @@
+package com.pict;
+
+import com.pict.database.DatabaseConnection;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.sql.*;
+
+import static java.lang.System.out;
+
+@WebServlet("/LoginServlet")
+public class LoginServlet extends HttpServlet {
+
+    private Connection databaseConnection;
+//    String checkUserQuery = "";
+
+    public LoginServlet() {
+        super();
+        databaseConnection = DatabaseConnection.getDatabaseConnection();
+    }
+
+
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            String login_mis_id=request.getParameter("login_mis_id");
+            String login_pswd=request.getParameter("login_pswd");
+
+            Connection con;
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+            out.println ("SL3 "+ "database successfully opened.");
+            out.print(login_mis_id);
+            out.print(login_pswd);
+            PreparedStatement preparedStatement = null;
+
+            if(login_mis_id.startsWith("P"))
+            {
+                out.print("in mentor");
+                preparedStatement = con.prepareStatement("select emp_id,mentorpassword from mentor where emp_id=? and mentorpassword=?");
+                preparedStatement.setString(1,login_mis_id);
+                preparedStatement.setString(2,login_pswd);
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+                if(resultSet.next()){
+                    out.print("Success");
+                    response.sendRedirect("/jsp/mentor_profile.jsp");
+                }else{
+                    out.print("Inavalid");
+                }
+
+            }
+            else if(login_mis_id.startsWith("I"))
+            {
+                out.print("in student");
+                preparedStatement = con.prepareStatement("select mis_id,studentpassword from student where mis_id=? and studentpassword=?");
+                preparedStatement.setString(1,login_mis_id);
+                preparedStatement.setString(2,login_pswd);
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+                if(resultSet.next()){
+                    out.print("Success");
+
+                    response.sendRedirect("/layouts/f3.html");
+                }else{
+                    out.print("Inavalid");
+                }
+
+            }
+            else if(login_mis_id.startsWith("A"))
+            {
+                out.print("in student");
+                preparedStatement = con.prepareStatement("select admin_id,admin_password from admin where admin_id=? and admin_password=?");
+                preparedStatement.setString(1,login_mis_id);
+                preparedStatement.setString(2,login_pswd);
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+                if(resultSet.next()){
+                    out.print("Success");
+
+                    response.sendRedirect("/jsp/admin_profile.jsp");
+                }else{
+                    out.print("Inavalid");
+                }
+
+            }
+
+
+
+
+        }
+        catch(SQLException e) {
+            out.println("SQLException caught: " +e.getMessage());
+        }
+
+        catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    }
+}
