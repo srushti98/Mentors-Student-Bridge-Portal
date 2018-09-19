@@ -6,8 +6,8 @@
     <title>Student Profile</title>
 
     <meta name="viewport" content="width=device-width,initial-state=1"/>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <script src="js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/bootstrap.js"></script>
     <style>
         body {
             font-family: "Lato", sans-serif;
@@ -112,14 +112,14 @@
             response.sendRedirect("/index.jsp");
         String stud_name = (String)session.getAttribute("stud_name");
         String stud_prn = (String)session.getAttribute("stud_prn");%>
-    <a class="active" href="L">LogOut</a>
+    <a class="active" href="LogoutServlet">LogOut</a>
     <a href="#"><%=stud_name%></a>
 </div>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-3 col-sm-3 col-xs-12" >
             <div class="side_bar">
-                <img src="img/blank_profile.png" id="profile_pic" class="img rounded-circle">
+                <img src="../img/blank_profile.png" id="profile_pic" class="img">
 
                 <ul>
                     <li><a href="#">View Profile</a></li>

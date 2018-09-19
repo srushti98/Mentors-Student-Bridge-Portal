@@ -77,7 +77,7 @@ include_once '../include/connect.php';
         String stud_name = (String)session.getAttribute("stud_name");
         String stud_prn = (String)session.getAttribute("stud_prn");%>
 
-    <a class="active" href="#">LogOut</a>
+    <a class="active" href="LogoutServlet">LogOut</a>
     <a href="#"><%=stud_name%></a>
 </div>
 
