@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.*;
 
@@ -57,13 +58,16 @@ public class LoginServlet extends HttpServlet {
             else if(login_mis_id.startsWith("I") || login_mis_id.startsWith("E") || login_mis_id.startsWith("C"))
             {
                 out.print("in student");
-                preparedStatement = con.prepareStatement("select stud_mis_id,stud_password from student where stud_mis_id=? and stud_password=?");
+                preparedStatement = con.prepareStatement("select * from student where stud_mis_id=? and stud_password=?");
                 preparedStatement.setString(1,login_mis_id);
                 preparedStatement.setString(2,login_pswd);
 
                 ResultSet resultSet = preparedStatement.executeQuery();
                 if(resultSet.next()){
                     out.print("Success");
+                    String username = resultSet.getString("stud_name");
+                    HttpSession session= request.getSession();
+                    session.setAttribute("stud_name",username);
                     response.sendRedirect("/jsp/student_profile.jsp");
                 }else{
                     out.print("Inavalid");

@@ -112,7 +112,7 @@
             response.sendRedirect("/index.jsp");
         String stud_name = (String)session.getAttribute("stud_name");
         String stud_prn = (String)session.getAttribute("stud_prn");%>
-    <a class="active" href="/jsp/logout.jsp">LogOut</a>
+    <a class="active" href="L">LogOut</a>
     <a href="#"><%=stud_name%></a>
 </div>
 <div class="container-fluid">
@@ -123,9 +123,9 @@
 
                 <ul>
                     <li><a href="#">View Profile</a></li>
-                    <li><a href="/forms/mentor_form.jsp">Edit Profile</a></li>
+                    <li><a href="../forms/mentor_form.jsp">Edit Profile</a></li>
                     <li><a href="#">Moments of meetings</a></li>
-                    <li><a href="/forms/leave_app.jsp" target="profile_display">Leave Application</a></li>
+                    <li><a href="../forms/leave_app.jsp" target="profile_display">Leave Application</a></li>
                     <li><a href="#">Meet Mentor</a></li>
                     <li> <a href="#">Submit Undertaking</a></li>
                     <li> <a href="#">Track Attendance</a></li>

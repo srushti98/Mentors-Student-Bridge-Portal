@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php
-    include_once 'include/connect.php';
-?>
-
 <head>
     <meta charset="UTF-8">
     <title>Login page</title>
