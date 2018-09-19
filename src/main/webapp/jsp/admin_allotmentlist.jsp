@@ -34,13 +34,13 @@
             <li class="nav-item">
                 <a class="nav-link" href="/jsp/admin_profile.jsp">Allot mentor to Student</a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item ">
                 <a class="nav-link" href="/jsp/admin_studentslist.jsp">View all Students<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/jsp/admin_mentorlist.jsp">View all Mentors</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="/jsp/admin_allotmentlist.jsp">View Allotments</a>
             </li>
         </ul>
