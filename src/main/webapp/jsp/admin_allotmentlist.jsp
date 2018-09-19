@@ -7,6 +7,7 @@
 --%>
 <%@ page import="java.sql.*" %>
 <%@ page import="java.io.Writer" %>
+<%@ page import="static java.util.Objects.equals" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -55,8 +56,9 @@
         <table class="table table-hover" style="width: 1200px">
             <thead>
                 <tr>
-                    <th>Student MIS ID</th>
-                    <th>Mentor MIS ID</th>
+                    <th>Mentor Name</th>
+                    <th>Student Name</th>
+                    <th>Student Roll No.</th>
                 </tr>
             </thead>
                 <%
@@ -66,17 +68,34 @@
                     Class.forName("com.mysql.jdbc.Driver");
                     con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
                     System.out.println("SL3 "+ "database successfully opened.");
-                    String sql = "SELECT * FROM studentmentorrel";
+                    String sql = "select s.name , m.name, s.roll_no from student s, mentor m, studentmentorrel sm where s.mis_id=sm.mis_id and m.emp_id=sm.emp_id;";
                     ps = con.prepareStatement(sql);
                     ResultSet rs = ps.executeQuery();
+                    String m1="   ";
                     while (rs.next())
                         {
-                            String mentor_ID=rs.getString("emp_id");
-                            String student_ID=rs.getString("mis_id");
+                            String mentor_name=rs.getString("m.name");
+                            String student_name=rs.getString("s.name");
+                            int student_roll_no=rs.getInt("s.roll_no");
                 %>
             <tbody>
-                <th><%=mentor_ID%></th>
-                <th><%=student_ID%></th>
+                <%
+                    if(!m1.equals(mentor_name))
+                    {
+                        m1=mentor_name;
+                %>
+                        <th><%=mentor_name%></th>
+                <%
+                    }
+                    else
+                    {
+                %>
+                <th>    </th>
+                <%
+                    }
+                %>
+                <th><%=student_name%></th>
+                <th><%=student_roll_no%></th>
                 <%
                         }
                         }
