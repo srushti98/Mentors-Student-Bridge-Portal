@@ -18,15 +18,47 @@
     <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-4 form"></div>
-        <div class="col-md-4 form">
-            <table class='table table-striped'>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#"><span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor03">
+        <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item ">
+                <a class="nav-link" href="/jsp/admin_index.jsp">Home </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/jsp/admin_profile.jsp">Allot mentor to Student</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/jsp/admin_studentslist.jsp">View all Students<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/jsp/admin_mentorlist.jsp">View all Mentors</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/jsp/admin_allotmentlist.jsp">View Allotments</a>
+            </li>
+        </ul>
+        <a class="nav-link" href="#"><i class="material-icons">
+            account_circle
+        </i> signout</a>
+    </div>
+
+</nav>
+<div class="row" style="margin-top: 100px">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <table class="table table-hover" style="width: 1200px">
+            <thead>
                 <tr>
                     <th>Student MIS ID</th>
                     <th>Mentor MIS ID</th>
                 </tr>
+            </thead>
                 <%
                 try
                 {   Connection con;
@@ -42,6 +74,7 @@
                             String mentor_ID=rs.getString("emp_id");
                             String student_ID=rs.getString("mis_id");
                 %>
+            <tbody>
                 <th><%=mentor_ID%></th>
                 <th><%=student_ID%></th>
                 <%
@@ -52,5 +85,9 @@
                             System.out.println(sqe);
                         }
                 %>
+            </tbody>
+        </table>
+    </div>
+</div>
 </body>
 </html>

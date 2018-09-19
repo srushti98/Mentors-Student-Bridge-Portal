@@ -82,7 +82,7 @@ public class LoginServlet extends HttpServlet {
                 if(resultSet.next()){
                     out.print("Success");
 
-                    response.sendRedirect("/jsp/admin_profile.jsp");
+                    response.sendRedirect("/jsp/admin_index.jsp");
                 }else{
                     out.print("Inavalid");
                 }
