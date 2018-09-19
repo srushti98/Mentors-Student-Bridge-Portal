@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.*;
 
 import static java.lang.System.out;
 
@@ -27,6 +28,8 @@ public class LogoutServlet extends HttpServlet {
         session.removeAttribute("stud_name");
         session.invalidate();
         response.sendRedirect("../index.jsp");
+
+
     }
 
 }

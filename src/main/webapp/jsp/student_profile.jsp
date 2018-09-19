@@ -117,7 +117,7 @@
 </div>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-3 col-sm-3 col-xs-12" >
+        <div class="col-md-3 col-sm-3 col-xs-12" style="background-color: aliceblue;" >
             <div class="side_bar">
                 <img src="../img/blank_profile.png" id="profile_pic" class="img">
 
@@ -137,7 +137,7 @@
 
 
         <div class="col-md-9 col-sm-9 col-xs-12 no-gutters">
-            <iframe name="profile_display" style="height: 900px; width: 900px">
+            <iframe name="profile_display" style="height: 900px; width: 1400px;margin-left: 0px">
 
             </iframe>
         </div>
