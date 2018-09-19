@@ -1,3 +1,9 @@
+<%@ page import="com.pict.database.DatabaseConnection" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="static java.lang.System.out" %>
+<%@ page import="java.sql.DriverManager" %>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -100,20 +106,20 @@
     <div class="collapse navbar-collapse" id="navbarColor03">
         <ul class="navbar-nav mr-auto">
 
-            <li class="nav-item active">
+            <li class="nav-item ">
                 <a class="nav-link" href="/jsp/admin_index.jsp">Home </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/jsp/admin_profile.jsp">Allot mentor to Student</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/jsp/admin_studentslist">View all Students<span class="sr-only">(current)</span></a>
+            <li class="nav-item active">
+                <a class="nav-link" href="/jsp/admin_studentslist.jsp">View all Students<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/jsp/admin_mentorslist">View all Mentors</a>
+                <a class="nav-link" href="/jsp/admin_mentorlist.jsp">View all Mentors</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/jsp/admin_allotmentlist">View Allotments</a>
+                <a class="nav-link" href="/jsp/admin_allotmentlist.jsp">View Allotments</a>
             </li>
         </ul>
         <a class="nav-link" href="#"><i class="material-icons">
@@ -122,6 +128,61 @@
     </div>
 
 </nav>
+<div class="row" style="margin-top: 100px">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+    <table class="table table-hover" style="width: 1200px">
+        <thead>
+        <tr>
+            <th scope="col">rollno</th>
+
+            <th scope="col">Name</th>
+            <th scope="col">Student_Id</th>
+
+        </tr>
+        </thead>
+        <%
+            Connection databaseConnection = DatabaseConnection.getDatabaseConnection();
+            Connection con;
+            PreparedStatement ps = null;
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+
+
+            PreparedStatement preparedStatement = null;
+
+            preparedStatement = con.prepareStatement("select mis_id,name,roll_no from student order by roll_no");
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while(rs.next())
+            {
+                String fname = rs.getString("name");
+                String froll=rs.getString("roll_no");
+                int frollint=Integer.parseInt(froll);
+                String mis_id=rs.getString("mis_id");
+
+        %>
+        <tbody>
+        <tr class="table-primary">
+            <td><%=frollint %></td>
+            <td><%=fname %></td>
+
+            <td><%=mis_id %></td>
+        </tr>
+        <%
+            }
+        %>
+
+
+
+
+        </tbody>
+    </table>
+
+
+</div>
+</div>
 
 
 
