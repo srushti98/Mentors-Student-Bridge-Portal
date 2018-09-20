@@ -41,13 +41,15 @@
         .sidenav a {
             padding: 10px 30px ;
             text-decoration: none;
+            text-space: 30px;
             font-size: 25px;
-            color: #2196F3;
+            color: white;
             display: block;
         }
 
         .sidenav a:hover {
-            color: #064579;
+            color: white;
+            text-decoration: underline;
         }
 
         #profile_pic{
@@ -65,21 +67,31 @@
 
         .top-nav{
             overflow: hidden;
-            background-color: #2f28d6;
+            background-color: #545454;
 
 
-        }
-
-        ul{
-            text-decoration: none;
-            font-size: 30px;
-            padding-bottom: 20px;
         }
 
         .side_bar{
-            background-color: aliceblue;
+            /*background-color: rgba(109, 83, 214, 0.4);*/
             width: 350px;
             height: 900px;
+        }
+
+        .activitylist{
+            text-decoration: none;
+            font-size: 30px;
+            padding-bottom: 20px;
+            color: white;
+        }
+
+        .activitylist a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .activitylist a:hover {
+            text-decoration: underline;
         }
 
         .top-nav a {
@@ -87,14 +99,18 @@
             color: white;
             text-align: center;
             padding: 14px 16px;
-            font-size: 20px;
-
+            font-size: 30px;
             text-decoration: none;
         }
 
         .top-nav a:hover{
             background-color: #221b94;
 
+        }
+
+        .navbar-text {
+            color: white;
+            margin-left: 20px;
         }
 
 
@@ -106,7 +122,8 @@
 
 </head>
 <body>
-<div class="top-nav">
+<div class="top-nav sticky-top">
+    <span class="navbar-text"><h2>Mentor System</h2></span>
     <%
         if (session.getAttribute("stud_name")==null)
             response.sendRedirect("/index.jsp");
@@ -117,11 +134,11 @@
 </div>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-3 col-sm-3 col-xs-12" style="background-color: aliceblue;" >
+        <div class="col-md-3 col-sm-3 col-xs-12" style="background-color: rgba(229,229,229,0.88);" >
             <div class="side_bar">
                 <img src="../img/blank_profile.png" id="profile_pic" class="img">
 
-                <ul>
+                <ul class="activitylist">
                     <li><a href="#">View Profile</a></li>
                     <li><a href="../forms/mentor_form.jsp">Edit Profile</a></li>
                     <li><a href="#">Moments of meetings</a></li>
