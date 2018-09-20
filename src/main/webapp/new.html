@@ -5,8 +5,8 @@
     <title>new profile</title>
 
     <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <script src="../js/bootstrap.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/bootstrap.js"></script>
 
     <style>
         .top-nav{
@@ -53,11 +53,11 @@
 <div class="top-nav sticky-top">
     <span class="navbar-text"><h1>Mentor System</h1></span>
     <%
-        if (session.getAttribute("stud_name")==null)
-            response.sendRedirect("/index.jsp");
-        String stud_name = (String)session.getAttribute("stud_name");
-        String stud_prn = (String)session.getAttribute("stud_prn");%>
-    <a class="active" href="../LogoutServlet">LogOut</a>
+    if (session.getAttribute("stud_name")==null)
+    response.sendRedirect("/index.jsp");
+    String stud_name = (String)session.getAttribute("stud_name");
+    String stud_prn = (String)session.getAttribute("stud_prn");%>
+    <a class="active" href="LogoutServlet">LogOut</a>
     <a href="#"><%=stud_name%></a>
 </div>
 <div class="row">
