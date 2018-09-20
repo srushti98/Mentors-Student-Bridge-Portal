@@ -131,6 +131,11 @@
                 <input class="submit" name="submit" type="submit" value="ALLOCATE" style="width: 300px; height: 50px; margin: 0 auto;">
             </div>
 </form>
+<form action='admin_allotmentlist.jsp' method='post' target="_top">
+    <div class="form-group" style="text-align: center">
+        <input type='submit' name='submit' value='SHOW ALLOTTED LIST' style="width: 300px; height: 50px; margin: 0 auto;">
+    </div>
+</form>
     <%
         }
         catch(SQLException sqe)
