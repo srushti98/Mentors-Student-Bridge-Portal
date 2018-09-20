@@ -68,7 +68,7 @@
                     Class.forName("com.mysql.jdbc.Driver");
                     con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
                     System.out.println("SL3 "+ "database successfully opened.");
-                    String sql = "select s.name , m.name, s.roll_no from student s, mentor m, studentmentorrel sm where s.mis_id=sm.mis_id and m.emp_id=sm.emp_id;";
+                    String sql = "select s.name , m.name, s.roll_no from student s, mentor m, studentmentorrel sm where s.mis_id=sm.mis_id and m.emp_id=sm.emp_id order by s.roll_no;";
                     ps = con.prepareStatement(sql);
                     ResultSet rs = ps.executeQuery();
                     String m1="   ";
