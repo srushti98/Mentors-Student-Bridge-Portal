@@ -1,11 +1,15 @@
+<%@ page import="com.pict.database.DatabaseConnection" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="static java.lang.System.out" %>
+<%@ page import="java.sql.DriverManager" %>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
-    <link href="/css/index.css" rel="stylesheet" type="text/css"/>
-
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script><title>Register!!!</title>
     <style>
         body {
@@ -102,16 +106,16 @@
     <div class="collapse navbar-collapse" id="navbarColor03">
         <ul class="navbar-nav mr-auto">
 
-            <li class="nav-item active">
-                <a class="nav-link" href="/jsp/admin_index.jsp">Home <span class="sr-only">(current)</span></a>
+            <li class="nav-item ">
+                <a class="nav-link" href="/jsp/admin_index.jsp">Home </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/jsp/admin_profile.jsp">Allot mentor to Student</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/jsp/admin_studentslist.jsp">View all Students</a>
+            <li class="nav-item ">
+                <a class="nav-link" href="/jsp/admin_studentslist.jsp">View all Students<span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="/jsp/admin_mentorlist.jsp">View all Mentors</a>
             </li>
             <li class="nav-item">
@@ -124,48 +128,63 @@
     </div>
 
 </nav>
-<div class="c1">
-    <div class="content" style="min-height: 600px;margin-top: 50px">
-        <div class="baner_image">
-            <div class="inner_baner_image" style="margin-left: 600px">
-                <div class="baner_content">
-                    <h1>Welcome to Admin Portal</h1>
-                    <p>View and Allot</p>
+<div class="row" style="margin-top: 100px">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <table class="table table-hover" style="width: 1200px">
+            <thead>
+            <tr>
+                <th scope="col">rollno</th>
 
-                </div>
+                <th scope="col">Name</th>
 
-            </div>
 
-        </div>
+            </tr>
+            </thead>
+            <%
+                Connection databaseConnection = DatabaseConnection.getDatabaseConnection();
+                Connection con;
+                PreparedStatement ps = null;
+                Class.forName("com.mysql.jdbc.Driver");
+                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+
+
+                PreparedStatement preparedStatement = null;
+
+                preparedStatement = con.prepareStatement("select emp_id,name from mentor order by name");
+
+                ResultSet rs = preparedStatement.executeQuery();
+
+                while(rs.next())
+                {
+                    String fname = rs.getString("name");
+                    String emp_id=rs.getString("emp_id");
+
+            %>
+            <tbody>
+            <tr class="table-primary">
+
+                <td><%=fname %></td>
+
+                <td><%=emp_id %></td>
+            </tr>
+            <%
+                }
+            %>
+
+
+
+
+            </tbody>
+        </table>
 
 
     </div>
-
 </div>
 
-</body>
-</html>
-
-
-<%
-    session.setMaxInactiveInterval(2);
-%>
-
-<script type="text/javascript">
-    var Msg ='<%=session.getAttribute("getAlert")%>';
-    if (Msg != "null") {
-        function alertName(){
-            alert("Your mentor has been  submitted");
-        }
-    }
-</script>
-
 
 
 
 
 </body>
-<script type="text/javascript"> window.onload = alertName; </script>
-
 </html>
-
