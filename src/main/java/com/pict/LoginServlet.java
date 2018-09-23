@@ -66,8 +66,10 @@ public class LoginServlet extends HttpServlet {
                 if(resultSet.next()){
                     out.print("Success");
                     String username = resultSet.getString("stud_name");
+
                     HttpSession session= request.getSession();
                     session.setAttribute("stud_name",username);
+
                     response.sendRedirect("/jsp/student_profile.jsp");
                 }else{
                     out.print("Inavalid");

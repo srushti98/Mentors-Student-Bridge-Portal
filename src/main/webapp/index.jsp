@@ -103,11 +103,11 @@
                     <label for="pass" class="label">Password</label>
                     <input id="pass" type="password" class="form-control input" data-type="password" name="login_pswd" placeholder="Password">
                 </div>
-                <div class="group">
+                <!--<div class="group">
                     <input id="check" type="checkbox" class="check" checked>
                     <label for="check"><span class="icon"></span> Keep me Signed in</label>
-                </div>
-                <div class="group">
+                </div>-->
+                <div class="group" style="padding-top: 20px">
                     <input type="submit" class="button" value="Sign In">
                 </div>
                 <div class="hr"></div>

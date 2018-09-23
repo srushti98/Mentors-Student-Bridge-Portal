@@ -56,7 +56,7 @@
         if (session.getAttribute("stud_name")==null)
             response.sendRedirect("/index.jsp");
         String stud_name = (String)session.getAttribute("stud_name");
-        String stud_prn = (String)session.getAttribute("stud_prn");%>
+        %>
     <a class="active" href="../LogoutServlet">LogOut</a>
     <a href="#"><%=stud_name%></a>
 </div>
@@ -67,7 +67,7 @@
             <a class="list-group-item list-group-item-action" data-toggle="list" href="#list-home" >Home</a>
             <a class="list-group-item list-group-item-action" data-toggle="list" href="../forms/mentor_form.jsp" >Edit Profile</a>
             <a class="list-group-item list-group-item-action" data-toggle="list" href="#list-settings" >Minutes of meetings</a>
-            <a class="list-group-item list-group-item-action" data-toggle="list" href="../forms/leave_app.jsp" target="profile_display"" >Leave Application</a>
+            <a class="list-group-item list-group-item-action" data-toggle="list" href="../forms/leave_app.jsp" target="profile_display" >Leave Application</a>
             <a class="list-group-item list-group-item-action" data-toggle="list" href="#list-settings" >Meet Mentor</a>
             <a class="list-group-item list-group-item-action" data-toggle="list" href="#list-settings" >Submit Undertaking</a>
 

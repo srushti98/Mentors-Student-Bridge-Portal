@@ -1,9 +1,6 @@
 <%@ page import="com.pict.database.DatabaseConnection" %>
-<%@ page import="java.sql.Connection" %>
-<%@ page import="java.sql.PreparedStatement" %>
-<%@ page import="java.sql.ResultSet" %>
 <%@ page import="static java.lang.System.out" %>
-<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.*" %>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -146,19 +143,42 @@
                 Connection con;
                 PreparedStatement ps = null;
                 Class.forName("com.mysql.jdbc.Driver");
-                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+                try {
+                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
 
 
                 PreparedStatement preparedStatement = null;
 
-                preparedStatement = con.prepareStatement("select emp_id,name from mentor order by name");
+                try {
+                    preparedStatement = databaseConnection.prepareStatement("select emp_id,mentor_name from mentor order by mentor_name");
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
 
-                ResultSet rs = preparedStatement.executeQuery();
+                ResultSet rs = null;
+                try {
+                    rs = preparedStatement.executeQuery();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
 
                 while(rs.next())
                 {
-                    String fname = rs.getString("name");
-                    String emp_id=rs.getString("emp_id");
+                    String fname = null;
+                    try {
+                        fname = rs.getString("name");
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    String emp_id= null;
+                    try {
+                        emp_id = rs.getString("emp_id");
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
 
             %>
             <tbody>

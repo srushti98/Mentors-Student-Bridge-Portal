@@ -28,7 +28,7 @@ include_once '../include/connect.php';
 
         iframe{
             width: 100%;
-            height: 900px;
+            height: 800px;
             margin-left: 70px;
             margin-right: 10px;
             border: none;
@@ -70,12 +70,12 @@ include_once '../include/connect.php';
 </head>
 <body>
 
-<div class="top-nav">
+<div class="top-nav sticky-top">
     <%
         if (session.getAttribute("stud_name")==null)
             response.sendRedirect("/index.jsp");
         String stud_name = (String)session.getAttribute("stud_name");
-        String stud_prn = (String)session.getAttribute("stud_prn");%>
+        %>
 
     <a class="active" href="../LogoutServlet">LogOut</a>
     <a href="#"><%=stud_name%></a>
@@ -114,7 +114,7 @@ include_once '../include/connect.php';
             <div class="card-header">Part 2</div>
             <div class="card-body">
                 <h5 class="card-title">Academic Details</h5>
-                <p class="card-text">Fill out academic details ,SSC details, HSC details, CET score, etc.</p>
+                <p class="card-text">Fill out academic details ,SSC, HSC, CET score, etc.</p>
             </div>
         </div>
         </a>

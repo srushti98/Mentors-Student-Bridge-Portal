@@ -1,3 +1,5 @@
+        <%@ page import="com.pict.database.DatabaseConnection" %>
+<%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,11 +39,35 @@
 </style>
 <body>
 <%
-    if (session.getAttribute("stud_name")==null)
+    if (session.getAttribute("stud_name") == null)
         response.sendRedirect("/index.jsp");
-    String stud_mis_id = (String)session.getAttribute("stud_mis_id");
-    String stud_name = (String)session.getAttribute("stud_name");
-    String stud_prn = (String)session.getAttribute("stud_prn");
+
+    String s_stud_name = (String) session.getAttribute("stud_name");
+
+    Connection databaseConnection = DatabaseConnection.getDatabaseConnection();
+    Connection con;
+    PreparedStatement ps = null;
+    Class.forName("com.mysql.jdbc.Driver");
+    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+
+
+    PreparedStatement preparedStatement = null;
+
+    preparedStatement = con.prepareStatement("select * from student where stud_name=?");
+    preparedStatement.setString(1, s_stud_name);
+
+    ResultSet rs = preparedStatement.executeQuery();
+    String prn = null;
+    String roll = null;
+    String batch = null;
+    if (rs.next()) {
+        prn = rs.getString("stud_prn");
+        roll = rs.getString("stud_roll_no");
+        batch = rs.getString("stud_batch");
+    }
+    int prn_int = Integer.parseInt(prn);
+    int roll_int = Integer.parseInt(roll);
+
 %>
 
 <div class="container-fluid">
@@ -52,16 +78,16 @@
                 <h1>Personal Details</b> </h1>
                 <div class="form-group">
                     <label>Student Name</label>
-                    <input type="text" class="form-control" placeholder="Full Name" value="<%=stud_name%>">
+                    <input type="text" class="form-control" placeholder="Full Name" value="<%=s_stud_name%>">
                     <label>PRN</label>
-                    <input type="number" class="form-control" name="prn_no" placeholder="PR number" value="<%=stud_prn%>">
+                    <input type="number" class="form-control" name="prn_no" placeholder="PR number" value="<%=prn_int%>">
                     <div class="half">
                         <label>Division</label>
                         <input type="text" class="form-control" name="stud_div" placeholder="Division">
                         <label>Roll no.</label>
-                        <input type="number" class="form-control" name="stud_roll" placeholder="Roll no">
+                        <input type="number" class="form-control" name="stud_roll" placeholder="Roll no" value="<%=roll_int%>">
                         <label>Batch</label>
-                        <input type="text" class="form-control" name="stud_batch" placeholder="Batch">
+                        <input type="text" class="form-control" name="stud_batch" placeholder="Batch" value="<%=batch%>">
                     </div>
                     <label>Contact no.</label>
                     <input type="text" class="form-control" name="stud_contact" placeholder="Contact no.">
@@ -76,7 +102,7 @@
                     </div>
                     <div class="half">
                         <label>Select Gender</label>
-                        <select class="form-control">
+                        <select class="form-control" name="stud_gender">
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
                         </select>
