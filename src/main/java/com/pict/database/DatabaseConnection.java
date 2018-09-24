@@ -13,15 +13,17 @@ public class DatabaseConnection {
     public static Connection getDatabaseConnection() {
         try {
             if(databaseConnection == null) {
+/*
                 Properties prop = new Properties();
                 InputStream inputStream = DatabaseConnection.class.getResourceAsStream("messages.properties");
                 prop.load(inputStream);
                 String driver = prop.getProperty("driver");
+*/
 
-                String url = prop.getProperty("url") + "/" + prop.getProperty("dbname") + "?autoReconnect=true";
-                String userName = prop.getProperty("user");
-                String password = prop.getProperty("password");
-                Class.forName(driver);
+                String url = "jdbc:mysql://localhost:3306/mentorsys";
+                String userName = "hello";
+                String password = "hello";
+                Class.forName("com.mysql.jdbc.Driver");
                 databaseConnection = DriverManager.getConnection(url, userName, password);
 
             }

@@ -74,7 +74,7 @@
     <div class="row">
         <div class="col-md-12 form"><!--</div>-->
         <!--<div class="col-md-6 form">-->
-            <form action=""  method="POST" enctype="multipart/form-data">
+            <form action="/EditPersonal"  method="POST">
                 <h1>Personal Details</b> </h1>
                 <div class="form-group">
                     <label>Student Name</label>
@@ -90,7 +90,7 @@
                         <input type="text" class="form-control" name="stud_batch" placeholder="Batch" value="<%=batch%>">
                     </div>
                     <label>Contact no.</label>
-                    <input type="text" class="form-control" name="stud_contact" placeholder="Contact no.">
+                    <input type="text" class="form-control" name="stud_contact" placeholder="Contact no." value="<%=rs.getString("stud_contact_no")%>">
                     <label>Email</label>
                     <input type="email" class="form-control" name="stud_email" placeholder="Email id">
                 </div>
@@ -98,7 +98,7 @@
                 <div class="form-group">
                     <div class="half">
                         <label>Date of birth</label>
-                        <input type="date" class="form-control" name="stud_dob" placeholder="Birthday">
+                        <input type="date" class="form-control" name="stud_dob" placeholder="Birthday" value="<%=rs.getString("stud_dob")%>">
                     </div>
                     <div class="half">
                         <label>Select Gender</label>
