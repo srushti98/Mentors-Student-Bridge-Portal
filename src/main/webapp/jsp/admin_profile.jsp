@@ -7,17 +7,30 @@
     <title>Drop Downlist</title>
 
     <meta name="viewport" content="width=device-width,initial-state=1"/>
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
-    <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="/js/bootstrap.min.js"></script>
 </head>
 <body>
+<%
+    try
+    {   Connection con;
+        PreparedStatement ps = null;
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+        System.out.println("SL3 "+ "database successfully opened.in admin profile");
+        String sql = "SELECT mentorname FROM mentor where mentor_flag=0";
+        ps = con.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+%>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <%
+
         if (session.getAttribute("stud_name")==null)
             response.sendRedirect("/index.jsp");
-        String stud_name = (String)session.getAttribute("stud_name");
+        String sname = (String)session.getAttribute("stud_name");
+        System.out.println(sname+"this is near getattribyute");
     %>
-    <a class="navbar-brand" href="#">WELCOME <%=stud_name%></a>
+    <a class="navbar-brand" href="#">WELCOME <%=sname%></a>
 
     <div class="collapse navbar-collapse" id="navbarColor03">
         <ul class="navbar-nav mr-auto">
@@ -53,17 +66,7 @@
                 <div class="half">
                 <div class="form-group">
                     <label>Select Name of Mentor:</label>
-                <%
-                    try
-                    {   Connection con;
-                        PreparedStatement ps = null;
-                        Class.forName("com.mysql.jdbc.Driver");
-                        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
-                        System.out.println("SL3 "+ "database successfully opened.");
-                        String sql = "SELECT mentorname FROM mentor where mentor_flag=0";
-                        ps = con.prepareStatement(sql);
-                        ResultSet rs = ps.executeQuery();
-                %>
+
                     <select class="form-control" name="mentorselected">
                         <option value="" selected="selected">--SELECT--</option>
                         <%
