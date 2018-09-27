@@ -7,8 +7,6 @@
     <link href="/css/index.css" rel="stylesheet" type="text/css"/>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script><title>Register!!!</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <style>
         body {
             font-family: "Lato", sans-serif;
@@ -97,17 +95,21 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <%
+        //HttpSession session= request.getSession();
+
         if (session.getAttribute("stud_name")==null)
             response.sendRedirect("/index.jsp");
-        String stud_name = (String)session.getAttribute("stud_name");
+        String sname = (String)session.getAttribute("stud_name");
+        System.out.println(sname);
     %>
-    <a class="navbar-brand" href="#">WELCOME <%=stud_name%></a>
+    <a class="navbar-brand" href="#">WELCOME <%=sname%></a>
 
 
     <div class="collapse navbar-collapse" id="navbarColor03">
         <ul class="navbar-nav mr-auto">
 
             <li class="nav-item active">
+                <%System.out.println(sname);%>
                 <a class="nav-link" href="/jsp/admin_index.jsp">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
@@ -134,6 +136,7 @@
         <div class="baner_image">
             <div class="inner_baner_image" style="margin-left: 600px">
                 <div class="baner_content">
+                    <%System.out.println(sname);%>
                     <h1>Welcome to Admin Portal</h1>
                     <p>View and Allot</p>
 
@@ -152,13 +155,16 @@
 </html>
 
 
-
+<%--<%--%>
+<%--session.setMaxInactiveInterval(2);--%>
+<%--session.setAttribute("stud_name","ADMIN");--%>
+<%--%>--%>
 
 <script type="text/javascript">
     var Msg ='<%=session.getAttribute("getAlert")%>';
     if (Msg != "null") {
         function alertName(){
-            swal("success","Students alloted to mentor ID: "+Msg,"success");
+            alert("Mentor has been alloted");
         }
     }
 </script>
