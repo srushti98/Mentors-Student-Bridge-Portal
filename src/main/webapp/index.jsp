@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/bootstrap.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <style>
         body{
             margin-top:100px;
@@ -114,7 +112,7 @@
                 </div>
                 <div class="hr"></div>
                 <div class="foot-lnk">
-                    <a id="password">Forgot Password?</a>
+                    <a href="#">Forgot Password?</a>
                 </div>
             </div>
         </form>
@@ -151,6 +149,5 @@
         )
     }
 </script>
-
 </body>
 </html>
