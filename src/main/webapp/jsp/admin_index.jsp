@@ -157,7 +157,7 @@
     var Msg ='<%=session.getAttribute("getAlert")%>';
     if (Msg != "null") {
         function alertName(){
-            swal("success","Your mentor has been  submitted","success");
+            swal("success","Students alloted to mentor ID: "+Msg,"success");
         }
     }
 </script>
