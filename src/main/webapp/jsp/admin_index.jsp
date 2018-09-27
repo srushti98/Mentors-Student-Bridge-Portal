@@ -7,6 +7,8 @@
     <link href="/css/index.css" rel="stylesheet" type="text/css"/>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script><title>Register!!!</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <style>
         body {
             font-family: "Lato", sans-serif;
@@ -155,7 +157,7 @@
     var Msg ='<%=session.getAttribute("getAlert")%>';
     if (Msg != "null") {
         function alertName(){
-            alert("Your mentor has been  submitted");
+            swal("success","Your mentor has been  submitted","success");
         }
     }
 </script>

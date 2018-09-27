@@ -9,6 +9,8 @@
     <meta name="viewport" content="width=device-width,initial-state=1"/>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
     <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -131,11 +133,6 @@
                 <input class="submit" name="submit" type="submit" value="ALLOCATE" style="width: 300px; height: 50px; margin: 0 auto;">
             </div>
 </form>
-<form action='admin_allotmentlist.jsp' method='post' target="_top">
-    <div class="form-group" style="text-align: center">
-        <input type='submit' name='submit' value='SHOW ALLOTTED LIST' style="width: 300px; height: 50px; margin: 0 auto;">
-    </div>
-</form>
     <%
         }
         catch(SQLException sqe)
@@ -144,7 +141,21 @@
             System.out.println(sqe);
         }
     %>
+
+
+<script type="text/javascript">
+    var Msg ='<%=session.getAttribute("getAlert")%>';
+    if (Msg != "null") {
+        function alertName(){
+            swal("error",Msg,"error");
+        }
+    }
+</script>
+
 </body>
+
+<script type="text/javascript"> window.onload = alertName; </script>
+
 </html>
 
 
