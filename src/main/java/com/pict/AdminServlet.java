@@ -50,12 +50,12 @@ public class AdminServlet extends HttpServlet {
             for (int i=intStartingroll;i<=intendingingroll;i++)
             {
                 String Startingroll=String.valueOf(i);
-                preparedStatementstu = con.prepareStatement("select mis_id from student where roll_no=?");
+                preparedStatementstu = con.prepareStatement("select stud_mis_id from student where stud_roll_no=?");
 
                 preparedStatementstu.setString(1, Startingroll);
                 ResultSet resultSetstu = preparedStatementstu.executeQuery();
                 if (resultSetstu.next()) {
-                    startmis = resultSetstu.getString("mis_id");
+                    startmis = resultSetstu.getString("stud_mis_id");
 
                     out.println(startmis);
 
@@ -63,7 +63,7 @@ public class AdminServlet extends HttpServlet {
                     out.println("invalid");
                 }
 
-                preparedStatementmen = con.prepareStatement("select emp_id from mentor where name=?");
+                preparedStatementmen = con.prepareStatement("select emp_id from mentor where mentorname=?");
                 preparedStatementmen.setString(1, mentorselected);
                 ResultSet resultSetmen = preparedStatementmen.executeQuery();
                 if (resultSetmen.next()) {
@@ -88,7 +88,7 @@ public class AdminServlet extends HttpServlet {
                     out.println("inserted successfully");
                 }
 
-                preparedStatementallo = con.prepareStatement("update student set stu_flag=1 where mis_id=? ");
+                preparedStatementallo = con.prepareStatement("update student set stud_flag=1 where stud_mis_id=? ");
                 preparedStatementallo.setString(1, startmis);
                 updateQuery = preparedStatementallo.executeUpdate();
                 if (updateQuery != 0) {
@@ -96,7 +96,7 @@ public class AdminServlet extends HttpServlet {
                 }
 
             }
-            preparedStatementallo = con.prepareStatement("update mentor set flag=1 where emp_id=? ");
+            preparedStatementallo = con.prepareStatement("update mentor set mentor_flag=1 where emp_id=? ");
             preparedStatementallo.setString(1, mentormis);
             int updateQuery = preparedStatementallo.executeUpdate();
             if (updateQuery != 0) {

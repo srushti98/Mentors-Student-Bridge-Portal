@@ -20,10 +20,13 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#"><span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    <%
+        if (session.getAttribute("stud_name")==null)
+            response.sendRedirect("/index.jsp");
+        String stud_name = (String)session.getAttribute("stud_name");
+    %>
+    <a class="navbar-brand" href="#">WELCOME <%=stud_name%></a>
+
 
     <div class="collapse navbar-collapse" id="navbarColor03">
         <ul class="navbar-nav mr-auto">
@@ -44,7 +47,7 @@
                 <a class="nav-link" href="/jsp/admin_allotmentlist.jsp">View Allotments</a>
             </li>
         </ul>
-        <a class="nav-link" href="#"><i class="material-icons">
+        <a class="nav-link" href="../LogoutServlet"><i class="material-icons">
             account_circle
         </i> signout</a>
     </div>
@@ -68,15 +71,15 @@
                     Class.forName("com.mysql.jdbc.Driver");
                     con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
                     System.out.println("SL3 "+ "database successfully opened.");
-                    String sql = "select s.name , m.name, s.roll_no from student s, mentor m, studentmentorrel sm where s.mis_id=sm.mis_id and m.emp_id=sm.emp_id order by s.roll_no;";
+                    String sql = "select s.stud_name , m.mentorname, s.stud_roll_no from student s, mentor m, studentmentorrel sm where s.stud_mis_id=sm.stud_mis_id and m.emp_id=sm.emp_id order by s.stud_roll_no;";
                     ps = con.prepareStatement(sql);
                     ResultSet rs = ps.executeQuery();
                     String m1="   ";
                     while (rs.next())
                         {
-                            String mentor_name=rs.getString("m.name");
-                            String student_name=rs.getString("s.name");
-                            int student_roll_no=rs.getInt("s.roll_no");
+                            String mentor_name=rs.getString("m.mentorname");
+                            String student_name=rs.getString("s.stud_name");
+                            int student_roll_no=rs.getInt("s.stud_roll_no");
                 %>
             <tbody>
                 <%

@@ -151,16 +151,16 @@
 
             PreparedStatement preparedStatement = null;
 
-            preparedStatement = con.prepareStatement("select mis_id,name,roll_no from student order by roll_no");
+            preparedStatement = con.prepareStatement("select stud_mis_id,stud_name,stud_roll_no from student order by stud_roll_no");
 
             ResultSet rs = preparedStatement.executeQuery();
 
             while(rs.next())
             {
-                String fname = rs.getString("name");
-                String froll=rs.getString("roll_no");
+                String fname = rs.getString("stud_name");
+                String froll=rs.getString("stud_roll_no");
                 int frollint=Integer.parseInt(froll);
-                String mis_id=rs.getString("mis_id");
+                String mis_id=rs.getString("stud_mis_id");
 
         %>
         <tbody>

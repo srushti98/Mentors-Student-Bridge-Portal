@@ -1,113 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<?php
-    include_once 'include/connect.php';
-?>
-
 <head>
     <meta charset="UTF-8">
-    <title>Login page</title>
-    <meta name="viewport" content="width=device-width,initial-state=1"/>
+    <title>Login Page</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/bootstrap.js"></script>
-
-
     <style>
-        .bg{
-            background: url("img/clg1.jpg") no-repeat ;
-            background-size: cover;
-
+        body{
+            margin-top:100px;
+            color:#6a6f8c;
+            background:#c8c8c8;
+            font:600 16px/18px 'Open Sans',sans-serif;
         }
 
-        #log{
-            border: 2px solid white;
-            padding: 50px 40px;
-            margin-top: 50px;
-            margin-bottom: 50px;
-            border-radius: 10px;
-            background: rgba(1000,1000,1000,.8);
+        .login-wrap{
+            width:100%;
+            margin:auto;
+            max-width:525px;
+            min-height:670px;
+            position:relative;
+            background:url("img/loginbg3.jpeg") no-repeat center;
+            box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
         }
 
-        h1{
-            text-align: center;
-            font-size: 40px;
-            color: #005cbf;
+        .login-html{
+            width:100%;
+            height:100%;
+            position:absolute;
+            padding:90px 70px 50px 70px;
+            background:rgba(40,57,101,.9);
         }
 
-        label{
-            font-size: 20px;
-            color: #005cbf;
+        .login-form{
+            min-height:345px;
+            position:relative;
+            perspective:1000px;
+            transform-style:preserve-3d;
         }
 
-        button{
-            margin-left: 150px;
-            margin-top: 25px;
+        .login-form .group{
+            margin-bottom:15px;
         }
 
-        a:hover {
-            text-decoration-color: #005cbf;
-            text-decoration: underline;
+        .login-form .group .label,
+        .login-form .group .input,
+        .login-form .group .button{
+            width:100%;
+            color:#fff;
+            display:block;
         }
 
-        a{
-            float: right;
-            color: red;
-            text-decoration-color: black;
-            font-size: 20px;
+        .login-form .group .input,
+        .login-form .group .button{
+            border:none;
+            padding:15px 20px;
+            border-radius:25px;
+            background:rgba(255,255,255,.1);
         }
 
-        img{
-            height: 150px;
-            position: relative;
-            margin: auto 125px;
-
+        .login-form .group .label{
+            color:#aaa;
+            font-size:12px;
+        }
+        .login-form .group .button{
+            background:#1161ee;
         }
 
-        @media screen and (max-width: 1200px) {
-            #log {padding-top: 15px;
-                -ms-flex: 100%;
-                flex: 100%;
-                max-width: 100%;
-            }
+        /*.login-form .group label .icon{
+            width:15px;
+            height:15px;
+            border-radius:2px;
+            position:relative;
+            display:inline-block;
+            background:rgba(255,255,255,.1);
+        }*/
 
+        .hr{
+            height:2px;
+            margin:60px 0 50px 0;
+            background:rgba(255,255,255,.2);
         }
-
+        .foot-lnk{
+            text-align:center;
+        }
     </style>
-
 
 </head>
 <body>
-<div class="container-fluid  bg" >
-    <h3>Madhura</h3>
-    <div class="row">
-        <div class="col-md-4 col-sm-4 col-xs-12"></div>
-        <div class="col-md-4 col-sm-4 col-xs-12">
 
-            <form action="LoginServlet" method="POST" id="log">
-                <img src="img/logo.jpg" alt="PICT-LOGO" class="rounded-circle">
-                <h1>Mentor Programme</h1>
-                <div class="form-group">
-                    <label>Mis id</label>
-                    <input type="text" class="form-control" name="login_mis_id" placeholder="Registration-id">
+
+<div class="login-wrap">
+    <div class="login-html">
+        <form action="LoginServlet" method="POST">
+            <div class="login-form">
+                <h1 style="text-align: center">Mentor System</h1>
+                <div class="group">
+                    <label for="user" class="label" >MIS ID</label>
+                    <input id="user" type="text" class="form-control input" name="login_mis_id" placeholder="Mis-id">
                 </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" class="form-control" name="login_pswd" placeholder="Password">
+                <div class="group">
+                    <label for="pass" class="label">Password</label>
+                    <input id="pass" type="password" class="form-control input" data-type="password" name="login_pswd" placeholder="Password">
                 </div>
-                <div class="custom-checkbox">
-                    <label><input type="checkbox">Remember me</label>
-                    <a href="#">New User</a>
+                <!--<div class="group">
+                    <input id="check" type="checkbox" class="check" checked>
+                    <label for="check"><span class="icon"></span> Keep me Signed in</label>
+                </div>-->
+                <div class="group" style="padding-top: 20px">
+                    <input type="submit" class="button" value="Sign In">
                 </div>
-                <button type="Submit"  class="btn-primary btn-lg" name="login"><i class="fas fa-sign-in-alt"></i>Login</button>
-                <!--- <button type="submit" class="btn-lg">Login</button> -->
-            </form>
-        </div>
-        <div class="col-md-4 col-sm-4 col-xs-12"></div>
+                <div class="hr"></div>
+                <div class="foot-lnk">
+                    <a href="#">Forgot Password?</a>
+                </div>
+            </div>
+        </form>
     </div>
+
 </div>
-
-
 
 
 </body>
