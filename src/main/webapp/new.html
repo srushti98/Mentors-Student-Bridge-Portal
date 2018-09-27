@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>new profile</title>
+
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/bootstrap.js"></script>
+
+    <style>
+        .top-nav{
+            overflow: hidden;
+            background-color: #2f28d6;
+
+
+        }
+        .top-nav a {
+            float: right;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            font-size: 30px;
+            text-decoration: none;
+        }
+
+        .top-nav a:hover{
+            background-color: #221b94;
+
+        }
+        .navbar-text {
+            color: white;
+            font-size: 35px;
+            margin-left: 30px;
+        }
+        #profile_pic{
+            padding: 10px;
+            width: 200px;
+            height: 200px;
+            margin-left: 120px;
+            align-self: center;
+        }
+        .list-group-item {
+            height: 70px;
+            font-size: 25px;
+            border-radius: 20px;
+            width: 350px;
+        }
+        .list-group :hover {
+        color: #2f28d6;
+        }
+        .list-group a:hover {
+            //*color: #2f28d6;*/
+        }
+        .dropdown-btn {
+            color: #5bc0de;
+        }
+        .dropdown-container {
+            display: none;
+
+        }
+        .dropdown-container .list-group-item {
+            background: #dbdbdb;
+        }
+
+    </style>
+
+</head>
+<body>
+<nav class="top-nav bg-primary sticky-top" style="height: 80px">
+    <span class="navbar-text">Mentor System</span>
+    <a class="active" href="LogoutServlet">LogOut</a>
+    <a href="#">stud_name</a>
+
+</nav>
+<div class="row">
+    <div class="col-md-3 col-sm3 col-xs-12">
+        <img src="img/blank_profile.png" id="profile_pic" class="img">
+        <div class="list-group" id="list-tab" role="tablist">
+            <a class="list-group-item d-flex justify-content-between align-items-center" data-toggle="list" href="#list-home" >Home</a>
+            <button class="dropdown-btn list-group-item d-flex justify-content-between align-items-center " data-toggle="list" href="../forms/mentor_form.jsp" >
+                Edit Profile
+            </button>
+            <div class="dropdown-container">
+                <a class="list-group-item d-flex justify-content-between align-items-center " href="#">Personal Details</a>
+                <a class="list-group-item d-flex justify-content-between align-items-center " href="#">Academic Details</a>
+                <a class="list-group-item d-flex justify-content-between align-items-center " href="#">Parent Details</a>
+                <a class="list-group-item d-flex justify-content-between align-items-center " href="#">Extra Activities</a>
+                <a class="list-group-item d-flex justify-content-between align-items-center " href="#">Upload Documents</a>
+            </div>
+            <a class="list-group-item d-flex justify-content-between align-items-center" data-toggle="list" href="#list-settings" >
+                Minutes of meetings
+                <span class="badge badge-danger badge-pill">0</span>
+            </a>
+            <a class="list-group-item d-flex justify-content-between align-items-center" data-toggle="list" href="../forms/leave_app.jsp" target="profile_display" >
+                Leave Application
+            </a>
+            <a class="list-group-item d-flex justify-content-between align-items-center" data-toggle="list" href="#list-settings" >
+                Meet Mentor
+                <span class="badge badge-danger badge-pill">0</span>
+            </a>
+            <a class="list-group-item d-flex justify-content-between align-items-center" data-toggle="list" href="#list-settings" >
+                Submit Undertaking
+            </a>
+
+        </div>
+    </div>
+    <div class="col-md-9 col-sm-9 col-xs-12 no-gutters">
+        <iframe name="profile_display" style="height: 900px; width: 1400px;margin-left: 0px; margin-top: 10px; border: none">
+
+        </iframe>
+    </div>
+</div>
+
+<script>
+    /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+    var dropdown = document.getElementsByClassName("dropdown-btn");
+    var i;
+
+    for (i = 0; i < dropdown.length; i++) {
+        dropdown[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var dropdownContent = this.nextElementSibling;
+            if (dropdownContent.style.display === "block") {
+                dropdownContent.style.display = "none";
+            } else {
+                dropdownContent.style.display = "block";
+            }
+        });
+    }
+</script>
+
+
+</body>
+</html>
