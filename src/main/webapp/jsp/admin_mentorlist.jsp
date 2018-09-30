@@ -131,9 +131,9 @@
         <table class="table table-hover" style="width: 1200px">
             <thead>
             <tr>
-                <th scope="col">rollno</th>
-
                 <th scope="col">Name</th>
+
+                <th scope="col">Mentor ID</th>
 
 
             </tr>
@@ -143,17 +143,14 @@
                 Connection con;
                 PreparedStatement ps = null;
                 Class.forName("com.mysql.jdbc.Driver");
-                try {
-                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentor_sys", "hello", "hello");
 
 
                 PreparedStatement preparedStatement = null;
 
                 try {
-                    preparedStatement = databaseConnection.prepareStatement("select emp_id,mentor_name from mentor order by mentor_name");
+//                    preparedStatement = databaseConnection.prepareStatement("select emp_id,mentorname from mentor order by mentorname");
+                      preparedStatement = con.prepareStatement("select emp_id,mentorname from mentor order by mentorname");
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -169,7 +166,7 @@
                 {
                     String fname = null;
                     try {
-                        fname = rs.getString("name");
+                        fname = rs.getString("mentorname");
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }

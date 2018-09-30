@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/bootstrap.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <style>
         body{
             margin-top:100px;
@@ -112,7 +114,7 @@
                 </div>
                 <div class="hr"></div>
                 <div class="foot-lnk">
-                    <a href="#">Forgot Password?</a>
+                    <a id="password">Forgot Password?</a>
                 </div>
             </div>
         </form>
@@ -120,6 +122,35 @@
 
 </div>
 
+<script>
+    document.getElementById("password").onclick = forgot_password()
+    {
+        swal({
+                text: 'Enter your E-mail:',
+                content: "input",
+                showCancelButton: true,
+                button: {
+                    text: "SUbmit!",
+                    closeModal: True,
+                }
+            },
+            {
+                function(email){
+                    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+                    if(!filter.test(email.value)){
+                        swal("error","please provide a valid email","error",{});
+
+                    }
+                    else {
+                        swal("success", "valid email", "success");
+
+                    }
+                }
+            }
+        )
+    }
+</script>
 
 </body>
 </html>

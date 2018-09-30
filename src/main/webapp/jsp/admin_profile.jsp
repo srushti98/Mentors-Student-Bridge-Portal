@@ -58,9 +58,9 @@
                     {   Connection con;
                         PreparedStatement ps = null;
                         Class.forName("com.mysql.jdbc.Driver");
-                        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+                        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentor_sys", "hello", "hello");
                         System.out.println("SL3 "+ "database successfully opened.");
-                        String sql = "SELECT name FROM mentor where flag=0";
+                        String sql = "SELECT mentorname FROM mentor where mentor_flag=0";
                         ps = con.prepareStatement(sql);
                         ResultSet rs = ps.executeQuery();
                 %>
@@ -69,7 +69,7 @@
                         <%
                             while(rs.next())
                             {
-                                String fname = rs.getString("name");
+                                String fname = rs.getString("mentorname");
                         %>
                         <option value="<%=fname %>"><%=fname %></option>
                         <%

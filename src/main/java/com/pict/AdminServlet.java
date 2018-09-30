@@ -29,7 +29,7 @@ public class AdminServlet extends HttpServlet {
         try {
             Connection con;
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentor_sys", "hello", "hello");
             out.println("SL3 " + "database successfully opened.");
             PreparedStatement preparedStatementstu = null;
             PreparedStatement preparedStatementmen = null;
@@ -53,17 +53,20 @@ public class AdminServlet extends HttpServlet {
             out.println(endingingroll);
             out.println(mentorselected);
          if(intStartingroll<=intendingingroll) {
-             for (int i = intStartingroll; i <= intendingingroll; i++) {
-                 not_existing_roll_no = con.prepareStatement("select roll_no from student where roll_no>=? and roll_no<=?");
-                 not_existing_roll_no.setInt(1, intStartingroll);
-                 not_existing_roll_no.setInt(2, intendingingroll);
-                 ResultSet rs = not_existing_roll_no.executeQuery();
-                 rs.next();
-                 if (rs.getInt("roll_no") != i) {
+             int i=intStartingroll;
+             not_existing_roll_no = con.prepareStatement("select stud_roll_no from student where stud_roll_no>=? and stud_roll_no<=?");
+             not_existing_roll_no.setInt(1, intStartingroll);
+             not_existing_roll_no.setInt(2, intendingingroll);
+             ResultSet rs = not_existing_roll_no.executeQuery();
+             while(i<=intendingingroll)
+             {
+//                 if (rs.getInt("stud_roll_no") != i) {
+                 if(!rs.next()){
                      error.add("Roll number " + i + " does not exist");
                      not_exist = 1;
                      break;
                  }
+                 i++;
              }
          }
          else {
@@ -73,17 +76,17 @@ public class AdminServlet extends HttpServlet {
         if(not_exist!=1) {
             for (int i = intStartingroll; i <= intendingingroll; i++) {
                 String Startingroll = String.valueOf(i);
-                preparedStatementstu = con.prepareStatement("select mis_id, roll_no, stu_flag from student where roll_no=?");
+                preparedStatementstu = con.prepareStatement("select stud_mis_id, stud_roll_no, stud_flag from student where stud_roll_no=?");
 
                 preparedStatementstu.setString(1, Startingroll);
                 ResultSet resultSetstu = preparedStatementstu.executeQuery();
                 if (resultSetstu.next()) {
-                    startmis = resultSetstu.getString("mis_id");
-                    test_flag = resultSetstu.getInt("stu_flag");
-                    test_roll_no = resultSetstu.getInt("roll_no");
+                    startmis = resultSetstu.getString("stud_mis_id");
+                    test_flag = resultSetstu.getInt("stud_flag");
+                    test_roll_no = resultSetstu.getInt("stud_roll_no");
 
                     if (test_flag == 1) {
-                        err = con.prepareStatement("update student set stu_flag=0 where mis_id=(select mis_id from studentmentorrel where emp_id=?)");
+                        err = con.prepareStatement("update student set stud_flag=0 where stud_mis_id=(select stud_mis_id from studentmentorrel where emp_id=?)");
                         err.setString(1, mentormis);
                         err.executeUpdate();
                         err = con.prepareStatement("delete from studentmentorrel where emp_id=?");
@@ -99,7 +102,7 @@ public class AdminServlet extends HttpServlet {
                     out.println("invalid");
                 }
 
-                preparedStatementmen = con.prepareStatement("select emp_id from mentor where name=?");
+                preparedStatementmen = con.prepareStatement("select emp_id from mentor where mentorname=?");
                 preparedStatementmen.setString(1, mentorselected);
                 ResultSet resultSetmen = preparedStatementmen.executeQuery();
                 if (resultSetmen.next()) {
@@ -124,7 +127,7 @@ public class AdminServlet extends HttpServlet {
                     out.println("inserted successfully");
                 }
 
-                preparedStatementallo = con.prepareStatement("update student set stu_flag=1 where mis_id=? ");
+                preparedStatementallo = con.prepareStatement("update student set stud_flag=1 where stud_mis_id=? ");
                 preparedStatementallo.setString(1, startmis);
                 updateQuery = preparedStatementallo.executeUpdate();
                 if (updateQuery != 0) {
@@ -136,7 +139,7 @@ public class AdminServlet extends HttpServlet {
         }
 
             if(error.isEmpty()) {
-                preparedStatementallo = con.prepareStatement("update mentor set flag=1 where emp_id=? ");
+                preparedStatementallo = con.prepareStatement("update mentor set mentor_flag=1 where emp_id=? ");
                 preparedStatementallo.setString(1, mentormis);
                 int updateQuery = preparedStatementallo.executeUpdate();
                 if (updateQuery != 0) {
