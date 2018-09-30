@@ -131,57 +131,57 @@
 <div class="row" style="margin-top: 100px">
     <div class="col-md-3"></div>
     <div class="col-md-6">
-    <table class="table table-hover" style="width: 1200px">
-        <thead>
-        <tr>
-            <th scope="col">rollno</th>
+        <table class="table table-hover" style="width: 1200px">
+            <thead>
+            <tr>
+                <th scope="col">rollno</th>
 
-            <th scope="col">Name</th>
-            <th scope="col">Student_Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Student_Id</th>
 
-        </tr>
-        </thead>
-        <%
-            Connection databaseConnection = DatabaseConnection.getDatabaseConnection();
-            Connection con;
-            PreparedStatement ps = null;
-            Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
-
-
-            PreparedStatement preparedStatement = null;
-
-            preparedStatement = con.prepareStatement("select mis_id,name,roll_no from student order by roll_no");
-
-            ResultSet rs = preparedStatement.executeQuery();
-
-            while(rs.next())
-            {
-                String fname = rs.getString("name");
-                String froll=rs.getString("roll_no");
-                int frollint=Integer.parseInt(froll);
-                String mis_id=rs.getString("mis_id");
-
-        %>
-        <tbody>
-        <tr class="table-primary">
-            <td><%=frollint %></td>
-            <td><%=fname %></td>
-
-            <td><%=mis_id %></td>
-        </tr>
-        <%
-            }
-        %>
+            </tr>
+            </thead>
+            <%
+                Connection databaseConnection = DatabaseConnection.getDatabaseConnection();
+                Connection con;
+                PreparedStatement ps = null;
+                Class.forName("com.mysql.jdbc.Driver");
+                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
 
 
+                PreparedStatement preparedStatement = null;
+
+                preparedStatement = con.prepareStatement("select stud_mis_id,stud_name,stud_roll_no from student order by stud_roll_no");
+
+                ResultSet rs = preparedStatement.executeQuery();
+
+                while(rs.next())
+                {
+                    String fname = rs.getString("stud_name");
+                    String froll=rs.getString("stud_roll_no");
+                    int frollint=Integer.parseInt(froll);
+                    String mis_id=rs.getString("stud_mis_id");
+
+            %>
+            <tbody>
+            <tr class="table-primary">
+                <td><%=frollint %></td>
+                <td><%=fname %></td>
+
+                <td><%=mis_id %></td>
+            </tr>
+            <%
+                }
+            %>
 
 
-        </tbody>
-    </table>
 
 
-</div>
+            </tbody>
+        </table>
+
+
+    </div>
 </div>
 
 

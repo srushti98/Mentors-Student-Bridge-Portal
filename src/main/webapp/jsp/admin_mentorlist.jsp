@@ -1,6 +1,9 @@
 <%@ page import="com.pict.database.DatabaseConnection" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.ResultSet" %>
 <%@ page import="static java.lang.System.out" %>
-<%@ page import="java.sql.*" %>
+<%@ page import="java.sql.DriverManager" %>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -95,10 +98,12 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#"><span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    <%
+        if (session.getAttribute("stud_name")==null)
+            response.sendRedirect("/index.jsp");
+        String stud_name = (String)session.getAttribute("stud_name");
+    %>
+    <a class="navbar-brand" href="#">WELCOME <%=stud_name%></a>
 
     <div class="collapse navbar-collapse" id="navbarColor03">
         <ul class="navbar-nav mr-auto">
@@ -119,7 +124,7 @@
                 <a class="nav-link" href="/jsp/admin_allotmentlist.jsp">View Allotments</a>
             </li>
         </ul>
-        <a class="nav-link" href="#"><i class="material-icons">
+        <a class="nav-link" href="../LogoutServlet"><i class="material-icons">
             account_circle
         </i> signout</a>
     </div>
@@ -143,42 +148,19 @@
                 Connection con;
                 PreparedStatement ps = null;
                 Class.forName("com.mysql.jdbc.Driver");
-                try {
-                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
 
 
                 PreparedStatement preparedStatement = null;
 
-                try {
-                    preparedStatement = databaseConnection.prepareStatement("select emp_id,mentor_name from mentor order by mentor_name");
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                preparedStatement = con.prepareStatement("select emp_id, mentor_name from mentor order by mentorname");
 
-                ResultSet rs = null;
-                try {
-                    rs = preparedStatement.executeQuery();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                ResultSet rs = preparedStatement.executeQuery();
 
                 while(rs.next())
                 {
-                    String fname = null;
-                    try {
-                        fname = rs.getString("name");
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                    String emp_id= null;
-                    try {
-                        emp_id = rs.getString("emp_id");
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
+                    String fname = rs.getString("mentorname");
+                    String emp_id=rs.getString("emp_id");
 
             %>
             <tbody>

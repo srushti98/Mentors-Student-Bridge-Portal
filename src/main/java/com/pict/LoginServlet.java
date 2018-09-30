@@ -51,6 +51,7 @@ public class LoginServlet extends HttpServlet {
                     out.print("Success");
                     response.sendRedirect("/jsp/mentor_profile.jsp");
                 }else{
+                    response.sendRedirect("index.jsp");
                     out.print("Inavalid");
                 }
 
@@ -69,9 +70,11 @@ public class LoginServlet extends HttpServlet {
 
                     HttpSession session= request.getSession();
                     session.setAttribute("stud_name",username);
+                    session.setAttribute("stud_mis_id",login_mis_id);
 
                     response.sendRedirect("/jsp/student_profile.jsp");
                 }else{
+                    response.sendRedirect("index.jsp");
                     out.print("Inavalid");
                 }
 
@@ -88,6 +91,7 @@ public class LoginServlet extends HttpServlet {
                     out.print("Success");
                     response.sendRedirect("/jsp/admin_profile.jsp");
                 }else{
+                    response.sendRedirect("index.jsp");
                     out.print("Inavalid");
                 }
 
