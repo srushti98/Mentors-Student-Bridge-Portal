@@ -1,5 +1,6 @@
 <%@ page import="com.pict.database.DatabaseConnection" %>
 <%@ page import="java.sql.*" %>
+<%@ page import="static java.lang.System.out" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +10,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <script src="../js/bootstrap.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 
     <style>
         .navbar-collapse a:hover {
@@ -59,8 +62,43 @@
         if (session.getAttribute("stud_name")==null)
             response.sendRedirect("/index.jsp");
         String stud_name = (String)session.getAttribute("stud_name");
+        String stud_mis_id = (String)session.getAttribute("stud_mis_id");
 
+        Connection con;
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+        System.out.println("SL3 " + "database successfully opened. in student profile");
 
+        PreparedStatement ps = null;
+        ps=con.prepareStatement("select * from student where stud_mis_id=?");
+        ps.setString(1,stud_mis_id);
+        String prn = null;
+        String roll = null;
+        String batch = null;
+        String div = null;
+        ResultSet rs = null;
+        try {
+            rs = ps.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        String checkimg = null;
+        try {
+            checkimg = rs.getString("stud_img");
+
+            prn = rs.getString("stud_prn");
+            roll = rs.getString("stud_roll_no");
+            batch = rs.getString("stud_batch");
+            div = rs.getString("stud_div");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(stud_name);
+        System.out.println(prn);
+        System.out.println(roll);
+        System.out.println(batch);
+        System.out.println(div);
 
     %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -125,15 +163,23 @@
                 <div class="card-body" style="color: black">
                     <a href="#" class="card-link"></a>
                     <a href="#" class="card-link"></a>
-                    <form action="/FileUploadServlet"  method="POST" enctype="multipart/form-data">
-                    <div class="form-group" style="margin-top: 10px" >
+                    <%
+                        if (checkimg==null){
+                            %>
+                            <form action="/FileUploadServlet"  method="POST" enctype="multipart/form-data">
+                        <div class="form-group" style="margin-top: 10px" >
                         <label>Upload Picture</label>
                         <input type="file" name="photo">
                         <input type="submit" class="btn-primary" value="submit">
 
 
-                    </div>
-                    </form>
+                        </div>
+                        </form>
+                    <%
+                        }
+
+                    %>
+
                 </div>
             </div>
         </div>
@@ -141,5 +187,17 @@
 
     </div>
 </div>
-
+<script type="text/javascript">
+    var Msg ='<%=session.getAttribute("getAlert")%>';
+    if (Msg != "null") {
+        function alertName(){
+            swal("error",Msg,"error");
+        }
+    }
+</script>
 </body>
+<script type="text/javascript"> window.onload = alertName; </script>
+
+</html>
+
+
