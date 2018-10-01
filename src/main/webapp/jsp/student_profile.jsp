@@ -59,6 +59,9 @@
         if (session.getAttribute("stud_name")==null)
             response.sendRedirect("/index.jsp");
         String stud_name = (String)session.getAttribute("stud_name");
+
+
+
     %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -106,9 +109,9 @@
         <div class="col-4"></div>
         <div class="col-6" >
             <div class="card" style="width: 18rem; width:700px; margin-top: 50px">
-                <img class="card-img-top" src="../img/blank_profile.png" alt="Card image cap" style="width: 300px; height:300px; align-self: center ">
+                <img class="card-img-top" src="/ProfileDisplayServlet" alt="Card image cap " style="width: 300px; height:300px; align-self: center ">
                 <div class="card-body">
-                    <h5 class="card-title" style="color: black">NAME</h5>
+                    <h5 class="card-title" style="color: black">NAME : </h5>
 
                 </div>
                 <ul class="list-group list-group-flush" style="color: black">
