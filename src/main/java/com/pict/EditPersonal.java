@@ -81,7 +81,7 @@ public class EditPersonal extends HttpServlet {
 
             if (rs>0) {
                 //JOptionPane.showMessageDialog(null, "Profile Edited!!!");
-                error.add("Profile Edited");
+                error.add("Personal Details");
                 session.setAttribute("getAlert", error);
                 response.sendRedirect("/jsp/student_profile.jsp");
             }

@@ -165,9 +165,9 @@
             <h1>Personal Details</b> </h1>
             <div class="form-group">
                 <label>Student Name</label>
-                <input type="text" class="form-control" placeholder="Full Name" value="<%=s_stud_name%>">
+                <input type="text" class="form-control" placeholder="Full Name" value="<%=s_stud_name%>" readonly>
                 <label>PRN</label>
-                <input type="number" class="form-control" name="prn_no" placeholder="PR number" value="<%=prn_int%>"><br>
+                <input type="number" class="form-control" name="prn_no" placeholder="PR number" value="<%=prn_int%>" readonly><br>
                 <div class="form-group" style="color: white">
                     <label>Year</label>
                     <input type="radio" name="stud_year" value="2">SE

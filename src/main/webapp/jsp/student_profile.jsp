@@ -61,44 +61,41 @@
     <%
         if (session.getAttribute("stud_name")==null)
             response.sendRedirect("/index.jsp");
-        String stud_name = (String)session.getAttribute("stud_name");
+        String s_stud_name = (String)session.getAttribute("stud_name");
         String stud_mis_id = (String)session.getAttribute("stud_mis_id");
 
+        Connection databaseConnection = DatabaseConnection.getDatabaseConnection();
         Connection con;
+        PreparedStatement ps = null;
         Class.forName("com.mysql.jdbc.Driver");
         con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
-        System.out.println("SL3 " + "database successfully opened. in student profile");
 
-        PreparedStatement ps = null;
-        ps=con.prepareStatement("select * from student where stud_mis_id=?");
-        ps.setString(1,stud_mis_id);
+
+        PreparedStatement preparedStatement = null;
+
+        preparedStatement = con.prepareStatement("select * from student where stud_name=?");
+        preparedStatement.setString(1, s_stud_name);
+
+        ResultSet rs = preparedStatement.executeQuery();
         String prn = null;
         String roll = null;
         String batch = null;
         String div = null;
-        ResultSet rs = null;
-        try {
-            rs = ps.executeQuery();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
         String checkimg = null;
-        try {
-            checkimg = rs.getString("stud_img");
-
+        if (rs.next()) {
             prn = rs.getString("stud_prn");
             roll = rs.getString("stud_roll_no");
             batch = rs.getString("stud_batch");
             div = rs.getString("stud_div");
-        } catch (SQLException e) {
-            e.printStackTrace();
+            checkimg = rs.getString("stud_img");
         }
 
-        System.out.println(stud_name);
+        System.out.println(s_stud_name);
         System.out.println(prn);
         System.out.println(roll);
         System.out.println(batch);
         System.out.println(div);
+        //System.out.println(checkimg);
 
     %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -137,7 +134,7 @@
                 <a class="nav-link" href="/LogoutServlet" style="float: right; color: white">LogOut</a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="student_profile.jsp" style="float: right; color: white" ><%=stud_name%></a>
+                <a class="nav-link" href="student_profile.jsp" style="float: right; color: white" ><%=s_stud_name%></a>
             </li>
         </ul>
     </div>
@@ -147,18 +144,18 @@
         <div class="col-4"></div>
         <div class="col-6" >
             <div class="card" style="width: 18rem; width:700px; margin-top: 50px">
-                <img class="card-img-top" src="/ProfileDisplayServlet" alt="Card image cap " style="width: 300px; height:300px; align-self: center ">
+                <img class="card-img-top" src="/data:image/jpg;base64,${book.base64Image}" alt="Card image cap " style="width: 300px; height:300px; align-self: center ">
                 <div class="card-body">
-                    <h5 class="card-title" style="color: black">NAME : </h5>
+                    <h5 class="card-title" style="color: black">NAME : <%=s_stud_name%></h5>
 
                 </div>
                 <ul class="list-group list-group-flush" style="color: black">
                     <li class="list-group-item">Department : </li>
-                    <li class="list-group-item">Year :</li>
-                    <li class="list-group-item">Division :</li>
-                    <li class="list-group-item">Batch : </li>
-                    <li class="list-group-item">Roll no : </li>
-                    <li class="list-group-item">Mentor : </li>
+                    <li class="list-group-item">Year : <%=s_stud_name%></li>
+                    <li class="list-group-item">Division : <%=div%></li>
+                    <li class="list-group-item">Batch : <%=batch%></li>
+                    <li class="list-group-item">Roll no : <%=roll%></li>
+                    <li class="list-group-item">Mentor : <%=s_stud_name%></li>
                 </ul>
                 <div class="card-body" style="color: black">
                     <a href="#" class="card-link"></a>
@@ -191,7 +188,7 @@
     var Msg ='<%=session.getAttribute("getAlert")%>';
     if (Msg != "null") {
         function alertName(){
-            swal("error",Msg,"error");
+            swal("Profile Updated", Msg, "success")
         }
     }
 </script>
