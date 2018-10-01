@@ -121,7 +121,7 @@
                 <a class="nav-link" href="/jsp/admin_allotmentlist.jsp">View Allotments</a>
             </li>
         </ul>
-        <a class="nav-link" href="#"><i class="material-icons">
+        <a class="nav-link" href="../LogoutServlet"><i class="material-icons">
             account_circle
         </i> signout</a>
     </div>
@@ -147,14 +147,17 @@
                 Connection con;
                 PreparedStatement ps = null;
                 Class.forName("com.mysql.jdbc.Driver");
-                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+                try {
+                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
 
 
                 PreparedStatement preparedStatement = null;
 
                 try {
-//                    preparedStatement = databaseConnection.prepareStatement("select emp_id,mentorname from mentor order by mentorname");
-                      preparedStatement = con.prepareStatement("select emp_id,mentorname from mentor order by mentorname");
+                    preparedStatement = databaseConnection.prepareStatement("select emp_id,mentorname from mentor order by mentorname");
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
