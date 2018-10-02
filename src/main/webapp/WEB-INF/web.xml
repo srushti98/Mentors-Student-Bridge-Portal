@@ -4,6 +4,17 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  
+  <!--<servlet>-->
+    <!--<servlet-name>ProfileDisplayServlet</servlet-name>-->
+    <!--<servlet-class>com.pict.ProfileDisplayServlet</servlet-class>-->
+  <!--</servlet>-->
+  <!---->
+  <!--<servlet-mapping>-->
+    <!--<servlet-name>ProfileDisplayServlet</servlet-name>-->
+    <!--<url-pattern>/jsp/student_profile.jsp</url-pattern>-->
+  <!--</servlet-mapping>-->
+  
 </web-app>
 
 

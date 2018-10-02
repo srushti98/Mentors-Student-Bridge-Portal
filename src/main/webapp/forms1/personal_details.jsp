@@ -50,8 +50,12 @@
         }
 
         .form{
-            background-color: rgb(86, 86, 86);
+            background-color: rgba(86, 86, 86.0.8);
             margin-top: 50px;
+            border: solid;
+            border-color: black;
+            border-radius: 50px;
+            padding: 50px 40px;
         }
 
         h1{
@@ -59,18 +63,19 @@
             font-family: "Javanese Text";
             margin-top: 40px;
             text-align: center;
-            color: snow;
+            color: black;
         }
 
         label{
             font-size: 20px;
-            color: snow;
+            color: black;
         }
 
 
         .btn-danger,.btn-primary{
             border-radius: 0px;
             width: 48%;
+            height: 50px;
         }
     </style>
 </head>
@@ -129,10 +134,10 @@
                     Edit Profile
                 </a>
                 <div class="dropdown-content" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Personal Details</a>
-                    <a class="dropdown-item" href="#">Academic Details </a>
-                    <a class="dropdown-item" href="#">Parent Details</a>
-                    <a class="dropdown-item" href="#">Extra Activities</a>
+                    <a class="dropdown-item" href="personal_details.jsp">Personal Details</a>
+                    <a class="dropdown-item" href="academic_details.jsp">Academic Details </a>
+                    <a class="dropdown-item" href="parent_details.jsp">Parent Details</a>
+                    <a class="dropdown-item" href="extra_activities.jsp">Extra Activities</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -140,7 +145,7 @@
                     Submit
                 </a>
                 <div class="dropdown-content" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Leave Application</a>
+                    <a class="dropdown-item" href="leave_app.jsp">Leave Application</a>
                     <a class="dropdown-item" href="#">Undertaking</a>
                     <a class="dropdown-item" href="#">Minutes of Meeting</a>
                     <a class="dropdown-item" href="#">Meet Mentor</a>
@@ -168,7 +173,7 @@
                 <input type="text" class="form-control" placeholder="Full Name" value="<%=s_stud_name%>" readonly>
                 <label>PRN</label>
                 <input type="number" class="form-control" name="prn_no" placeholder="PR number" value="<%=prn_int%>" readonly><br>
-                <div class="form-group" style="color: white">
+                <div class="form-group" style="color: black">
                     <label>Year</label>
                     <input type="radio" name="stud_year" value="2">SE
                     <input type="radio" name="stud_year" value="3">TE

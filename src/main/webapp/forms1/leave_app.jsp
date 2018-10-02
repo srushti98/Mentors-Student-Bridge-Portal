@@ -1,13 +1,22 @@
 <%@ page import="com.pict.database.DatabaseConnection" %>
-<%@ page import="java.sql.*" %>
-<%@ page import="static java.lang.System.out" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.ResultSet" %><%--
+  Created by IntelliJ IDEA.
+  User: madhura
+  Date: 14/9/18
+  Time: 7:00 AM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>new profile</title>
-
-    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <title>Leave_Application</title>
+    <meta name="viewport" content="width=device-width,initial-state=1"/>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <script src="../js/bootstrap.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" rel="stylesheet" />
@@ -51,6 +60,31 @@
         .navbar-nav .toright {
             float: right;
         }
+
+        .new_user_form{
+            border: 2px solid black;
+            padding: 50px 40px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            border-radius: 10px;
+        }
+
+        .button1 {
+            color: white;
+            font-family: "Comic Sans MS";
+            background-color: #3cb22c;
+            border-top-color: #337e29;
+            width: 48%;
+        }
+        .button2 {
+            color: white;
+            font-family: "Comic Sans MS";
+            background-color:#e31e0e ;
+            border-top-color: #a9281d;
+            width: 48%;
+        }
+        .button4 {border-radius: 12px;}
+
 
     </style>
 </head>
@@ -104,17 +138,17 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="student_profile.jsp" style="color: white" >Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="../jsp/student_profile.jsp" style="color: white" >Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white">
                     Edit Profile
                 </a>
                 <div class="dropdown-content" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="../forms1/personal_details.jsp">Personal Details</a>
-                    <a class="dropdown-item" href="../forms1/academic_details.jsp">Academic Details </a>
-                    <a class="dropdown-item" href="../forms1/parent_details.jsp">Parent Details</a>
-                    <a class="dropdown-item" href="../forms1/extra_activities.jsp">Extra Activities</a>
+                    <a class="dropdown-item" href="personal_details.jsp">Personal Details</a>
+                    <a class="dropdown-item" href="#">Academic Details </a>
+                    <a class="dropdown-item" href="#">Parent Details</a>
+                    <a class="dropdown-item" href="#">Extra Activities</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -122,7 +156,7 @@
                     Submit
                 </a>
                 <div class="dropdown-content" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="../forms1/leave_app.jsp">Leave Application</a>
+                    <a class="dropdown-item" href="leave_app.jsp">Leave Application</a>
                     <a class="dropdown-item" href="#">Undertaking</a>
                     <a class="dropdown-item" href="#">Minutes of Meeting</a>
                     <a class="dropdown-item" href="#">Meet Mentor</a>
@@ -131,73 +165,68 @@
         </ul>
         <ul class="navbar-nav toright">
             <li class="nav-item ">
-                <a class="nav-link ml-auto" href="/LogoutServlet" style="float: right; color: white">LogOut</a>
+                <a class="nav-link" href="/LogoutServlet" style="float: right; color: white">LogOut</a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link ml-auto" href="student_profile.jsp" style="float: right; color: white" ><%=s_stud_name%></a>
+                <a class="nav-link" href="../jsp/student_profile.jsp" style="float: right; color: white" ><%=s_stud_name%></a>
             </li>
         </ul>
     </div>
 </nav>
-
 <div class="container-fluid">
     <div class="row">
-        <div class="col-4"></div>
-        <div class="col-6" >
-            <div class="card" style="width: 18rem; width:700px; margin-top: 50px">
-                <img class="card-img-top" src="/data:image/jpg;base64,${pro.base64Image}" alt="Card image cap " style="width: 300px; height:300px; align-self: center ">
-                <div class="card-body">
-                    <h5 class="card-title" style="color: black">NAME : <%=s_stud_name%></h5>
-
+        <div class="col-md-3"></div>
+        <div class="col-md-6 new_user_form" >
+            <form action="#" method="post">
+                <h1 align="center"><u>Leave application</u></h1>
+                <br>
+                <div class="form-group">
+                    <label>Name :</label>
+                    <input type="text" class="form-control" name="student_name" required>
                 </div>
-                <ul class="list-group list-group-flush" style="color: black">
-                    <li class="list-group-item">Department : </li>
-                    <li class="list-group-item">Year : <%=s_stud_name%></li>
-                    <li class="list-group-item">Division : <%=div%></li>
-                    <li class="list-group-item">Batch : <%=batch%></li>
-                    <li class="list-group-item">Roll no : <%=roll%></li>
-                    <li class="list-group-item">Mentor : <%=s_stud_name%></li>
-                </ul>
-                <div class="card-body" style="color: black">
-                    <a href="#" class="card-link"></a>
-                    <a href="#" class="card-link"></a>
-                    <%
-                        if (checkimg==null){
-                            %>
-                            <form action="/FileUploadServlet"  method="POST" enctype="multipart/form-data">
-                        <div class="form-group" style="margin-top: 10px" >
-                        <label>Upload Picture</label>
-                        <input type="file" name="photo">
-                        <input type="submit" class="btn-primary" value="submit">
-
-
-                        </div>
-                        </form>
-                    <%
-                        }
-
-                    %>
-
+                <div class="form-group">
+                    <label>Division :</label>
+                    <input type="text" class="form-control" name="student_div" required>
                 </div>
-            </div>
+                <div class="form-group">
+                    <label>Roll no :</label>
+                    <input type="number" class="form-control" name="student_roll_no" required>
+                </div>
+                <div class="form-group">
+                    <label>Attendance prior to this leave :</label>
+                    <input type="text" class="form-control" name="attendance" required>
+                </div>
+                <div class="form-group" align="left">
+                    <label>Leave Start Date :</label>
+                    <input type="date" name="dateFrom"  required />
+                </div>
+                <div class="form-group" align="left">
+                    <label>Leave End Date :</label>
+                    <input type="date" name="dateTo"  required />
+                </div>
+                <div class="form-group">
+                    <label>Number of working hours falling in the leave period :</label>
+                    <input type="number" class="form-control" name="leave_hrs" required>
+                </div>
+
+
+                <div class="form-group">
+                    <label>Reason for this leave :</label>
+                    <br>
+                    <textarea name="leave_reason" placeholder="Reason for leave" style="width:75%;height:100px;margin-top:6px;resize: horizontal" required></textarea>
+                </div>
+                <div class="blockquote-footer">
+                    <button type="submit" class="button1 button4" style="width:100px;height:50px; ">Request</button>
+                    <button type="submit"  class="button2 button4" style="width:100px;height:50px;">Cancel</button>
+                </div>
+
+            </form>
         </div>
-        <div class="col-3 "></div>
+        <div class="col-md-3"></div>
+        </div>
 
     </div>
 </div>
-<script type="text/javascript">
-    var Msg ='<%=session.getAttribute("getAlert")%>';
-    if (Msg != "null") {
-        function alertName(){
-            swal("Profile Updated", Msg, "success")
-        }
-        Msg=null;
-        <%session.setAttribute("getAlert",null);%>
-    }
-</script>
 </body>
-<script type="text/javascript"> window.onload = alertName; </script>
 
 </html>
-
-
