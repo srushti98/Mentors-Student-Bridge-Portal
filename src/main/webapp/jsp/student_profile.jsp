@@ -1,6 +1,7 @@
 <%@ page import="com.pict.database.DatabaseConnection" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="static java.lang.System.out" %>
+<%@ page import="java.util.Base64" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -145,7 +146,19 @@
         <div class="col-4"></div>
         <div class="col-6" >
             <div class="card" style="width: 18rem; width:700px; margin-top: 50px">
-                <img class="card-img-top" src="/data:image/jpg;base64,${pro.base64Image}" alt="Card image cap " style="width: 300px; height:300px; align-self: center ">
+                <%
+                    if (checkimg!=null){
+                %>
+                <img class="card-img-top" src="data:image/png;base64,<%=Base64.getEncoder().encodeToString(rs.getBytes("stud_img"))%>" alt="Card image cap " style="width: 300px; height:300px; align-self: center ">
+                <%
+                    } else {
+
+                %>
+                <img class="card-img-top" src=" " alt="Card image cap " style="width: 300px; height:300px; align-self: center ">
+                <%
+                    }
+
+                %>
                 <div class="card-body">
                     <h5 class="card-title" style="color: black">NAME : <%=s_stud_name%></h5>
 

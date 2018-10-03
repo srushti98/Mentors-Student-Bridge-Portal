@@ -166,7 +166,7 @@
     <div class="row">
         <div class="col-3 "></div>
         <div class="col-6 form">
-            <form action="/EditAcademics"  method="POST" enctype="multipart/form-data">
+            <form action="/EditAcademics"  method="POST">
                 <h1>Academic Details</b> </h1><br>
                 <div class="form-group">
                     <label>SSC school</label>
@@ -201,12 +201,12 @@
                         <%--<label>Upload Documents</label>--%>
                         <%--<input type="file" name="file">--%>
                     <%--</div>--%>
-
-                    <div class="form-group">
-                        <input type="submit" class="btn-primary" value="submit">
-                        <input type="reset" class="btn-danger" value="reset">
-                    </div>
                 </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn-primary" value="Submit">
+                        <input type="reset" class="btn-danger" value="Reset">
+                    </div>
+
 
 
 

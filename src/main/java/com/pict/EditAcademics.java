@@ -1,7 +1,5 @@
 package com.pict;
 
-import com.pict.database.DatabaseConnection;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,7 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import static java.lang.System.out;
@@ -21,7 +22,7 @@ public class EditAcademics extends HttpServlet {
 
     public EditAcademics() {
         super();
-        databaseConnection = DatabaseConnection.getDatabaseConnection();
+        //databaseConnection = DatabaseConnection.getDatabaseConnection();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -69,9 +70,13 @@ public class EditAcademics extends HttpServlet {
             sub_interest = request.getParameter("sub_interest");
             preference = request.getParameter("preference");
             affinity = request.getParameter("affinity");
+            System.out.println(ssc_pc);
+            System.out.println(hsc_pc);
+            System.out.println(hsc_sch);
 
             float ssc_pc_int = Float.parseFloat(ssc_pc);
             float hsc_pc_int = Float.parseFloat(hsc_pc);
+            //float m=
             int pcm_int = Integer.parseInt(pcm);
             int cet_int = Integer.parseInt(cet);
             int dip_pc_int = Integer.parseInt(dip_pc);
@@ -81,9 +86,9 @@ public class EditAcademics extends HttpServlet {
 
             ps=con.prepareStatement("update StudentAcademicDetails set SSC_school=?, SSC_percentage=?, HSC_school=?, HSC_percentage=?, PCM_marks_total=?, CET_marks=?, JEE_marks=?, diploma_percentage=?, admission_category=?, subject_area_interest=?, career_plan=?, preference=?, affinity=? where stud_mis_id=?");
             ps.setString(1,ssc_sch);
-            ps.setFloat(2,ssc_pc_int);
+            ps.setFloat(2, ssc_pc_int);
             ps.setString(3,hsc_sch);
-            ps.setFloat(4,hsc_pc_int);
+            ps.setFloat(4, hsc_pc_int);
             ps.setInt(5,pcm_int);
             ps.setInt(6,cet_int);
             ps.setInt(7,jee_int);
@@ -99,7 +104,7 @@ public class EditAcademics extends HttpServlet {
             out.println("SL3 " + "database successfully opened. in edit academics 3");
             if (rs>0) {
                 //JOptionPane.showMessageDialog(null, "Profile Edited!!!");
-                error.add("Academiv Details");
+                error.add("Academic Details");
                 session.setAttribute("getAlert", error);
                 response.sendRedirect("/jsp/student_profile.jsp");
             }

@@ -50,6 +50,7 @@ public class FileUploadServlet extends HttpServlet {
                 int row = ps.executeUpdate();
                 if (row > 0) {
                     System.out.println("Photo Uploaded!!!");
+                    response.sendRedirect("/jsp/student_profile.jsp");
                 }
 
             }
