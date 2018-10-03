@@ -73,9 +73,11 @@
         String name = null;
         String prn = null;
         String roll = null;
+        String fileid=null;
         String batch = null;
         String div = null;
         String checkimg = null;
+        int count=1;
         if (rs.next()) {
             name = rs.getString("stud_name") ;
             prn = rs.getString("stud_prn");
@@ -107,6 +109,69 @@
                     <li class="list-group-item">Division : <%=div%></li>
                     <li class="list-group-item">Batch : <%=batch%></li>
                     <li class="list-group-item">Roll no : <%=roll%></li>
+                    <%  String filetype="certificates";
+                        preparedStatement = con.prepareStatement("select stud_file_id from stud_documents where file_type=? and stud_mis_id=?");
+                        preparedStatement.setString(1,filetype);
+                        preparedStatement.setString(2, stud_mis_id);
+                        ResultSet resultSet2 = preparedStatement.executeQuery();
+                        count=1;
+
+                        if(!resultSet2.first())
+                        {
+                            System.out.print(resultSet2.first());
+
+                    %>
+                    <li class="list-group-item">View cetificates::<h6 style="color: red">NO UPLOADS</h6></li>
+
+                    <%
+
+                    }
+
+                    else
+                    {
+                        resultSet2.previous();
+                        while (resultSet2.next())
+                        {
+
+                            fileid=resultSet2.getString("stud_file_id");
+
+                    %>
+                    <li class="list-group-item">View certificate no ::<%=count%>::<a href="../MentorfileDownload?id=<%=stud_mis_id%>&fileid=<%=fileid%>" target="_blank">View</a></li>
+
+                    <%
+                                count++;  }}%>
+
+                    <%  String filetype1="undertaking";
+                        preparedStatement = con.prepareStatement("select stud_file_id from stud_documents where file_type=? and stud_mis_id=?");
+                        preparedStatement.setString(1,filetype1);
+                        preparedStatement.setString(2, stud_mis_id);
+                        ResultSet resultSet1 = preparedStatement.executeQuery();
+                        count=1;
+
+                        if(!resultSet1.first())
+                        {
+                            System.out.print(resultSet1.first());
+
+                    %>
+                    <li class="list-group-item">View undertaking::<h6 style="color: red">NO UPLOADS</h6></li>
+
+                    <%
+
+                    }
+
+                    else
+                    {
+                        resultSet1.previous();
+                        while (resultSet1.next())
+                        {
+
+                            fileid=resultSet1.getString("stud_file_id");
+
+                    %>
+                    <li class="list-group-item">View undertaking no ::<%=count%>::<a href="../MentorfileDownload?id=<%=stud_mis_id%>&fileid=<%=fileid%>" target="_blank">View</a></li>
+
+                    <%
+                      count++;  }}%>
                 </ul>
                 <div class="card-body" style="color: black">
                     <a href="#" class="card-link"></a>

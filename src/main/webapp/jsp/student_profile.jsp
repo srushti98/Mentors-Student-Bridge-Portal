@@ -1,3 +1,6 @@
+<%@ page import="com.pict.database.DatabaseConnection" %>
+<%@ page import="java.sql.*" %>
+<%@ page import="static java.lang.System.out" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,77 +10,197 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <script src="../js/bootstrap.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 
     <style>
-        .top-nav{
-            overflow: hidden;
+        .navbar-collapse a:hover {
             background-color: #2f28d6;
-
-
         }
-        .top-nav a {
+
+        .navbar-collapse .toright {
             float: right;
-            color: white;
-            text-align: center;
-            padding: 14px 16px;
-            font-size: 30px;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            float: none;
+            color: black;
+            padding: 12px 16px;
             text-decoration: none;
+            display: block;
+            text-align: left;
         }
 
-        .top-nav a:hover{
-            background-color: #221b94;
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
 
+        .dropdown:hover .dropdown-content {
+            display: block;
         }
-        .navbar-text {
-            color: white;
-            margin-left: 20px;
+
+        .navbar-nav .toright {
+            float: right;
         }
-        #profile_pic{
-            padding: 10px;
-            width: 200px;
-            height: 200px;
-            margin-left: 120px;
-            align-self: center;
-        }
-        .list-group-item {
-            height: 80px;
-            font-size: 25px;
-        }
-        .list-group a:hover {
-            color: #2f28d6;
-        }
+
     </style>
-
 </head>
+
 <body>
-<div class="top-nav sticky-top">
-    <span class="navbar-text"><h1>Mentor System</h1></span>
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <a class="navbar-brand" href="#" style="color: white">Mentor-Student</a>
     <%
         if (session.getAttribute("stud_name")==null)
             response.sendRedirect("/index.jsp");
         String stud_name = (String)session.getAttribute("stud_name");
-        %>
-    <a class="active" href="../LogoutServlet">LogOut</a>
-    <a href="#"><%=stud_name%></a>
-</div>
-<div class="row">
-    <div class="col-md-3 col-sm3 col-xs-12">
-        <img src="img/blank_profile.png" id="profile_pic" class="img">
-        <div class="list-group" id="list-tab" role="tablist">
-            <a class="list-group-item list-group-item-action" data-toggle="list" href="#list-home" >Home</a>
-            <a class="list-group-item list-group-item-action" data-toggle="list" href="../forms/mentor_form.jsp" >Edit Profile</a>
-            <a class="list-group-item list-group-item-action" data-toggle="list" href="#list-settings" >Minutes of meetings</a>
-            <a class="list-group-item list-group-item-action" data-toggle="list" href="../forms/leave_app.jsp" target="profile_display" >Leave Application</a>
-            <a class="list-group-item list-group-item-action" data-toggle="list" href="#list-settings" >Meet Mentor</a>
-            <a class="list-group-item list-group-item-action" data-toggle="list" href="#list-settings" >Submit Undertaking</a>
+        String stud_mis_id = (String)session.getAttribute("stud_mis_id");
 
+        Connection con;
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+        System.out.println("SL3 " + "database successfully opened. in student profile");
+
+        PreparedStatement ps = null;
+        ps=con.prepareStatement("select * from student where stud_mis_id=?");
+        ps.setString(1,stud_mis_id);
+        String prn = null;
+        String roll = null;
+        String batch = null;
+        String div = null;
+        ResultSet rs = null;
+        try {
+            rs = ps.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        String checkimg = null;
+        try {
+            checkimg = rs.getString("stud_img");
+
+            prn = rs.getString("stud_prn");
+            roll = rs.getString("stud_roll_no");
+            batch = rs.getString("stud_batch");
+            div = rs.getString("stud_div");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(stud_name);
+        System.out.println(prn);
+        System.out.println(roll);
+        System.out.println(batch);
+        System.out.println(div);
+
+    %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="student_profile.jsp" style="color: white" >Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white">
+                    Edit Profile
+                </a>
+                <div class="dropdown-content" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="../forms1/personal_details.jsp">Personal Details</a>
+                    <a class="dropdown-item" href="#">Academic Details </a>
+                    <a class="dropdown-item" href="#">Parent Details</a>
+                    <a class="dropdown-item" href="#">Extra Activities</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white">
+                    Submit
+                </a>
+                <div class="dropdown-content" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Leave Application</a>
+                    <a class="dropdown-item" href="/jsp/undertaking.jsp">Undertaking</a>
+                    <a class="dropdown-item" href="#">Minutes of Meeting</a>
+                    <a class="dropdown-item" href="#">Meet Mentor</a>
+                </div>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item ">
+                <a class="nav-link" href="/LogoutServlet" style="float: right; color: white">LogOut</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="student_profile.jsp" style="float: right; color: white" ><%=stud_name%></a>
+            </li>
+        </ul>
+        <ul class="navbar-nav toright">
+
+        </ul>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-6" >
+            <div class="card" style="width: 18rem; width:700px; margin-top: 50px">
+                <img class="card-img-top" src="/ProfileDisplayServlet" alt="Card image cap " style="width: 300px; height:300px; align-self: center ">
+                <div class="card-body">
+                    <h5 class="card-title" style="color: black">NAME : </h5>
+
+                </div>
+                <ul class="list-group list-group-flush" style="color: black">
+                    <li class="list-group-item">Department : </li>
+                    <li class="list-group-item">Year :</li>
+                    <li class="list-group-item">Division :</li>
+                    <li class="list-group-item">Batch : </li>
+                    <li class="list-group-item">Roll no : </li>
+                    <li class="list-group-item">Mentor : </li>
+                </ul>
+                <div class="card-body" style="color: black">
+                    <a href="#" class="card-link"></a>
+                    <a href="#" class="card-link"></a>
+                    <%
+                        if (checkimg==null){
+                            %>
+                            <form action="/FileUploadServlet"  method="POST" enctype="multipart/form-data">
+                        <div class="form-group" style="margin-top: 10px" >
+                        <label>Upload Picture</label>
+                        <input type="file" name="photo">
+                        <input type="submit" class="btn-primary" value="submit">
+
+
+                        </div>
+                        </form>
+                    <%
+                        }
+
+                    %>
+
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="col-md-9 col-sm-9 col-xs-12 no-gutters">
-        <iframe name="profile_display" style="height: 900px; width: 1400px;margin-left: 0px; margin-top: 10px; border: none">
+        <div class="col-3 "></div>
 
-        </iframe>
     </div>
 </div>
+<script type="text/javascript">
+    var Msg ='<%=session.getAttribute("getAlert")%>';
+    if (Msg != "null") {
+        function alertName(){
+            swal("error",Msg,"error");
+        }
+    }
+</script>
 </body>
+<script type="text/javascript"> window.onload = alertName; </script>
+
 </html>
+
+
