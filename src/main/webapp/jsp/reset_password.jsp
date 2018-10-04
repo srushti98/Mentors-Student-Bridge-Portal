@@ -96,43 +96,42 @@
 </head>
 <body>
 
+<%
+    String Email= (String) request.getAttribute("EmailID");
+    int rollno= (int) request.getAttribute("rollNumber");
+%>
 
 <div class="login-wrap">
     <div class="login-html">
-        <form action="/LoginServlet" method="POST">
+        <form action="/resetPasswordServlet" method="POST">
             <div class="login-form">
-                <h1 style="text-align: center">Mentor System</h1>
+                <h1 style="text-align: center">Reset Password</h1>
                 <div class="group">
-                    <label for="user" class="label" >MIS ID</label>
-                    <input id="user" type="text" class="form-control input" name="login_mis_id" placeholder="Mis-id">
+                    <label for="email" class="label" >E-mail ID</label>
+                    <input id="email" type="text" class="form-control input" name="email" value="<%=Email%>" readonly>
                 </div>
                 <div class="group">
-                    <label for="pass" class="label">Password</label>
-                    <input id="pass" type="password" class="form-control input" data-type="password" name="login_pswd" placeholder="Password">
+                    <label for="roll_no" class="label" >Roll Number</label>
+                    <input id="roll_no" type="text" class="form-control input" name="roll_no" value="<%=rollno%>" readonly>
                 </div>
-                <!--<div class="group">
-                    <input id="check" type="checkbox" class="check" checked>
-                    <label for="check"><span class="icon"></span> Keep me Signed in</label>
-                </div>-->
+                <div class="group">
+                    <label for="password" class="label" >New Password</label>
+                    <input id="password" type="text" class="form-control input" name="password" placeholder="password">
+                </div>
                 <div class="group" style="padding-top: 20px">
-                    <input type="submit" class="button" value="Sign In">
+                    <input type="submit" class="button" value="Set New Password">
                 </div>
                 <div class="hr"></div>
-
             </div>
         </form>
-        <div class="foot-lnk">
-            <a href="jsp/forgot_password.jsp">Forgot Password?</a>
-        </div>
     </div>
 
 </div>
-
 <script>
     var Msg ='<%=session.getAttribute("getAlert")%>';
     if (Msg !== "null") {
         function alertName(){
-            swal("Password updated successfully","New password is: "+Msg,"success");
+            swal("success","Your current password is: "+Msg,"success");
         }
         Msg="null";
     }
@@ -141,6 +140,5 @@
 </body>
 
 <script type="text/javascript"> window.onload = alertName; </script>
-<script type="text/javascript"> window.onload = errorName; </script>
 
 </html>

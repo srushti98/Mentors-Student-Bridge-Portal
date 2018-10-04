@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
 
             Connection con;
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentor_sys", "hello", "hello");
             out.println ("SL3 "+ "database successfully opened.");
             out.print(login_mis_id);
             out.print(login_pswd);
@@ -58,9 +58,9 @@ public class LoginServlet extends HttpServlet {
             else if(login_mis_id.startsWith("I") || login_mis_id.startsWith("E") || login_mis_id.startsWith("C"))
             {
                 out.print("in student");
-                preparedStatement = con.prepareStatement("select * from student where stud_mis_id=? and stud_password=?");
-                preparedStatement.setString(1,login_mis_id);
-                preparedStatement.setString(2,login_pswd);
+                preparedStatement = con.prepareStatement("select * from student where stud_password=? and stud_mis_id=?");
+                preparedStatement.setString(1,login_pswd);
+                preparedStatement.setString(2,login_mis_id);
 
                 ResultSet resultSet = preparedStatement.executeQuery();
                 if(resultSet.next()){

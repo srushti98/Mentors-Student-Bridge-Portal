@@ -27,7 +27,7 @@
             max-width:525px;
             min-height:670px;
             position:relative;
-            background:url("img/loginbg3.jpeg") no-repeat center;
+            background:url("/img/loginbg3.jpeg") no-repeat center;
             box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
         }
 
@@ -99,40 +99,32 @@
 
 <div class="login-wrap">
     <div class="login-html">
-        <form action="/LoginServlet" method="POST">
+        <form action="/ForgotPasswordServlet" method="POST">
             <div class="login-form">
-                <h1 style="text-align: center">Mentor System</h1>
+                <h1 style="text-align: center">Forgot Password</h1>
                 <div class="group">
-                    <label for="user" class="label" >MIS ID</label>
-                    <input id="user" type="text" class="form-control input" name="login_mis_id" placeholder="Mis-id">
+                    <label for="email" class="label" >E-mail ID</label>
+                    <input id="email" type="text" class="form-control input" name="email" placeholder="E-mail">
                 </div>
                 <div class="group">
-                    <label for="pass" class="label">Password</label>
-                    <input id="pass" type="password" class="form-control input" data-type="password" name="login_pswd" placeholder="Password">
+                    <label for="roll_no" class="label" >Roll Number</label>
+                    <input id="roll_no" type="text" class="form-control input" name="roll_no" placeholder="Roll Number">
                 </div>
-                <!--<div class="group">
-                    <input id="check" type="checkbox" class="check" checked>
-                    <label for="check"><span class="icon"></span> Keep me Signed in</label>
-                </div>-->
                 <div class="group" style="padding-top: 20px">
-                    <input type="submit" class="button" value="Sign In">
+                    <input type="submit" class="button" value="Recover Password">
                 </div>
                 <div class="hr"></div>
-
             </div>
         </form>
-        <div class="foot-lnk">
-            <a href="jsp/forgot_password.jsp">Forgot Password?</a>
-        </div>
     </div>
 
 </div>
 
 <script>
     var Msg ='<%=session.getAttribute("getAlert")%>';
-    if (Msg !== "null") {
+    if (Msg != "null") {
         function alertName(){
-            swal("Password updated successfully","New password is: "+Msg,"success");
+            swal("error",Msg,"error");
         }
         Msg="null";
     }
@@ -141,6 +133,5 @@
 </body>
 
 <script type="text/javascript"> window.onload = alertName; </script>
-<script type="text/javascript"> window.onload = errorName; </script>
 
 </html>

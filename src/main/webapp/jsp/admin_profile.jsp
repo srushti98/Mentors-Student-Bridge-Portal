@@ -46,7 +46,7 @@
 </nav>
 
 <h1 align="center" style="color: black;"><em><strong>MENTOR ALLOCATION</strong></em><br><br><br><br></h1>
-<form action="../AdminServlet" method="post" >
+<form action="/AdminServlet" method="post" >
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-3 form">
@@ -149,6 +149,7 @@
         function alertName(){
             swal("error",Msg,"error");
         }
+        Msg="null";
     }
 </script>
 

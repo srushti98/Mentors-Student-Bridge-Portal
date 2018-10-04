@@ -3,6 +3,7 @@
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$" />
+    <file type="web" url="jar://$USER_HOME$/Downloads/javax.mail.jar!/" />
   </component>
   <component name="JavaScriptSettings">
     <option name="languageLevel" value="ES6" />
