@@ -47,6 +47,45 @@
             margin-left: 50px;
         }
 
+        .navbar-collapse a:hover {
+            background-color: #ddd;
+        }
+
+        .navbar-collapse .toright {
+            float: right;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            float: none;
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .navbar-nav .toright {
+            float: right;
+        }
+
+
         @font-face {
             font-family: 'Material Icons';
             font-style: normal;
@@ -108,8 +147,17 @@
             <li class="nav-item ">
                 <a class="nav-link" href="/jsp/admin_index.jsp">Home </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/jsp/admin_profile.jsp">Allot mentor to Student</a>
+            <%--<li class="nav-item">--%>
+                <%--<a class="nav-link" href="/jsp/admin_profile.jsp">Allot mentor to Student</a>--%>
+            <%--</li>--%>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black">
+                    Allot mentor to Student
+                </a>
+                <div class="dropdown-content" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="/jsp/admin_allotsingle.jsp">Allot single Student</a>
+                    <a class="dropdown-item" href="/jsp/admin_profile.jsp">Allot Multiple Students </a>
+                </div>
             </li>
             <li class="nav-item ">
                 <a class="nav-link" href="/jsp/admin_studentslist.jsp">View all Students<span class="sr-only">(current)</span></a>
