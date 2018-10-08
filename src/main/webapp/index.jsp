@@ -120,6 +120,34 @@
 
 </div>
 
+<script>
+    document.getElementById("password").onclick = forgot_password()
+    {
+        swal({
+                text: 'Enter your E-mail:',
+                content: "input",
+                showCancelButton: true,
+                button: {
+                    text: "SUbmit!",
+                    closeModal: True,
+                }
+            },
+            {
+                function(email){
+                    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
+                    if(!filter.test(email.value)){
+                        swal("error","please provide a valid email","error",{});
+
+                    }
+                    else {
+                        swal("success", "valid email", "success");
+
+                    }
+                }
+            }
+        )
+    }
+</script>
 </body>
 </html>

@@ -1,9 +1,6 @@
 <%@ page import="com.pict.database.DatabaseConnection" %>
-<%@ page import="java.sql.Connection" %>
-<%@ page import="java.sql.PreparedStatement" %>
-<%@ page import="java.sql.ResultSet" %>
 <%@ page import="static java.lang.System.out" %>
-<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.*" %>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -49,6 +46,45 @@
             font-size: 36px;
             margin-left: 50px;
         }
+
+        .navbar-collapse a:hover {
+            background-color: #ddd;
+        }
+
+        .navbar-collapse .toright {
+            float: right;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            float: none;
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .navbar-nav .toright {
+            float: right;
+        }
+
 
         @font-face {
             font-family: 'Material Icons';
@@ -111,8 +147,17 @@
             <li class="nav-item ">
                 <a class="nav-link" href="/jsp/admin_index.jsp">Home </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/jsp/admin_profile.jsp">Allot mentor to Student</a>
+            <%--<li class="nav-item">--%>
+                <%--<a class="nav-link" href="/jsp/admin_profile.jsp">Allot mentor to Student</a>--%>
+            <%--</li>--%>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black">
+                    Allot mentor to Student
+                </a>
+                <div class="dropdown-content" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="/jsp/admin_allotsingle.jsp">Allot single Student</a>
+                    <a class="dropdown-item" href="/jsp/admin_profile.jsp">Allot Multiple Students </a>
+                </div>
             </li>
             <li class="nav-item ">
                 <a class="nav-link" href="/jsp/admin_studentslist.jsp">View all Students<span class="sr-only">(current)</span></a>
@@ -136,9 +181,11 @@
         <table class="table table-hover" style="width: 1200px">
             <thead>
             <tr>
-                <th scope="col">rollno</th>
+
 
                 <th scope="col">Name</th>
+
+                <th scope="col">Mentor ID</th>
 
 
             </tr>
@@ -148,19 +195,42 @@
                 Connection con;
                 PreparedStatement ps = null;
                 Class.forName("com.mysql.jdbc.Driver");
-                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+                try {
+                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
 
 
                 PreparedStatement preparedStatement = null;
 
-                preparedStatement = con.prepareStatement("select emp_id, mentor_name from mentor order by mentorname");
+                try {
+                    preparedStatement = databaseConnection.prepareStatement("select emp_id,mentorname from mentor order by mentorname");
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
 
-                ResultSet rs = preparedStatement.executeQuery();
+                ResultSet rs = null;
+                try {
+                    rs = preparedStatement.executeQuery();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
 
                 while(rs.next())
                 {
-                    String fname = rs.getString("mentorname");
-                    String emp_id=rs.getString("emp_id");
+                    String fname = null;
+                    try {
+                        fname = rs.getString("mentorname");
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    String emp_id= null;
+                    try {
+                        emp_id = rs.getString("emp_id");
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
 
             %>
             <tbody>
