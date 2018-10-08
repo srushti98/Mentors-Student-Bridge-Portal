@@ -129,16 +129,26 @@
                     <a class="dropdown-item" href="#">Meet Mentor</a>
                 </div>
             </li>
-        </ul>
-        <ul class="navbar-nav toright">
-            <li class="nav-item ">
-                <a class="nav-link ml-auto" href="/LogoutServlet" style="float: right; color: white">LogOut</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white">
+                    Notifications <span class="badge badge-danger badge-pill">1</span>
+                </a>
+                <div class="dropdown-content" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">note 1</a>
+                    <a class="dropdown-item" href="#">note 2</a>
+                    <a class="dropdown-item" href="#">note 3</a>
+                    <a class="dropdown-item" href="#">note 4</a>
+                </div>
             </li>
-            <li class="nav-item ">
-                <a class="nav-link ml-auto" href="student_profile.jsp" style="float: right; color: white" ><%=s_stud_name%></a>
-            </li>
         </ul>
+
     </div>
+    <div class="toright">
+        <a class="nav-link" href="/LogoutServlet" style="float: right; color: white">LogOut</a>
+        <a class="nav-link" href="student_profile.jsp" style="float: right; color: white" ><%=s_stud_name%></a>
+
+    </div>
+
 </nav>
 
 <div class="container-fluid">
