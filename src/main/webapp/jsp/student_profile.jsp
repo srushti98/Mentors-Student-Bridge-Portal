@@ -13,6 +13,7 @@
     <script src="../js/bootstrap.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <style>
         .navbar-collapse a:hover {
@@ -63,14 +64,20 @@
         if (session.getAttribute("stud_name")==null)
             response.sendRedirect("/index.jsp");
         String s_stud_name = (String)session.getAttribute("stud_name");
-        String stud_mis_id = (String)session.getAttribute("stud_mis_id");
+        String s_stud_mis_id = (String)session.getAttribute("stud_mis_id");
 
         Connection databaseConnection = DatabaseConnection.getDatabaseConnection();
         Connection con;
+        Connection con2;
         PreparedStatement ps = null;
+        Statement pss = null;
+        Statement pss2 = null;
         Class.forName("com.mysql.jdbc.Driver");
         con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
-
+        con2 = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+        pss=con2.createStatement();
+        pss2=con2.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+                ResultSet.CONCUR_READ_ONLY);
 
         PreparedStatement preparedStatement = null;
 
@@ -92,12 +99,18 @@
         }
 
         System.out.println(s_stud_name);
+        System.out.println(s_stud_mis_id);
         System.out.println(prn);
         System.out.println(roll);
         System.out.println(batch);
         System.out.println(div);
         //System.out.println(checkimg);
 
+        ResultSet rss3 = pss2.executeQuery("select count(a.activity_id) as ccount from activity_list a join student_activity_list s on s.activity_id = a.activity_id where stud_mis_id='"+s_stud_mis_id+"' and is_seen= 0");
+        int count=0;
+        rss3.last();
+        count = rss3.getRow() + 1;
+        rss3.beforeFirst();
     %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -105,7 +118,7 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="student_profile.jsp" style="color: white" >Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="student_profile.jsp" style="color: white" >Home<i class="fa fa-home" aria-hidden="true"></i></a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white">
@@ -125,19 +138,40 @@
                 <div class="dropdown-content" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="../forms1/leave_app.jsp">Leave Application</a>
                     <a class="dropdown-item" href="#">Undertaking</a>
-                    <a class="dropdown-item" href="#">Minutes of Meeting</a>
+                    <a class="dropdown-item" href="student_view_meetings.jsp">View Meetings</a>
                     <a class="dropdown-item" href="#">Meet Mentor</a>
                 </div>
             </li>
+
+            <%
+
+//                pss = con2.prepareStatement("select * from activity_list a join student_activity_list s on s.activity_id = a.activity_id where stud_mis_id=? and is_seen=? order by activity_date desc ");
+//                preparedStatement.setString(1, stud_mis_id);
+//                preparedStatement.setInt(1, 0);
+//                ResultSet rss = pss.executeQuery();
+
+                ResultSet rss = pss.executeQuery("select * from activity_list a join student_activity_list s on s.activity_id = a.activity_id where stud_mis_id='"+s_stud_mis_id+"' and is_seen= 0 order by activity_date desc");
+
+
+            %>
+
+
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white">
-                    Notifications <span class="badge badge-danger badge-pill">1</span>
+                    Notifications  <span class="badge badge-danger badge-pill"><%=count%></span>
                 </a>
                 <div class="dropdown-content" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">note 1</a>
-                    <a class="dropdown-item" href="#">note 2</a>
-                    <a class="dropdown-item" href="#">note 3</a>
-                    <a class="dropdown-item" href="#">note 4</a>
+                    <%
+
+                        while (rss.next()) {
+                    %>
+                    <a class="dropdown-item" href="student_view_meetings.jsp"><%=rss.getString("activity_id")%> : <%=rss.getString("activity_type")%></a>
+                    <%--<a class="dropdown-item" href="#">note 2</a>--%>
+                    <%--<a class="dropdown-item" href="#">note 3</a>--%>
+                    <%--<a class="dropdown-item" href="#">note 4</a>--%>
+                    <%
+                        }
+                    %>
                 </div>
             </li>
         </ul>
