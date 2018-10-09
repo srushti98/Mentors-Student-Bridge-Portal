@@ -159,7 +159,6 @@
         function alertName(){
             swal("success","Students alloted to mentor ID: "+Msg,"success");
         }
-        Msg="null";
     }
 </script>
 

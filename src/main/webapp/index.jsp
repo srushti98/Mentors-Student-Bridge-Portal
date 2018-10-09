@@ -130,11 +130,10 @@
 
 <script>
     var Msg ='<%=session.getAttribute("getAlert")%>';
-    if (Msg !== "null") {
+    if (Msg != "null") {
         function alertName(){
             swal("Password updated successfully","New password is: "+Msg,"success");
         }
-        Msg="null";
     }
 </script>
 

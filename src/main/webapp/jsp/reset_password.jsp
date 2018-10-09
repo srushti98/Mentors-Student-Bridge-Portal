@@ -1,3 +1,4 @@
+<%@ page import="java.util.SplittableRandom" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -96,10 +97,10 @@
 </head>
 <body>
 
-<%
-    String Email= (String) request.getAttribute("EmailID");
-    int rollno= (int) request.getAttribute("rollNumber");
-%>
+<%--<%--%>
+    <%--String Email= (String) request.getAttribute("EmailID");--%>
+    <%--String rollno= (String) request.getAttribute("rollNumber");--%>
+<%--%>--%>
 
 <div class="login-wrap">
     <div class="login-html">
@@ -108,11 +109,11 @@
                 <h1 style="text-align: center">Reset Password</h1>
                 <div class="group">
                     <label for="email" class="label" >E-mail ID</label>
-                    <input id="email" type="text" class="form-control input" name="email" value="<%=Email%>" readonly>
+                    <input id="email" type="text" class="form-control input" name="email" value="<%=session.getAttribute("EmailID")%>" readonly>
                 </div>
                 <div class="group">
                     <label for="roll_no" class="label" >Roll Number</label>
-                    <input id="roll_no" type="text" class="form-control input" name="roll_no" value="<%=rollno%>" readonly>
+                    <input id="roll_no" type="text" class="form-control input" name="roll_no" value="<%=session.getAttribute("rollNumber")%>" readonly>
                 </div>
                 <div class="group">
                     <label for="password" class="label" >New Password</label>
@@ -129,11 +130,14 @@
 </div>
 <script>
     var Msg ='<%=session.getAttribute("getAlert")%>';
-    if (Msg !== "null") {
+    <%--<%--%>
+        <%--String email=(String) session.getAttribute("EmailID");--%>
+        <%--String roll_no=(String) session.getAttribute("rollNumber");--%>
+    <%--%>--%>
+    if (Msg != "null") {
         function alertName(){
             swal("success","Your current password is: "+Msg,"success");
         }
-        Msg="null";
     }
 </script>
 

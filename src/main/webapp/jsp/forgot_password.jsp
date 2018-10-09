@@ -109,6 +109,10 @@
                 <div class="group">
                     <label for="roll_no" class="label" >Roll Number</label>
                     <input id="roll_no" type="text" class="form-control input" name="roll_no" placeholder="Roll Number">
+                    <%
+                        session.setAttribute("EmailIDs","email");
+                        session.setAttribute("rollNumbers","roll_no");
+                    %>
                 </div>
                 <div class="group" style="padding-top: 20px">
                     <input type="submit" class="button" value="Recover Password">
@@ -126,7 +130,6 @@
         function alertName(){
             swal("error",Msg,"error");
         }
-        Msg="null";
     }
 </script>
 

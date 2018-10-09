@@ -78,13 +78,17 @@ public class ForgotPasswordServlet extends HttpServlet {
                     preparedStatement.setString(2,roll_no1);
                     ResultSet rs=preparedStatement.executeQuery();
                     if(rs.next()){
-                        request.setAttribute("EmailID",email);
-                        request.setAttribute("rollNumber",roll_no);
-                        request.getRequestDispatcher("/jsp/reset_password.jsp").forward(request,response);
-                        String password=rs.getString("stud_password");
+                        out.println(email);
+                        out.println(roll_no1);
                         HttpSession session = request.getSession();
+                        session.setAttribute("EmailID",email);
+                        session.setAttribute("rollNumber",roll_no1);
+                        String password=rs.getString("stud_password");
+                        out.println("password: "+password);
                         session.setAttribute("getAlert", password);//Just initialize a random variable.
-                        response.sendRedirect("/jsp/reset_password.jsp");
+//                        request.getRequestDispatcher("/jsp/reset_password.jsp").forward(request,response);
+                        SendMailServlet.sendMail(request,response, email);
+                        flag=1;
                     }
                     else {
                         error.add("Invalid Roll Number or E-mail ID");
@@ -100,6 +104,8 @@ public class ForgotPasswordServlet extends HttpServlet {
                     response.sendRedirect("/jsp/forgot_password.jsp");
                 }
             }
+            if(flag==1)
+                response.sendRedirect("https://accounts.google.com/signin/v2/identifier?flowName=GlifWebSignIn&flowEntry=ServiceLogin");
         }
         catch (SQLException e){
             out.println("SQLException caught: " +e.getMessage());
