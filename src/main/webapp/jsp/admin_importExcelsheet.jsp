@@ -13,6 +13,7 @@
 <%@ page import ="java.util.ArrayList" %>
 <%@ page import ="java.util.Iterator" %>
 <%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.util.Base64" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -58,9 +59,10 @@
         return cellArrayLisstHolder;
     }%>
 <%
-    String fileName="/home/srushti/IdeaProjects/hello/src/main/webapp/jsp/abcd.xls"; //testExcel.xls Excel File name
+//    String fileName="/home/srushti/IdeaProjects/hello/src/main/webapp/jsp/abcd.xls"; //testExcel.xls Excel File name
     //Read an Excel File and Store in a ArrayList
-    ArrayList dataHolder=readExcelFile(fileName);
+    //ArrayList dataHolder=readExcelFile(fileName);
+    ArrayList dataHolder=readExcelFile(Base64.getEncoder().encodeToString(rs.getBytes("stud_img")));
 
     //Print the data read
     //printCellDataToConsole(dataHolder);
