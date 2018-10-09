@@ -14,6 +14,7 @@
 <%@ page import ="java.util.Iterator" %>
 <%@ page import="java.sql.DriverManager" %>
 <%@ page import="java.util.Base64" %>
+<%@ page import="java.sql.ResultSet" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -62,6 +63,16 @@
 //    String fileName="/home/srushti/IdeaProjects/hello/src/main/webapp/jsp/abcd.xls"; //testExcel.xls Excel File name
     //Read an Excel File and Store in a ArrayList
     //ArrayList dataHolder=readExcelFile(fileName);
+    Connection con;
+    ResultSet rs=null;
+    Class.forName("com.mysql.jdbc.Driver");
+    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+    System.out.println("SL3 " + "database successfully opened. in student profile");
+
+    PreparedStatement ps = null;
+    ps=con.prepareStatement("select * from excelsheet where id=?");
+    ps.setString(1,1);
+
     ArrayList dataHolder=readExcelFile(Base64.getEncoder().encodeToString(rs.getBytes("stud_img")));
 
     //Print the data read
