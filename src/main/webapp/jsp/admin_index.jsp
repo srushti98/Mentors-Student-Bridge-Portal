@@ -123,7 +123,7 @@
                 <a class="nav-link" href="/jsp/admin_allotmentlist.jsp">View Allotments</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/jsp/admin_importExcelsheet.jsp">Import ExcelSheet</a>
+                <a class="nav-link" href="/jsp/admin_importexcel.jsp">Import ExcelSheet</a>
             </li>
         </ul>
         <a class="nav-link" href="../LogoutServlet"><i class="material-icons">
