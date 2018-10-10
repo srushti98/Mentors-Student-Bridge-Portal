@@ -39,8 +39,8 @@ import static java.lang.System.out;
 @WebServlet("/SendMailServlet")
 public class SendMailServlet extends HttpServlet {
 
-    private static final String USERNAME = "vipulrao89717@gmail.com";
-    private static final String PASSWORD = "svipul98";
+    private static final String USERNAME = "visrusuma@gmail.com";
+    private static final String PASSWORD = "vrspsrms";
     private static final String SUBJECT = "Reset Password link";
 
     private static final String HOST = "smtp.gmail.com";
@@ -89,9 +89,42 @@ public class SendMailServlet extends HttpServlet {
                 InternetAddress addressTo = new InternetAddress(to);
                 msg.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
                 msg.setSubject(subject);
-                String vmFileContent = "Hello User,\n" +
-                        " Please Click here --> http://localhost:8080/jsp/reset_password.jsp to reset your password.\n" +
-                        "\n\n\n\t\t\tThanks, Team ViSuSuMa";
+                String vmFileContent = "<!DOCTYPE html>\n" +
+                        "<html>\n" +
+                        "<head>\n" +
+                        "<style>\n" +
+                        ".button {\n" +
+                        "  display: inline-block;\n" +
+                        "  padding: 15px 25px;\n" +
+                        "  font-size: 24px;\n" +
+                        "  cursor: pointer;\n" +
+                        "  text-align: center;\n" +
+                        "  text-decoration: none;\n" +
+                        "  outline: none;\n" +
+                        "  color: #fff;\n" +
+                        "  background-color: #4CAF50;\n" +
+                        "  border: none;\n" +
+                        "  border-radius: 15px;\n" +
+                        "  box-shadow: 0 9px #999;\n" +
+                        "}\n" +
+                        "\n" +
+                        ".button:hover {background-color: #3e8e41}\n" +
+                        "\n" +
+                        ".button:active {\n" +
+                        "  background-color: #3e8e41;\n" +
+                        "  box-shadow: 0 5px #666;\n" +
+                        "  transform: translateY(4px);\n" +
+                        "}\n" +
+                        "</style>" +
+                        "</head>\n" +
+                        "<body>\n" +
+                        "\n" +
+                        "<h2>Follow The Below Link</h2>\n" +
+                        "\n" +
+                        "<br><a href=\"http://localhost:8080/jsp/reset_password.jsp\" class=\"button\">Reset Password HERE!</a>\n" +
+                        "\n" +
+                        "</body>\n" +
+                        "</html>\n Regards, Team ViSuSuMa";
 
                 //  Send the complete message parts
                 out.println("going to send!");
