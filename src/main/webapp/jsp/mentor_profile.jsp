@@ -14,7 +14,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">WELCOME</a>
+    <a class="navbar-brand" href="#">WELCOME </a>
 
 
     <div class="collapse navbar-collapse" id="navbarColor03">
@@ -31,6 +31,9 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Send MOM</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/jsp/mentor_showmeetings.jsp">Update Meeting Attendance</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Track Students Attendance</a>

@@ -45,6 +45,9 @@
                 <a class="nav-link" href="#">Send MOM</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="/jsp/mentor_showmeetings.jsp">Update Meeting Attendance</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="#">Track Students Attendance</a>
             </li>
         </ul>
