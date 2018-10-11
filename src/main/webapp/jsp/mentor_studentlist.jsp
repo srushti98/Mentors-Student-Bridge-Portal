@@ -42,7 +42,7 @@
                 <a class="nav-link" href="#">Arrange a meeting</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Send MOM</a>
+                <a class="nav-link" href="/jsp/mentor_mom.jsp">Send MOM</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/jsp/mentor_showmeetings.jsp">Update Meeting Attendance</a>

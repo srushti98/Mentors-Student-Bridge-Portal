@@ -1,15 +1,16 @@
 create table activity_list(
-activity_id varchar(5),
+activity_id int auto_increment,
 mentor_id varchar(11),
 activity_name varchar(15),
 activity_date date,
+activity_title varchar(100),
 activity_content varchar(255),
 primary key(activity_id),
 foreign key (mentor_id) references mentor(emp_id));
 
 create table student_activitylist(
 student_id char(11),
-activity_id varchar(5),
+activity_id int,
 is_seen int,
 attended int,
 foreign key (student_id) references student(stud_mis_id),
