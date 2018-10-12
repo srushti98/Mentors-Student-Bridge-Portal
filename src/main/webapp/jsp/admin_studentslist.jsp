@@ -4,54 +4,29 @@
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="static java.lang.System.out" %>
 <%@ page import="java.sql.DriverManager" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
+
+
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script><title>Register!!!</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="/css/viewtrail.css">
+
+    <title>Title</title>
     <style>
-        body {
-            font-family: "Lato", sans-serif;
+        .navbar,.navbar-expand-lg{
+            background: linear-gradient(to right, #25c481, #25b7c4);
         }
-
-        .sidenav {
-            height: 100%;
-            width: 0;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            background-color: #111;
-            overflow-x: hidden;
-            transition: 0.5s;
-            padding-top: 60px;
+        .active{
+            background-color: #2699c4;
         }
-
-        .sidenav a {
-            padding: 8px 8px 8px 32px;
-            text-decoration: none;
-            font-size: 25px;
-            color: #818181;
-            display: block;
-            transition: 0.3s;
-        }
-
-        .sidenav a:hover {
-            color: #f1f1f1;
-        }
-
-        .sidenav .closebtn {
-            position: absolute;
-            top: 0;
-            right: 25px;
-            font-size: 36px;
-            margin-left: 50px;
-        }
-
-        .navbar-collapse a:hover {
-            background-color: #ddd;
+        .navbar-expand-lg a:hover {
+            background-color: #0d8ec4;
         }
 
         .navbar-collapse .toright {
@@ -84,113 +59,70 @@
             display: block;
         }
 
-        .navbar-nav .toright {
-            float: right;
-        }
-
-
-        @font-face {
-            font-family: 'Material Icons';
-            font-style: normal;
-            font-weight: 400;
-            src: url(https://example.com/MaterialIcons-Regular.eot); /* For IE6-8 */
-            src: local('Material Icons'),
-            local('MaterialIcons-Regular'),
-            url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
-            url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
-            url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
-        }
-
-        .material-icons {
-            font-family: 'Material Icons';
-            font-weight: normal;
-            font-style: normal;
-            font-size: 24px;  /* Preferred icon size */
-            /*display: inline-block;*/
-
-            text-transform: none;
-            letter-spacing: normal;
-            word-wrap: normal;
-            white-space: nowrap;
-            direction: ltr;
-
-            /* Support for all WebKit browsers. */
-            -webkit-font-smoothing: antialiased;
-            /* Support for Safari and Chrome. */
-            text-rendering: optimizeLegibility;
-
-            /* Support for Firefox. */
-            -moz-osx-font-smoothing: grayscale;
-
-            /* Support for IE. */
-            font-feature-settings: 'liga';
-        }
-
-
-        @media screen and (max-height: 450px) {
-            .sidenav {padding-top: 15px;}
-            .sidenav a {font-size: 18px;}
-        }
 
     </style>
-
 </head>
+
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg">
     <%
         if (session.getAttribute("stud_name")==null)
             response.sendRedirect("/index.jsp");
         String stud_name = (String)session.getAttribute("stud_name");
     %>
-    <a class="navbar-brand" href="#">WELCOME <%=stud_name%></a>
-
-    <div class="collapse navbar-collapse" id="navbarColor03">
+    <%--<a class="navbar-brand" href="#">WELCOME <%=stud_name%></a>--%>
+    <h1 class="navbar-brand"  style="color: white"><strong><b style="font-family: URW Chancery L, cursive ">Admin' Portal</b></strong></h1>
+    <div class="collapse navbar-collapse" id="navbarColor03" >
         <ul class="navbar-nav mr-auto">
 
             <li class="nav-item ">
-                <a class="nav-link" href="/jsp/admin_index.jsp">Home </a>
+                <a class="nav-link" style="color: white" href="/jsp/admin_index.jsp"><strong><b>Home</b></strong> </a>
             </li>
             <%--<li class="nav-item">--%>
                 <%--<a class="nav-link" href="/jsp/admin_profile.jsp">Allot mentor to Student</a>--%>
             <%--</li>--%>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black">
-                    Allot mentor to Student
+                <a class="nav-link dropdown-toggle" style="color: white" href="#" id="navbarDropdownMenuLink1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black">
+                    <strong><b>Allot mentor to Student</b></strong>
                 </a>
                 <div class="dropdown-content" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="/jsp/admin_allotsingle.jsp">Allot single Student</a>
                     <a class="dropdown-item" href="/jsp/admin_profile.jsp">Allot Multiple Students </a>
                 </div>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="/jsp/admin_studentslist.jsp">View all Students<span class="sr-only">(current)</span></a>
+            <li class="nav-item ">
+                <a class="nav-link" style="color: white" href="/jsp/admin_studentslist.jsp"><strong><b>View all Students</b></strong><span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/jsp/admin_mentorlist.jsp">View all Mentors</a>
+                <a class="nav-link" style="color: white" href="/jsp/admin_mentorlist.jsp"><strong><b>View all Mentors</b></strong></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/jsp/admin_allotmentlist.jsp">View Allotments</a>
+                <a class="nav-link" style="color: white" href="/jsp/admin_allotmentlist.jsp"><strong><b>View Allotments</b></strong></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="color: white" href="/jsp/admin_excelsheet.jsp"><strong><b>Import Excelsheets</b></strong></a>
             </li>
         </ul>
-        <a class="nav-link" href="../LogoutServlet"><i class="material-icons">
+        <a class="nav-link" href="../LogoutServlet" style="color: white"><i class="material-icons">
             account_circle
-        </i> signout</a>
+        </i> <strong><b>signout</b></strong></a>
     </div>
 
 </nav>
-<div class="row" style="margin-top: 100px">
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
-    <table class="table table-hover" style="width: 1200px">
+<div class="col-4"></div>
+<div class="col-4" style="margin-left: 670px ;margin-top: 40px">
+    <h1 style="color: #0a8cc4"> STUDENTS   LIST </h1>
+</div>
+<div class="container">
+    <table class=".table-responsive" >
         <thead>
-        <tr>
-            <th scope="col">rollno</th>
-
-            <th scope="col">Name</th>
-            <th scope="col">Student_Id</th>
-
+        <tr class=".table-responsive">
+            <th >ROllno</th>
+            <th >Name</th>
+            <th >MISID</th>
         </tr>
         </thead>
+
         <%
             Connection databaseConnection = DatabaseConnection.getDatabaseConnection();
             Connection con;
@@ -213,12 +145,12 @@
                 String mis_id=rs.getString("stud_mis_id");
 
         %>
-        <tbody>
-        <tr class="table-primary">
-            <td><%=frollint %></td>
-            <td><%=fname %></td>
+        <tbody class=".table-responsive">
+        <tr class=".table-responsive">
+            <td style="color: #2f28d6"><%=frollint %></td>
+            <td style="color: #2f28d6"><%=fname %></td>
 
-            <td><%=mis_id %></td>
+            <td style="color: #2f28d6"><%=mis_id %></td>
         </tr>
         <%
             }

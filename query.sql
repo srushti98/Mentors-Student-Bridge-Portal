@@ -46,3 +46,15 @@ begin
 call update_instudentactivity(new.activity_id,new.mentor_id);
 end//
 delimiter ; 
+
+/*trigger for addition of stud_id in tables*/
+delimiter //
+create trigger insert_studentdetails 
+after insert on student
+for each row
+begin
+	insert into Student_parent_details(stud_mis_id) values(new.stud_mis_id);
+	insert into StudentAcademicDetails(stud_mis_id) values(new.stud_mis_id);
+	insert into StudentExtraDetails(stud_mis_id) values(new.stud_mis_id);
+end//
+delimiter ;
