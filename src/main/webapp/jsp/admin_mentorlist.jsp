@@ -47,6 +47,45 @@
             margin-left: 50px;
         }
 
+        .navbar-collapse a:hover {
+            background-color: #ddd;
+        }
+
+        .navbar-collapse .toright {
+            float: right;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            float: none;
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .navbar-nav .toright {
+            float: right;
+        }
+
+
         @font-face {
             font-family: 'Material Icons';
             font-style: normal;
@@ -95,10 +134,12 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#"><span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    <%
+        if (session.getAttribute("stud_name")==null)
+            response.sendRedirect("/index.jsp");
+        String stud_name = (String)session.getAttribute("stud_name");
+    %>
+    <a class="navbar-brand" href="#">WELCOME <%=stud_name%></a>
 
     <div class="collapse navbar-collapse" id="navbarColor03">
         <ul class="navbar-nav mr-auto">
@@ -106,8 +147,17 @@
             <li class="nav-item ">
                 <a class="nav-link" href="/jsp/admin_index.jsp">Home </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/jsp/admin_profile.jsp">Allot mentor to Student</a>
+            <%--<li class="nav-item">--%>
+                <%--<a class="nav-link" href="/jsp/admin_profile.jsp">Allot mentor to Student</a>--%>
+            <%--</li>--%>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black">
+                    Allot mentor to Student
+                </a>
+                <div class="dropdown-content" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="/jsp/admin_allotsingle.jsp">Allot single Student</a>
+                    <a class="dropdown-item" href="/jsp/admin_profile.jsp">Allot Multiple Students </a>
+                </div>
             </li>
             <li class="nav-item ">
                 <a class="nav-link" href="/jsp/admin_studentslist.jsp">View all Students<span class="sr-only">(current)</span></a>
@@ -119,7 +169,7 @@
                 <a class="nav-link" href="/jsp/admin_allotmentlist.jsp">View Allotments</a>
             </li>
         </ul>
-        <a class="nav-link" href="#"><i class="material-icons">
+        <a class="nav-link" href="../LogoutServlet"><i class="material-icons">
             account_circle
         </i> signout</a>
     </div>
@@ -131,6 +181,8 @@
         <table class="table table-hover" style="width: 1200px">
             <thead>
             <tr>
+
+
                 <th scope="col">Name</th>
 
                 <th scope="col">Mentor ID</th>
@@ -143,14 +195,17 @@
                 Connection con;
                 PreparedStatement ps = null;
                 Class.forName("com.mysql.jdbc.Driver");
-                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentor_sys", "hello", "hello");
+                try {
+                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
 
 
                 PreparedStatement preparedStatement = null;
 
                 try {
-//                    preparedStatement = databaseConnection.prepareStatement("select emp_id,mentorname from mentor order by mentorname");
-                      preparedStatement = con.prepareStatement("select emp_id,mentorname from mentor order by mentorname");
+                    preparedStatement = databaseConnection.prepareStatement("select emp_id,mentorname from mentor order by mentorname");
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }

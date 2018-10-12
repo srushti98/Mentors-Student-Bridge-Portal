@@ -1,85 +1,55 @@
+<%@ page import="java.sql.*" %>
+<%@ page import="java.io.Writer" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          rel="stylesheet">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script><title>Register!!!</title>
-    <style>
-        .top-nav{
-            overflow: hidden;
-            background-color: #2f28d6;
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Drop Downlist</title>
 
-
-        }
-        .top-nav a {
-            float: right;
-            color: white;
-            text-align: center;
-            padding: 14px 16px;
-            font-size: 30px;
-            text-decoration: none;
-        }
-
-        .top-nav a:hover{
-            background-color: #221b94;
-
-        }
-        .navbar-text {
-            color: white;
-            margin-left: 20px;
-        }
-        #profile_pic{
-            padding: 10px;
-            width: 200px;
-            height: 200px;
-            margin-left: 120px;
-            align-self: center;
-        }
-        .list-group-item {
-            height: 80px;
-            font-size: 25px;
-        }
-        .list-group a:hover {
-            color: #2f28d6;
-        }
-
-    </style>
-
+    <meta name="viewport" content="width=device-width,initial-state=1"/>
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
+    <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 </head>
 <body>
-<div class="top-nav sticky-top">
-    <span class="navbar-text"><h1>Mentor System</h1></span>
-    <%
-        if (session.getAttribute("stud_name")==null)
-            response.sendRedirect("/index.jsp");
-        String stud_name = (String)session.getAttribute("stud_name");
-    %>
-    <a class="active" href="../LogoutServlet">LogOut</a>
-    <a href="#"><%=stud_name%></a>
-</div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">WELCOME </a>
 
 
-<div class="row">
-    <div class="col-md-3 col-sm3 col-xs-12">
-        <img src="img/blank_profile.png" id="profile_pic" class="img">
-        <div class="list-group" id="list-tab" role="tablist">
-            <a class="list-group-item list-group-item-action" data-toggle="list" href="#list-home" >Home</a>
-            <a class="list-group-item list-group-item-action" data-toggle="list" href="../forms/mentor_form.jsp" >Edit Profile</a>
-            <a class="list-group-item list-group-item-action" data-toggle="list" href="#list-settings" >Minutes of meetings</a>
-            <a class="list-group-item list-group-item-action" data-toggle="list" href="../forms/leave_app.jsp" target="profile_display" >Leave Application</a>
-            <a class="list-group-item list-group-item-action" data-toggle="list" href="#list-settings" >Meet Mentor</a>
-            <a class="list-group-item list-group-item-action" data-toggle="list" href="#list-settings" >Submit Undertaking</a>
+    <div class="collapse navbar-collapse" id="navbarColor03">
+        <ul class="navbar-nav mr-auto">
 
-        </div>
+            <li class="nav-item ">
+                <a class="nav-link" href="#">Home </a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="/jsp/mentor_studentlist.jsp">View Students Profile</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="#">Arrange a meeting</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Send MOM</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/jsp/mentor_showmeetings.jsp">Update Meeting Attendance</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Track Students Attendance</a>
+            </li>
+        </ul>
+        <a class="nav-link" href="../LogoutServlet"><i class="material-icons">
+            account_circle
+        </i> signout</a>
     </div>
-    <div class="col-md-9 col-sm-9 col-xs-12 no-gutters">
-        <iframe name="profile_display" style="height: 900px; width: 1400px;margin-left: 0px; margin-top: 10px; border: none">
 
-        </iframe>
-    </div>
-</div>
-
-
+</nav>
 </body>
+
+
 </html>
+
+
+
+

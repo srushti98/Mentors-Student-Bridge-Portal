@@ -26,10 +26,10 @@ public class LogoutServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
-            String login_mis_id=request.getParameter("login_mis_id");
-            String login_pswd=request.getParameter("login_pswd");
+        String login_mis_id=request.getParameter("login_mis_id");
+        String login_pswd=request.getParameter("login_pswd");
 
-            Connection con;
+        Connection con;
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
@@ -41,8 +41,8 @@ public class LogoutServlet extends HttpServlet {
             e.printStackTrace();
         }
         out.println ("SL3 "+ "database successfully opened.");
-            out.print(login_mis_id);
-            out.print(login_pswd);
+        out.print(login_mis_id);
+        out.print(login_pswd);
 
         HttpSession session=request.getSession();
         session.removeAttribute("stud_name");

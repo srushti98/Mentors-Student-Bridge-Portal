@@ -17,13 +17,55 @@
     <meta name="viewport" content="width=device-width,initial-state=1"/>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
     <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+    <style>
+    .navbar-collapse a:hover {
+    background-color: #ddd;
+    }
+
+    .navbar-collapse .toright {
+    float: right;
+    }
+
+    .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    }
+
+    .dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    }
+
+    .dropdown-content a:hover {
+    background-color: #ddd;
+    }
+
+    .dropdown:hover .dropdown-content {
+    display: block;
+    }
+
+    .navbar-nav .toright {
+    float: right;
+    }
+    </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#"><span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    <%
+        if (session.getAttribute("stud_name")==null)
+            response.sendRedirect("/index.jsp");
+        String stud_name = (String)session.getAttribute("stud_name");
+    %>
+    <a class="navbar-brand" href="#">WELCOME <%=stud_name%></a>
+
 
     <div class="collapse navbar-collapse" id="navbarColor03">
         <ul class="navbar-nav mr-auto">
@@ -31,8 +73,17 @@
             <li class="nav-item ">
                 <a class="nav-link" href="/jsp/admin_index.jsp">Home </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/jsp/admin_profile.jsp">Allot mentor to Student</a>
+            <%--<li class="nav-item">--%>
+                <%--<a class="nav-link" href="/jsp/admin_profile.jsp">Allot mentor to Student</a>--%>
+            <%--</li>--%>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black">
+                    Allot mentor to Student
+                </a>
+                <div class="dropdown-content" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="/jsp/admin_allotsingle.jsp">Allot single Student</a>
+                    <a class="dropdown-item" href="/jsp/admin_profile.jsp">Allot Multiple Students </a>
+                </div>
             </li>
             <li class="nav-item ">
                 <a class="nav-link" href="/jsp/admin_studentslist.jsp">View all Students<span class="sr-only">(current)</span></a>
@@ -44,7 +95,7 @@
                 <a class="nav-link" href="/jsp/admin_allotmentlist.jsp">View Allotments</a>
             </li>
         </ul>
-        <a class="nav-link" href="#"><i class="material-icons">
+        <a class="nav-link" href="../LogoutServlet"><i class="material-icons">
             account_circle
         </i> signout</a>
     </div>
@@ -66,7 +117,7 @@
                 {   Connection con;
                     PreparedStatement ps = null;
                     Class.forName("com.mysql.jdbc.Driver");
-                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentor_sys", "hello", "hello");
+                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
                     System.out.println("SL3 "+ "database successfully opened.");
                     String sql = "select s.stud_name , m.mentorname, s.stud_roll_no from student s, mentor m, studentmentorrel sm where s.stud_mis_id=sm.stud_mis_id and m.emp_id=sm.emp_id order by s.stud_roll_no;";
                     ps = con.prepareStatement(sql);
