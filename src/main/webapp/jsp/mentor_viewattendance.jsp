@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: suhani
+  Date: 12/10/18
+  Time: 11:55 PM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="java.io.Writer" %>
@@ -66,10 +73,9 @@
 </nav>
 
 
-<form action="../MentorUpdateAttendance?id=<%=request.getParameter("id")%>" method="post" >
-    <div class="col-4"></div>
+<div class="col-4"></div>
     <div class="col-4" style="margin-left: 670px ;margin-top: 40px">
-        <h2 style="color: #0a8cc4"> Update Meeting Attendance </h2>
+        <h2 style="color: #0a8cc4"> View Meeting Attendance </h2>
     </div>
     <div class="container">
         <table class=".table-responsive" >
@@ -82,56 +88,52 @@
             </tr>
             </thead>
 
-                <%
-                    try
+            <%
+                try
+                {
+                    if (session.getAttribute("stud_name")==null)
+                        response.sendRedirect("/index.jsp");
+                    String activityid = (String)request.getParameter("id");
+                    Connection con;
+                    PreparedStatement ps = null;
+                    Class.forName("com.mysql.jdbc.Driver");
+                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+                    System.out.println("SL3 "+ "database successfully opened.");
+                    String menid = (String)session.getAttribute("stud_name");
+                    System.out.println(menid);
+                    String sql = "select sa.student_id,s.stud_roll_no,s.stud_name,sa.attended from student s,student_activitylist sa where sa.activity_id=? and s.stud_mis_id=sa.student_id order by s.stud_roll_no;";
+                    ps = con.prepareStatement(sql);
+                    ps.setString(1,activityid);
+                    ResultSet rs = ps.executeQuery();
+                    while (rs.next())
                     {
-                        if (session.getAttribute("stud_name")==null)
-                            response.sendRedirect("/index.jsp");
-                        String activityid = (String)request.getParameter("id");
-                        Connection con;
-                        PreparedStatement ps = null;
-                        Class.forName("com.mysql.jdbc.Driver");
-                        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
-                        System.out.println("SL3 "+ "database successfully opened.");
-                        String menid = (String)session.getAttribute("stud_name");
-                        System.out.println(menid);
-                        String sql = "select sa.student_id,s.stud_roll_no,s.stud_name from student s,student_activitylist sa where sa.activity_id=? and s.stud_mis_id=sa.student_id order by s.stud_roll_no;";
-                        ps = con.prepareStatement(sql);
-                        ps.setString(1,activityid);
-                        ResultSet rs = ps.executeQuery();
-                        while (rs.next())
-                        {
-                            String stud_mis_id=rs.getString("student_id");
-                            String mis=rs.getString("student_id");
-                            String stud_roll_no=rs.getString("stud_roll_no");
-                            String studentname=rs.getString("stud_name");
-                %>
+                        String stud_mis_id=rs.getString("student_id");
+                        String mis=rs.getString("student_id");
+                        String stud_roll_no=rs.getString("stud_roll_no");
+                        String studentname=rs.getString("stud_name");
+                        String attend=rs.getString("attended");
+                        boolean attendance=rs.getBoolean("attended");
+            %>
             <tbody class=".table-responsive">
             <tr class=".table-responsive">
-                    <td style="color: #2f28d6"><%=stud_mis_id%></td>
-                    <td style="color: #2f28d6"><%=stud_roll_no%></td>
-                    <td style="color: #2f28d6"><%=studentname%></td>
-                    <td ><input type="checkbox" name="attendance" value="<%=mis%>" /> &nbsp; </td>
-                </tr>
+                <td style="color: #2f28d6"><%=stud_mis_id%></td>
+                <td style="color: #2f28d6"><%=stud_roll_no%></td>
+                <td style="color: #2f28d6"><%=studentname%></td>
+                <td ><input type="checkbox" name="attendance" value="attendance" onclick="return false" <%if(attendance){%>checked<%}%> > </td>
+            </tr>
 
-                <%
-                        }
+            <%
                     }
-                    catch(SQLException sqe)
-                    {
-                        System.out.println(sqe);
-                    }
-                %>
-                </tbody>
-            </table>
-        </div>
+                }
+                catch(SQLException sqe)
+                {
+                    System.out.println(sqe);
+                }
+            %>
+            </tbody>
+        </table>
     </div>
-    <br><br><br><br>
-    <div class="form-group" style="text-align: center">
-        <input class="submit" name="submit" type="submit" value="SUBMIT" style="width: 300px; height: 50px; margin: 0 auto;">
     </div>
-
-</form>
 
 </body>
 </html>

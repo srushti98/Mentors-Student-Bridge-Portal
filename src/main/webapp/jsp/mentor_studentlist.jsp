@@ -164,7 +164,7 @@
                 <a class="nav-link" style="color: white" href="/jsp/meeting_mom.jsp"><strong><b>Send MOM</b></strong></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" style="color: white" href="#"><strong><b>Track Students Attendance</b></strong></a>
+                <a class="nav-link" style="color: white" href="/jsp/mentor_showmeetings.jsp"><strong><b>Track Students Attendance</b></strong></a>
             </li>
         </ul>
         <a class="nav-link" href="../LogoutServlet" style="color: white"><i class="material-icons">

@@ -3,15 +3,20 @@
 <%@ page import="java.io.Writer" %>
 <%@ page import="static java.util.Objects.equals" %>
 <%@ page import="java.lang.String" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Drop Downlist</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
 
-    <meta name="viewport" content="width=device-width,initial-state=1"/>
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
-    <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script><title>Register!!!</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="/css/viewtrail.css">
+
+    <title>Title</title>
     <style>
         .navbar,.navbar-expand-lg{
             background: linear-gradient(to right, #25c481, #25b7c4);
@@ -33,10 +38,10 @@
         <ul class="navbar-nav mr-auto">
 
             <li class="nav-item ">
-                <a class="nav-link   " style="color: white" href="/jsp/mentor_profile.jsp"><strong><b>Home</b></strong> </a>
+                <a class="nav-link " style="color: white" href="/jsp/mentor_profile.jsp"><strong><b>Home</b></strong> </a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" style="color: white " href="/jsp/mentor_studentlist.jsp"><strong><b>View Students Profile</b></strong></a>
+                <a class="nav-link active" style="color: white " href="/jsp/mentor_studentlist.jsp"><strong><b>View Students Profile</b></strong></a>
             </li>
             <li class="nav-item ">
                 <a class="nav-link" style="color: white" href="/jsp/mentor_meeting.jsp"><strong><b>Arrange a meeting</b></strong></a>
@@ -45,7 +50,7 @@
                 <a class="nav-link" style="color: white" href="/jsp/meeting_mom.jsp"><strong><b>Send MOM</b></strong></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" style="color: white" href="/jsp/mentor_showmeetings.jsp"><strong><b>Track Students Attendance</b></strong></a>
+                <a class="nav-link" style="color: white" href="/jsp/mentor_showmeetings.jsp"><strong><b>Track Students Attendance</b></strong></a>
             </li>
         </ul>
         <a class="nav-link" href="../LogoutServlet" style="color: white"><i class="material-icons">
@@ -55,17 +60,21 @@
 
 </nav>
 
-<div class="row" style="margin-top: 100px">
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
-        <table class="table table-hover" style="width: 1200px">
-            <thead>
-            <tr>
-                <th scope="col">Meeting_id</th>
-                <th scope="col">Meeting_date</th>
-                <th scope="col">Attendance</th>
-            </tr>
-            </thead>
+<div class="col-4"></div>
+<div class="col-4" style="margin-left: 670px ;margin-top: 40px">
+    <h1 style="color: #0a8cc4"> MEETINGS LIST </h1>
+</div>
+<div class="container">
+    <table class=".table-responsive" >
+        <thead>
+        <tr class=".table-responsive">
+            <th >Meeting_id</th>
+            <th >Meeting_date</th>
+            <th >Update Attendance</th>
+            <th> View Attendance</th>
+        </tr>
+        </thead>
+
 
             <%
                 try
@@ -87,12 +96,15 @@
                         String activity_date=rs.getString("activity_date");
                         //System.out.println(student_id + student_name);
             %>
-            <tbody>
-            <tr class="table-primary">
-                <td><%=activity_id%></td>
-                <td><%=activity_date%></td>
-                <td><a href="/jsp/mentor_updateattendance.jsp?id=<%=activity_id%>">Update Attendance</a></td>
-            </tr>
+        <tbody class=".table-responsive">
+        <tr class=".table-responsive">
+                <td style="color: #2f28d6"><%=activity_id%></td>
+                <td style="color: #2f28d6"><%=activity_date%></td>
+                <td><a  href="/jsp/mentor_updateattendance.jsp?id=<%=activity_id%>"><button class="button"><span style="font-size: x-large">Update </span></button></a></td>
+                <td><a  href="/jsp/mentor_viewattendance.jsp?id=<%=activity_id%>"><button class="button"><span style="font-size: x-large">View </span></button></a></td>
+
+        </tr>
+        </tr
 
             <%
                     }
