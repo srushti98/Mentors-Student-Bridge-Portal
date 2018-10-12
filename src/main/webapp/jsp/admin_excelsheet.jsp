@@ -115,13 +115,27 @@
 </nav>
 <div class="jumbotron">
     <h2>Certificates</h2>
-    <p class="lead">Upload your achievement certificates for competitions and extra activities here.</p>
+    <p class="lead">Upload your Excel sheet of students record here</p>
     <hr class="my-4">
-    <p class="lead">upload certificates.
-    <form action="#" method="post">
+    <p  style="color: red"><strong><b>*******Read information carefully*********</b></strong></p>
+    <p  style="color: red"><strong><b>*******Let your sequence in xcel sheet be 1.srno 2.misid 3.name 4.roll no************</b></strong></p>
+    <p  style="color: red"><strong><b>*******Leave no black or extra lines start heading on very first line of sheet*********</b></strong></p>
+    <p  style="color: red"><strong><b>*******Download sample excel,edit and upload same*********</b></strong></p>
+
+    <p  style="color: red"><strong><b>*******Excel sheet should be .xls only no other formats allowed*********</b></strong></p>
+
+
+    <form action="../data/sampleexcel.xls" method="get" target="_blank">
         <div class="form-group">
-            <input type="file"><br><br>
-            <input type="submit" class="btn btn-primary btn-lg" value="Upload">
+
+            <input type="submit" class="btn btn-primary btn-lg" value="Download Sample">
+        </div>
+    </form>
+    <form method="post" action="../FileUploadExcelFinalServlet" enctype="multipart/form-data">
+        <div class="form-group">
+            <p>UPLOAD .XLS FILE HERE</p>
+            <input type="file" type="file" name="File" id="file"><br><br>
+            <input type="submit" class="btn btn-primary btn-lg" value="Import">
         </div>
     </form>
     </p>
