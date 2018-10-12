@@ -126,7 +126,7 @@
             </table>
         </div>
     </div>
-    <br><br><br><br>
+
     <div class="form-group" style="text-align: center">
         <input class="submit" name="submit" type="submit" value="SUBMIT" style="width: 300px; height: 50px; margin: 0 auto;">
     </div>

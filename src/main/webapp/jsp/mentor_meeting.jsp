@@ -65,7 +65,7 @@
     <div class="icon_wrapper">
 
     </div>
-    <form action="#" method="post" id="contact_form">
+    <form action="../arrangeMeetServlet" method="post" id="contact_form">
         <div class="name">
 
             <input type="text" placeholder="TITLE OF MEETING" name="name" id="name_input" required>

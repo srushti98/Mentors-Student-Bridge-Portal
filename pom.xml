@@ -41,6 +41,11 @@
       <artifactId>poi</artifactId>
       <version>3.5-beta5</version>
     </dependency>
+      <dependency>
+          <groupId>com.jcraft</groupId>
+          <artifactId>jsch</artifactId>
+          <version>0.1.27</version>
+      </dependency>
   </dependencies>
 
   <build>
