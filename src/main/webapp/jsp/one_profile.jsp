@@ -1,30 +1,29 @@
-<%--
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="com.pict.database.DatabaseConnection" %>
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.ResultSet" %><%--
   Created by IntelliJ IDEA.
-  User: suhani
-  Date: 3/10/18
-  Time: 3:52 PM
+  User: srushti
+  Date: 12/10/18
+  Time: 12:51 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="com.pict.database.DatabaseConnection" %>
-<%@ page import="java.sql.*" %>
-<%@ page import="static java.lang.System.out" %>
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Student_Profile</title>
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
 
-    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <script src="../js/bootstrap.js"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script><title>Register!!!</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <link rel="stylesheet" href="/css/one_profile.css">
     <style>
-
         .navbar,.navbar-expand-lg{
-
             background: linear-gradient(to right, #25c481, #25b7c4);
         }
         .active{
@@ -36,12 +35,7 @@
     </style>
 
 </head>
-
 <body>
-
-
-
-
 <%
     if (session.getAttribute("stud_name")==null)
         response.sendRedirect("/index.jsp");
@@ -85,7 +79,7 @@
         <ul class="navbar-nav mr-auto">
 
             <li class="nav-item ">
-                <a class="nav-link " style="color: white" href="/jsp/mentor_profile.jsp"><strong><b>Home</b></strong> </a>
+                <a class="nav-link " style="color: white" href="#"><strong><b>Home</b></strong> </a>
             </li>
             <li class="nav-item ">
                 <a class="nav-link active" style="color: white " href="/jsp/mentor_studentlist.jsp"><strong><b>View Students Profile</b></strong></a>
@@ -111,8 +105,8 @@
 
         <div class="photo" style="background-image: url(https://storage.googleapis.com/chydlx/codepen/blog-cards/image-1.jpg)"></div>
         <ul class="details">
-            <li class="author" style="font-size: larger">NAME:<%=name%></li>
-            <li class="date" style="font-size: larger">ROLL NO:<%=roll%></li>
+            <li class="author">NAME:<%=name%></li>
+            <li class="date">ROLL NO:<%=roll%></li>
 
         </ul>
     </div>
@@ -120,7 +114,7 @@
         <h1>GENERAL DETAILS</h1>
 
 
-        <p>PRN : <%=prn%></p>
+       <p>PRN : <%=prn%></p>
         <p>Year : <%=prn%></p>
         <p>Division : <%=div%></p>
         <p>Batch : <%=batch%></p>
@@ -202,23 +196,10 @@
 
     </div>
 </div>
-<div class="blog-card">
-
-    <div class="description">
-        <h1>OTHER DETAILS</h1>
-
-
-        <p class="read-more">PERSONAL DETAILS : <a href="#">view</a></p>
-        <p class="read-more">PARENT DETAILS : <a href="#">view</a></p>
-        <p class="read-more">ACADEMIC DETAILS : <a href="#">view</a></p>
-        <p class="read-more">EXTRA CURRICULAR DETAILS : <a href="#">view</a></p>
-
-
-    </div>
-</div>
 
 
 </div>
+
 
 </body>
 </html>

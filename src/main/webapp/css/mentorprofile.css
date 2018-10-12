@@ -16,7 +16,7 @@ a{
     color:#fff;
     border-color: #080808;
     min-height: 50px;
-    background: url("/img/school-classroom-chalkboard-desk.jpg") no-repeat center;
+    background: url("/img/mentorback.jpg") no-repeat center;
     background-size: cover;
     border: 1px solid transparent;
 
@@ -58,13 +58,13 @@ a{
 }
 .baner_content{
     position: relative;
-    padding-top: 6%;
-    padding-bottom: 6%;
+    padding-top: 4%;
+    padding-bottom: 4%;
     overflow:hidden;
     margin-bottom: 12%;
 
     background-color: rgba(0, 0, 0, 0.7);
-    max-width: 660px;
+    max-width: 800px;
 }
 .button{
     color: #fff;

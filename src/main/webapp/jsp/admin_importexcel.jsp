@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
+    <link rel="stylesheet" href="/css/linenav.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script><title>Register!!!</title>
 
     <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
@@ -28,8 +29,17 @@
 
 
 
+
+<div id='cssmenu'>
+    <ul>
+        <li class='active'><a href='#'><span>Home</span></a></li>
+        <li><a href='#'><span>Products</span></a></li>
+        <li><a href='#'><span>Company</span></a></li>
+        <li class='last'><a href='#'><span>Contact</span></a></li>
+    </ul>
+</div>
 <h1>upload your signed undertaking</h1>
-<form method="post" action="../FileUploadExcelsheetServlet" enctype="multipart/form-data">
+<form method="post" action="../FileUploadExcelsheetServlet" enctype="multipart/form-data" style="margin-top: 500px">
     <%--<input type="file" name="File" multiple="multiple" onchange="readURL(this);">--%>
     <input type="file" name="File" id="file">
     <a href="#" target="_blank" class="preview">View</a>
@@ -38,6 +48,12 @@
     </button>
 
 </form>
+
+</body>
+<html>
+
+
+
 
 
 

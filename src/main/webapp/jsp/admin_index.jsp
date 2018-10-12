@@ -166,6 +166,7 @@
             swal("success","Students alloted to mentor ID: "+Msg,"success");
         }
     }
+
 </script>
 
 
