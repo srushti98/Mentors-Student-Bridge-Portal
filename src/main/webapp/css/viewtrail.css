@@ -1,0 +1,97 @@
+html,
+body {
+    height: 100%;
+}
+.button {
+    border-radius: 4px;
+    background-color: #0a8cc4;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 1px;
+    width: 120px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 2px;
+}
+
+.button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.button:hover span {
+    padding-right: 25px;
+}
+
+.button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+body {
+    margin: 0;
+    /*background: linear-gradient(45deg, #49a09d, #5f2c82);*/
+    /*background: -webkit-linear-gradient(left, #25c481, #25b7c4);*/
+    /*background: linear-gradient(to right, #25c481, #25b7c4);*/
+    /*background: url("/img/mentorback.jpg") no-repeat center;*/
+    /*background-size: cover;*/
+    font-family: sans-serif;
+    font-weight: 100;
+}
+.container {
+    position: absolute;
+    top: 50%;
+
+    left: 55%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+table {
+    width: 800px;
+    border-collapse: collapse;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+th,
+td {
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.7);
+    color: #fff;
+}
+th {
+    text-align: left;
+}
+thead th {
+    /*background-color: #55608f;*/
+    background-color: #0a8cc4;
+    /*background: -webkit-linear-gradient(left, #25b7c4, #25c481);*/
+    /*background: linear-gradient(to right, #25b7c4, #25c481);*/
+
+}
+tbody tr:hover {
+    background-color: rgba(14, 197, 255, 0.3);
+}
+tbody td {
+    position: relative;
+}
+tbody td:hover:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -9999px;
+    bottom: -9999px;
+    z-index: -1;
+}
