@@ -114,7 +114,7 @@
 
 </nav>
 <div class="jumbotron">
-    <h2>Certificates</h2>
+    <h2>Import excel sheet records</h2>
     <p class="lead">Upload your Excel sheet of students record here</p>
     <hr class="my-4">
     <p  style="color: red"><strong><b>*******Read information carefully*********</b></strong></p>

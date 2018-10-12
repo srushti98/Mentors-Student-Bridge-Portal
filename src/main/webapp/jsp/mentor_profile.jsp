@@ -22,6 +22,12 @@
         .navbar-expand-lg a:hover {
             background-color: #0d8ec4;
         }
+        body{
+            background-image: url("/img/mentorback.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
     </style>
 </head>
 <body>
@@ -54,22 +60,26 @@
     </div>
 
 </nav>
-<div class="c1">
-    <div class="content" style="min-height: 600px;margin-top: 50px">
-        <div class="baner_image">
-            <div class="inner_baner_image" style="margin-left: 600px">
-                <div class="baner_content">
-                    <h1>Welcome to Mentor Portal</h1>
-                    <p>View . Arrange . Manage</p>
+<%--<div class="c1">--%>
+    <%--<div class="content" style="min-height: 600px;margin-top: 50px">--%>
+        <%--<div class="baner_image">--%>
+            <%--<div class="inner_baner_image" style="margin-left: 600px">--%>
+                <%--<div class="baner_content">--%>
+                    <%--<h1>Welcome to Mentor Portal</h1>--%>
+                    <%--<p>View . Arrange . Manage</p>--%>
 
-                </div>
+                <%--</div>--%>
 
-            </div>
+            <%--</div>--%>
 
-        </div>
+        <%--</div>--%>
 
 
-    </div>
+    <%--</div>--%>
+
+<%--</div>--%>
+<div style="margin-top: 200px;margin-left: 450px;max-width: 1200px;height: 400px;background-color: rgba(0, 0, 0, 0.7);">
+    <h1 style="color: white;padding-left: 300px;padding-top: 150px">Welcome to Mentor Portal</h1>
 
 </div>
 </body>

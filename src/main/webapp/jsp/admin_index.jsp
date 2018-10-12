@@ -16,11 +16,12 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <link rel="stylesheet" href="/css/viewtrail.css">
+    <link rel="stylesheet" href="/css/mentorprofile.css">
 
     <title>Title</title>
     <style>
         body{
-            background-image: url("/img/admin-banner.jpg");
+            background-image: url("/img/admin_back.jpeg");
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
@@ -114,6 +115,28 @@
     </div>
 
 </nav>
+<div style="margin-top: 200px;margin-left: 450px;max-width: 1200px;height: 400px;background-color: rgba(0, 0, 0, 0.7);">
+    <h1 style="color: white;padding-left: 300px;padding-top: 150px">Welcome to Admin Portal</h1>
+
+</div>
+<%--<div class="c1">--%>
+    <%--<div class="content" style="min-height: 600px;margin-top: 50px">--%>
+        <%--<div class="baner_image">--%>
+            <%--<div class="inner_baner_image" style="margin-left: 600px">--%>
+                <%--<div class="baner_content">--%>
+                    <%--<h1>Welcome to Mentor Portal</h1>--%>
+                    <%--<p>View . Arrange . Manage</p>--%>
+
+                <%--</div>--%>
+
+            <%--</div>--%>
+
+        <%--</div>--%>
+
+
+    <%--</div>--%>
+
+<%--</div>--%>
 <%--<div class="c1">--%>
     <%--<div class="content" style="min-height: 600px;margin-top: 50px">--%>
         <%--<div class="baner_image">--%>
