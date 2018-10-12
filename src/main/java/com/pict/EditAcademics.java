@@ -106,9 +106,9 @@ public class EditAcademics extends HttpServlet {
                 //JOptionPane.showMessageDialog(null, "Profile Edited!!!");
                 error.add("Academic Details");
                 session.setAttribute("getAlert", error);
-                response.sendRedirect("/jsp/student_profile.jsp");
-            }
 
+            }
+            response.sendRedirect("/jsp/student_profile.jsp");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {

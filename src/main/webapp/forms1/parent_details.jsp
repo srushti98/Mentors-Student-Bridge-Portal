@@ -166,48 +166,48 @@
     <div class="row">
         <div class="col-3 "></div>
         <div class="col-6 form">
-            <form action=""  method="POST" enctype="multipart/form-data">
+            <form action="../EditParentDetails"  method="POST">
                 <h1>Parent Details</b> </h1>
                 <div class="form-group">
                     <label>Father Name</label>
-                    <input type="text" class="form-control" placeholder="Full Name">
+                    <input type="text" class="form-control" name="father_name" placeholder="Full Name">
                     <label>Education</label>
-                    <input type="text" class="form-control" placeholder="">
+                    <input type="text" class="form-control" name="father_edu" placeholder="">
                     <label>Occupation</label>
-                    <input type="number" class="form-control" placeholder="">
+                    <input type="text" class="form-control" name="father_occ" placeholder="">
                     <label>Contact no.</label>
-                    <input type="tel" class="form-control" placeholder="Contact no.">
+                    <input type="number" class="form-control" name="father_contact" placeholder="Contact no.">
                     <label>Email</label>
-                    <input type="email" class="form-control" placeholder="Email id">
+                    <input type="email" class="form-control" name="father_email" placeholder="Email id">
                     <label>Permanent Address</label>
-                    <textarea class="form-control" rows="3" placeholder="Permanent Address"></textarea>
+                    <textarea class="form-control" rows="3" name="father_add" placeholder="Permanent Address"></textarea>
                 </div>
 
                 <div class="form-group">
                     <label>Mother Name</label>
-                    <input type="text" class="form-control" placeholder="Full Name">
+                    <input type="text" class="form-control" name="mother_name" placeholder="Full Name">
                     <label>Education</label>
-                    <input type="text" class="form-control" placeholder="">
+                    <input type="text" class="form-control" name="mother_edu" placeholder="">
                     <label>Occupation</label>
-                    <input type="number" class="form-control" placeholder="">
+                    <input type="text" class="form-control" name="mother_occ" placeholder="">
                     <label>Contact no.</label>
-                    <input type="tel" class="form-control" placeholder="Contact no.">
+                    <input type="number" class="form-control" name="mother_contact" placeholder="Contact no.">
                     <label>Email</label>
-                    <input type="email" class="form-control" placeholder="Email id">
+                    <input type="email" class="form-control" name="mother_email" placeholder="Email id">
                     <label>Permanent Address</label>
-                    <textarea class="form-control" rows="3" placeholder="Permanent Address"></textarea>
+                    <textarea class="form-control" rows="3" name="mother_add" placeholder="Permanent Address"></textarea>
                 </div>
 
                 <div class="form-group">
                     <label>Siblings</label>
-                    <input type="number" class="form-control" placeholder="Number of siblings">
+                    <input type="number" class="form-control" name="siblings" placeholder="Number of siblings">
                     <label>Academics</label>
-                    <input type="text" class="form-control" placeholder="">
+                    <input type="text" class="form-control" name="sib_academics" placeholder="">
                 </div>
 
                 <div class="form-group">
-                    <input type="submit" class="btn-primary" value="submit">
-                    <input type="reset" class="btn-danger" value="reset">
+                    <input type="submit" class="btn-primary" value="Submit">
+                    <input type="reset" class="btn-danger" value="Reset">
                 </div>
 
 
