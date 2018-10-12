@@ -35,6 +35,7 @@ import static java.lang.System.out;
 @WebServlet("/ForgotPasswordServlet")
 public class ForgotPasswordServlet extends HttpServlet {
 
+    private static final String SUBJECT = "Reset Password link";
     private Connection connection;
 
     public ForgotPasswordServlet(){
@@ -44,6 +45,43 @@ public class ForgotPasswordServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+            String vmFileContent = "<!DOCTYPE html>\n" +
+                    "<html>\n" +
+                    "<head>\n" +
+                    "<style>\n" +
+                    ".button {\n" +
+                    "  display: inline-block;\n" +
+                    "  padding: 15px 25px;\n" +
+                    "  font-size: 24px;\n" +
+                    "  cursor: pointer;\n" +
+                    "  text-align: center;\n" +
+                    "  text-decoration: none;\n" +
+                    "  outline: none;\n" +
+                    "  color: #fff;\n" +
+                    "  background-color: #4CAF50;\n" +
+                    "  border: none;\n" +
+                    "  border-radius: 15px;\n" +
+                    "  box-shadow: 0 9px #999;\n" +
+                    "}\n" +
+                    "\n" +
+                    ".button:hover {background-color: #3e8e41}\n" +
+                    "\n" +
+                    ".button:active {\n" +
+                    "  background-color: #3e8e41;\n" +
+                    "  box-shadow: 0 5px #666;\n" +
+                    "  transform: translateY(4px);\n" +
+                    "}\n" +
+                    "</style>" +
+                    "</head>\n" +
+                    "<body>\n" +
+                    "\n" +
+                    "<h2>Follow The Below Link</h2>\n" +
+                    "\n" +
+                    "<br><a href=\"http://localhost:8080/jsp/reset_password.jsp\" class=\"button\">Reset Password HERE!</a>\n" +
+                    "\n" +
+                    "</body>\n" +
+                    "</html>\n Regards, Team ViSuSuMa";
+
             Connection con;
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentor_sys", "hello", "hello");
@@ -87,7 +125,7 @@ public class ForgotPasswordServlet extends HttpServlet {
                         out.println("password: "+password);
                         session.setAttribute("getAlert", password);//Just initialize a random variable.
 //                        request.getRequestDispatcher("/jsp/reset_password.jsp").forward(request,response);
-                        SendMailServlet.sendMail(request,response, email);
+                        SendMailServlet.sendMail(request,response, email, SUBJECT, vmFileContent);
                         flag=1;
                     }
                     else {

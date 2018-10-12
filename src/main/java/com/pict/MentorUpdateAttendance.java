@@ -26,7 +26,7 @@ public class MentorUpdateAttendance extends HttpServlet {
             Connection con;
             PreparedStatement ps = null;
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentor_sys", "hello", "hello");
             String activityid = (String)request.getParameter("id");
             String language="";
             String lang[] = request.getParameterValues("attendance");

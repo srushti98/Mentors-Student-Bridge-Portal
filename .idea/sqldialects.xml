@@ -4,7 +4,9 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/pict/AdminServlet.java" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/pict/ForgotPasswordServlet.java" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/pict/LoginServlet.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/pict/arrangeMeetServlet.java" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/pict/resetPasswordServlet.java" dialect="MySQL" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/jsp/minutes_of_meet.jsp" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/pict/sendMOMServlet.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/jsp/mentor_showmeetings.jsp" dialect="MySQL" />
   </component>
 </project>

@@ -2,6 +2,7 @@ package com.pict;
 
 import com.pict.database.DatabaseConnection;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -49,11 +50,12 @@ public class LoginServlet extends HttpServlet {
                 ResultSet resultSet = preparedStatement.executeQuery();
                 if(resultSet.next()){
                     out.print("Success");
+                    HttpSession sess=request.getSession();
+                    sess.setAttribute("mentor_id",login_mis_id);
                     response.sendRedirect("/jsp/mentor_profile.jsp");
                 }else{
                     out.print("Inavalid");
                 }
-
             }
             else if(login_mis_id.startsWith("I") || login_mis_id.startsWith("E") || login_mis_id.startsWith("C"))
             {

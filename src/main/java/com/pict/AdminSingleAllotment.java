@@ -25,7 +25,7 @@ public class AdminSingleAllotment extends HttpServlet {
         try {
             Connection con;
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentor_sys", "hello", "hello");
             out.println("SL3 " + "database successfully opened.");
             PreparedStatement not_existing_roll_no = null;
             PreparedStatement preparedStatementstu = null;

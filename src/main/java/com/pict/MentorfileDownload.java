@@ -16,7 +16,7 @@ public class MentorfileDownload extends HttpServlet {
     private static final int BUFFER_SIZE = 4096;
 
     // database connection settings
-    private String dbURL = "jdbc:mysql://localhost:3306/mentorsys";
+    private String dbURL = "jdbc:mysql://localhost:3306/mentors_ys";
     private String dbUser = "hello";
     private String dbPass = "hello";
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
