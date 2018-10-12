@@ -1,11 +1,13 @@
+<%@ page import="com.pict.database.DatabaseConnection" %>
+<%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <script src="js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/bootstrap.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -159,23 +161,68 @@
 
 </head>
 <body>
+
+<%
+    if (session.getAttribute("stud_name") == null)
+        response.sendRedirect("/index.jsp");
+
+    String s_stud_name = (String) session.getAttribute("stud_name");
+    String s_stud_mis_id = (String) session.getAttribute("stud_mis_id");
+
+    Connection databaseConnection = DatabaseConnection.getDatabaseConnection();
+    Connection con;
+    Connection con2;
+    Statement pss2 = null;
+    PreparedStatement ps = null;
+    Class.forName("com.mysql.jdbc.Driver");
+    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+    con2 = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+    pss2=con2.createStatement();
+
+    PreparedStatement preparedStatement = null;
+
+    preparedStatement = con.prepareStatement("select * from student where stud_name=?");
+    preparedStatement.setString(1, s_stud_name);
+
+    ResultSet rs = preparedStatement.executeQuery();
+    String prn = null;
+    String roll = null;
+    String batch = null;
+    String div = null;
+    if (rs.next()) {
+        prn = rs.getString("stud_prn");
+        roll = rs.getString("stud_roll_no");
+        batch = rs.getString("stud_batch");
+        div = rs.getString("stud_div");
+    }
+    int prn_int = Integer.parseInt(prn);
+    int roll_int = Integer.parseInt(roll);
+
+    ResultSet rss3 = pss2.executeQuery("select count(a.activity_id) as ccount from activity_list a join student_activity_list s on s.activity_id = a.activity_id where stud_mis_id='"+s_stud_mis_id+"' and is_seen= 0");
+    int count=0;
+    rss3.next();
+    count=rss3.getInt("ccount");
+
+%>
+
+
 <div id='cssmenu' class="sticky-top">
     <ul style="font-size: 25px">
-        <li class="active"><a href='#'><span></span><span><i class="fa fa-home"></i> </span></a></li>
+        <li class="active"><a href='../jsp/student_profile.jsp'><span></span><span><i class="fa fa-home"></i> </span></a></li>
         <li class='has-sub'><a href='#'><span>Forms</span></a>
             <ul>
                 <li class='has-sub'><a href='#'><span>Edit</span></a>
                     <ul>
-                        <li><a href='#'><span>Personal Details</span></a></li>
-                        <li><a href='#'><span>Parent Details</span></a></li>
-                        <li><a href='#'><span>Academic Details</span></a></li>
-                        <li class='last'><a href='#'><span>Extra Activities</span></a></li>
+                        <li><a href='personal_details.jsp'><span>Personal Details</span></a></li>
+                        <li><a href='parent_details.jsp'><span>Parent Details</span></a></li>
+                        <li><a href='academic_details.jsp'><span>Academic Details</span></a></li>
+                        <li class='last'><a href='extra_activities.jsp'><span>Extra Activities</span></a></li>
                     </ul>
                 </li>
                 <li class='has-sub'><a href='#'><span>Submit</span></a>
                     <ul>
-                        <li class='last'><a href='#'><span>Leave Application</span></a></li>
-                        <li class='last'><a href='#'><span>Undertaking</span></a></li>
+                        <li class='last'><a href='leave_app.jsp'><span>Leave Application</span></a></li>
+                        <li class='last'><a href='upload_docs.jsp'><span>Certificates / Undertaking</span></a></li>
                     </ul>
                 </li>
             </ul>
@@ -185,12 +232,13 @@
             <ul>
                 <li class='has-sub'><a href='#'><span>Contact Mentor</span></a></li>
                 <li class='has-sub'><a href='#'><span>View Students</span></a></li>
+                <li class='has-sub'><a href='../jsp/student_view_meetings.jsp'><span>View Meetings</span></a></li>
             </ul>
         </li>
 
-        <li style="float:right"><a href='#'><span>LogOut</span></a></li>
-        <li style="float:right"><a href='#'><span>Name</span></a></li>
-        <li class='last' style="float:right"><a href='#'><span><i class="fa fa-bell"></i> </span><span class="badge badge-danger badge-pill">11</span></a></li>
+        <li style="float:right"><a href='/LogoutServlet'><span>LogOut</span></a></li>
+        <li style="float:right"><a href='#'><span><%=s_stud_name%></span></a></li>
+        <li class='last' style="float:right"><a href='#'><span><i class="fa fa-bell"></i> </span><% if (count!=0) {%><span class="badge badge-danger badge-pill"><%=count%></span><%}%></a></li>
     </ul>
 </div>
 <div class="container-fluid">

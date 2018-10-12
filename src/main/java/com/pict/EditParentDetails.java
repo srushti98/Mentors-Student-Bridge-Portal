@@ -77,23 +77,23 @@ public class EditParentDetails extends HttpServlet {
             System.out.println(mother_name);
             System.out.println(siblings);
 
-            int father_contact_int = Integer.parseInt(father_contact);
-            int mother_contact_int = Integer.parseInt(mother_contact);
+//            int father_contact_int = Integer.parseInt(father_contact);
+//            int mother_contact_int = Integer.parseInt(mother_contact);
             int siblings_int = Integer.parseInt(siblings);
 
             out.println("SL3 " + "database successfully opened. in edit parents 3");
 
-            ps=con.prepareStatement("update Student_parent_details set father_name=?, father_edu=?, father_occ=?, father_contact=?, father_email=?, father_add=?, mother_name=?, mother_edu=?, mother_occ=?, mother_contact=?, mother_email=?, mother_add=?, siblings=?,sib_academics=? where stud_mis_id=?");
+            ps=con.prepareStatement("update Student_parent_details set father_name=?, father_edu=?, father_occ=?, father_contact=?, father_email=?, father_add=?, mother_name=?, mother_edu=?, mother_occ=?, mother_contact=?, mother_email=?, mother_add=?, siblings=?,sibling_academics=? where stud_mis_id=?");
             ps.setString(1,father_name);
             ps.setString(2,father_edu);
             ps.setString(3,father_occ);
-            ps.setInt(4,father_contact_int);
+            ps.setString(4,father_contact);
             ps.setString(5,father_email);
             ps.setString(6,father_add);
             ps.setString(7,mother_name);
             ps.setString(8,mother_edu);
             ps.setString(9,mother_occ);
-            ps.setInt(10,mother_contact_int);
+            ps.setString(10,mother_contact);
             ps.setString(11,mother_email);
             ps.setString(12,mother_add);
             ps.setInt(13,siblings_int);

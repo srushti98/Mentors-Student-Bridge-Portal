@@ -413,7 +413,7 @@
                 <li class='has-sub'><a href='#'><span>Submit</span></a>
                     <ul>
                         <li class='last'><a href='../forms1/leave_app.jsp'><span>Leave Application</span></a></li>
-                        <li class='last'><a href='#'><span>Undertaking</span></a></li>
+                        <li class='last'><a href='../forms1/upload_docs.jsp'><span>Certificates / Undertaking</span></a></li>
                     </ul>
                 </li>
             </ul>
@@ -441,7 +441,7 @@
 
         %>
 
-        <li class='last' style="float:right"><a href='#'><span><i class="fa fa-bell"></i> </span><% if (count!=0) {%><span class="badge badge-danger badge-pill"><%=count%></span><%}%></a></li>
+        <li class='last' style="float:right"><a href='student_view_meetings.jsp'><span><i class="fa fa-bell"></i> </span><% if (count!=0) {%><span class="badge badge-danger badge-pill"><%=count%></span><%}%></a></li>
     </ul>
 </div>
 
@@ -497,7 +497,7 @@
     <div class="title-arch" style="height: 100px">Welcome to Student Portal<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pulvinar ex pulvinar est laoreet ullamcorper.</p></div>
 
     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 project wow animated animated4 fadeInLeft ">
-        <a href="#" style="text-decoration: none">
+        <a href="../forms1/upload_docs.jsp" style="text-decoration: none">
             <div class="project-hover">
                 <h2>VEIW ACHIEVEMENTS</h2>
                 <hr />
@@ -516,7 +516,7 @@
         </a>
     </div>
     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 project project-3 wow animated animated2 fadeInLeft">
-        <a href="#" style="text-decoration: none">
+        <a href="../forms1/leave_app.jsp" style="text-decoration: none">
             <div class="project-hover">
                 <h2>LEAVE APPLICATION</h2>
                 <hr />
