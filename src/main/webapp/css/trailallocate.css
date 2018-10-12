@@ -17,8 +17,8 @@ body {
     /*background: #F2F3EB;*/
     /*background-image: url("/img/hardworking-student-powerpoint-templates.JPG") ;*/
     background-size: cover;
-    background: -webkit-linear-gradient(left, #25c481, #25b7c4);
-    background: linear-gradient(to right, #25c481, #25b7c4);
+    /*background: -webkit-linear-gradient(left, #25c481, #25b7c4);*/
+    /*background: linear-gradient(to right, #25c481, #25b7c4);*/
 
     /*background: linear-gradient(45deg, #49a09d, #5f2c82);*/
     /*background-image: linear-gradient(blue,#b3d7ff);*/
@@ -92,12 +92,16 @@ h1 {
     width: 50px;
 }
 
-.email {
+.meeting_date {
+    float: right;
+    width: 45%;
+}
+.meeting_date_of_mom {
     float: right;
     width: 45%;
 }
 
-input[type='text'], [type='email'], select, textarea {
+input[type='text'], [type='date'], select, textarea {
     background: none;
     border: none;
     border-bottom: solid 2px #474544;
@@ -121,7 +125,7 @@ input[type='text'], [type='email'], select, textarea {
     transition: all 0.3s;
 }
 
-input[type='text']:focus, [type='email']:focus, textarea:focus {
+input[type='text']:focus, [type='date']:focus, textarea:focus {
     outline: none;
     padding: 0 0 0.875em 0;
 }
@@ -238,7 +242,7 @@ textarea {
         width: 53px;
     }
 
-    input[type='text'], [type='email'], select, textarea {
+    input[type='text'], [type='date'], select, textarea {
         font-size: 0.875em;
     }
 }

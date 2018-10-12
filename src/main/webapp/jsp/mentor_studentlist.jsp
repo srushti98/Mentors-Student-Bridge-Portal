@@ -152,16 +152,16 @@
         <ul class="navbar-nav mr-auto">
 
             <li class="nav-item ">
-                <a class="nav-link " style="color: white" href="#"><strong><b>Home</b></strong> </a>
+                <a class="nav-link " style="color: white" href="/jsp/mentor_profile.jsp"><strong><b>Home</b></strong> </a>
             </li>
             <li class="nav-item ">
                 <a class="nav-link active" style="color: white " href="/jsp/mentor_studentlist.jsp"><strong><b>View Students Profile</b></strong></a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" style="color: white" href="#"><strong><b>Arrange a meeting</b></strong></a>
+                <a class="nav-link" style="color: white" href="/jsp/mentor_meeting.jsp"><strong><b>Arrange a meeting</b></strong></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" style="color: white" href="#"><strong><b>Send MOM</b></strong></a>
+                <a class="nav-link" style="color: white" href="/jsp/meeting_mom.jsp"><strong><b>Send MOM</b></strong></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" style="color: white" href="#"><strong><b>Track Students Attendance</b></strong></a>

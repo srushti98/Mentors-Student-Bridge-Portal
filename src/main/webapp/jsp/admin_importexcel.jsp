@@ -39,7 +39,7 @@
     </ul>
 </div>
 <h1>upload your signed undertaking</h1>
-<form method="post" action="../FileUploadExcelsheetServlet" enctype="multipart/form-data" style="margin-top: 500px">
+<form method="post" action="../FileUploadExcelFinalServlet" enctype="multipart/form-data" style="margin-top: 500px">
     <%--<input type="file" name="File" multiple="multiple" onchange="readURL(this);">--%>
     <input type="file" name="File" id="file">
     <a href="#" target="_blank" class="preview">View</a>
