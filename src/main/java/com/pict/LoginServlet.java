@@ -1,7 +1,5 @@
 package com.pict;
 
-import com.pict.database.DatabaseConnection;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -62,7 +60,7 @@ public class LoginServlet extends HttpServlet {
             else if(login_mis_id.startsWith("I") || login_mis_id.startsWith("E") || login_mis_id.startsWith("C"))
             {
                 out.print("in student");
-                preparedStatement = con.prepareStatement("select stud_mis_id,stud_password from student where stud_mis_id=? and stud_password=?");
+                preparedStatement = con.prepareStatement("select * from student where stud_mis_id=? and stud_password=?");
                 preparedStatement.setString(1,login_mis_id);
                 preparedStatement.setString(2,login_pswd);
 
@@ -70,9 +68,11 @@ public class LoginServlet extends HttpServlet {
                 if(resultSet.next()){
                     out.print("Success");
                     String username = resultSet.getString("stud_name");
+                    String usermis = resultSet.getString("stud_mis_id");
 
                     HttpSession session= request.getSession();
                     session.setAttribute("stud_name",username);
+                    session.setAttribute("stud_mis_id",usermis);
 
                     response.sendRedirect("/jsp/student_profile.jsp");
                 }else{

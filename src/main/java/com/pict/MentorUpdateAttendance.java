@@ -45,7 +45,7 @@ public class MentorUpdateAttendance extends HttpServlet {
             for(i=0;i<lang.length;i++)
             {
                 language=lang[i];
-                ps = con.prepareStatement("update student_activitylist set attended=1 where student_id=? and activity_id=?");
+                ps = con.prepareStatement("update student_activity_list set attended=1 where stud_mis_id=? and activity_id=?");
                 ps.setString(1, language);
                 ps.setString(2, activityid);
                 int updateQuery = ps.executeUpdate();

@@ -4,16 +4,6 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
-<servlet>
-  <servlet-name>EditPersonal</servlet-name>
-  <servlet-class>com.pict.EditPersonal</servlet-class>
-</servlet>
-  
-  <servlet-mapping>
-    <servlet-name>EditPersonal</servlet-name>
-    <url-pattern>/EditPersonal</url-pattern>
-  </servlet-mapping>
-
 </web-app>
 
 

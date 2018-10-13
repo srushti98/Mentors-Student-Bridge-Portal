@@ -101,14 +101,14 @@
                     System.out.println("SL3 "+ "database successfully opened.");
                     String menid = (String)session.getAttribute("stud_name");
                     System.out.println(menid);
-                    String sql = "select sa.student_id,s.stud_roll_no,s.stud_name,sa.attended from student s,student_activitylist sa where sa.activity_id=? and s.stud_mis_id=sa.student_id order by s.stud_roll_no;";
+                    String sql = "select sa.stud_mis_id,s.stud_roll_no,s.stud_name,sa.attended from student s,student_activity_list sa where sa.activity_id=? and s.stud_mis_id=sa.stud_mis_id order by s.stud_roll_no;";
                     ps = con.prepareStatement(sql);
                     ps.setString(1,activityid);
                     ResultSet rs = ps.executeQuery();
                     while (rs.next())
                     {
-                        String stud_mis_id=rs.getString("student_id");
-                        String mis=rs.getString("student_id");
+                        String stud_mis_id=rs.getString("stud_mis_id");
+                        String mis=rs.getString("stud_mis_id");
                         String stud_roll_no=rs.getString("stud_roll_no");
                         String studentname=rs.getString("stud_name");
                         String attend=rs.getString("attended");

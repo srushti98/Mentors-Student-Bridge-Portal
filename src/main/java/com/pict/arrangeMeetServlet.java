@@ -1,7 +1,6 @@
 package com.pict;
 
 import com.pict.database.DatabaseConnection;
-import sun.util.calendar.BaseCalendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,8 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 import static java.lang.System.out;
 
@@ -50,68 +47,64 @@ public class arrangeMeetServlet extends HttpServlet {
             preparedStatement.setString(4,Agenda);
             preparedStatement.execute();
 
-//            preparedStatement=con.prepareStatement("select distinct stud_email from student s,student_activitylist sa, activity_list al where al.mentor_id=? and al.activity_id=sa.activity_id and sa.student_id=s.stud_mis_id");
-//            preparedStatement.setString(1,mentor_mis);
-//            ResultSet resultSet=preparedStatement.executeQuery();
-//            while (resultSet.next()){
-//                String file_content="<!DOCTYPE html>\n" +
-//                        "<html>\n" +
-//                        "<head>\n" +
-//                        "<style>\n" +
-//                        ".button {\n" +
-//                        "  display: inline-block;\n" +
-//                        "  padding: 15px 25px;\n" +
-//                        "  font-size: 24px;\n" +
-//                        "  cursor: pointer;\n" +
-//                        "  text-align: center;\n" +
-//                        "  text-decoration: none;\n" +
-//                        "  outline: none;\n" +
-//                        "  color: #fff;\n" +
-//                        "  background-color: #4CAF50;\n" +
-//                        "  border: none;\n" +
-//                        "  border-radius: 15px;\n" +
-//                        "  box-shadow: 0 9px #999;\n" +
-//                        "}\n" +
-//                        "\n" +
-//                        ".button:hover {background-color: #3e8e41}\n" +
-//                        "\n" +
-//                        ".button:active {\n" +
-//                        "  background-color: #3e8e41;\n" +
-//                        "  box-shadow: 0 5px #666;\n" +
-//                        "  transform: translateY(4px);\n" +
-//                        "}\n" +
-//                        "</style>" +
-//                        "</head>\n" +
-//                        "<body>\n" +
-//                        "\n" +
-//                        "<h2>Follow The Below Link</h2>\n" +
-//                        "\n" +
-//                        "<h4>The mentor has arranged a meeting</h4>\n" +
-//                        "\n" +
-//                        "<br><a href=\"http://localhost:8080\" class=\"button\">Check The Date!</a>\n" +
-//                        "\n" +
-//                        "</body>\n" +
-//                        "</html>\n Regards, Team ViSuSuMa";
-//                String subject="**Urgent**";
-//                String email=resultSet.getString("stud_email");
-//                SendMailServlet.sendMail(request,response, email, subject, file_content);
-//                flag=1;
-            } catch (ClassNotFoundException e1) {
-            e1.printStackTrace();
-        } catch (SQLException e1) {
-            e1.printStackTrace();
-        }
+            preparedStatement=con.prepareStatement("select distinct stud_email from student s,student_activity_list sa, activity_list al where al.mentor_id=? and al.activity_id=sa.activity_id and sa.stud_mis_id=s.stud_mis_id");
+            preparedStatement.setString(1,mentor_mis);
+            ResultSet resultSet=preparedStatement.executeQuery();
+            while (resultSet.next()){
+                String file_content="<!DOCTYPE html>\n" +
+                        "<html>\n" +
+                        "<head>\n" +
+                        "<style>\n" +
+                        ".button {\n" +
+                        "  display: inline-block;\n" +
+                        "  padding: 15px 25px;\n" +
+                        "  font-size: 24px;\n" +
+                        "  cursor: pointer;\n" +
+                        "  text-align: center;\n" +
+                        "  text-decoration: none;\n" +
+                        "  outline: none;\n" +
+                        "  color: #fff;\n" +
+                        "  background-color: #4CAF50;\n" +
+                        "  border: none;\n" +
+                        "  border-radius: 15px;\n" +
+                        "  box-shadow: 0 9px #999;\n" +
+                        "}\n" +
+                        "\n" +
+                        ".button:hover {background-color: #3e8e41}\n" +
+                        "\n" +
+                        ".button:active {\n" +
+                        "  background-color: #3e8e41;\n" +
+                        "  box-shadow: 0 5px #666;\n" +
+                        "  transform: translateY(4px);\n" +
+                        "}\n" +
+                        "</style>" +
+                        "</head>\n" +
+                        "<body>\n" +
+                        "\n" +
+                        "<h2>Follow The Below Link</h2>\n" +
+                        "\n" +
+                        "<h4>The mentor has arranged a meeting</h4>\n" +
+                        "\n" +
+                        "<br><a href=\"http://localhost:8080\" class=\"button\">Check The Date!</a>\n" +
+                        "\n" +
+                        "</body>\n" +
+                        "</html>\n Regards, Team ViSuSuMa";
+                String subject="**Urgent**";
+                String email=resultSet.getString("stud_email");
+                SendMailServlet.sendMail(request,response, email, subject, file_content);
+                flag=1;
+            }
     }
-//        catch(SQLException e) {
-//            out.println("SQLException caught: " +e.getMessage());
-//        }
-//
-//        catch (ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//        if (flag==1)
-//            response.sendRedirect("/forms/mentor_meeting.jsp");
-//    }
+        catch(SQLException e) {
+            out.println("SQLException caught: " +e.getMessage());
+        }
+
+        catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        if (flag==1)
+            response.sendRedirect("/jsp/mentor_meeting.jsp");
+    }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
