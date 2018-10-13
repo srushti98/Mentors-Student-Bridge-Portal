@@ -1,3 +1,4 @@
+<%@ page import="java.util.SplittableRandom" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +7,13 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/bootstrap.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
     <style>
         body{
             margin-top:100px;
@@ -13,7 +21,6 @@
             background:#c8c8c8;
             font:600 16px/18px 'Open Sans',sans-serif;
         }
-
         .login-wrap{
             width:100%;
             margin:auto;
@@ -23,7 +30,6 @@
             background:url("img/loginbg3.jpeg") no-repeat center;
             box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
         }
-
         .login-html{
             width:100%;
             height:100%;
@@ -31,18 +37,15 @@
             padding:90px 70px 50px 70px;
             background:rgba(40,57,101,.9);
         }
-
         .login-form{
             min-height:345px;
             position:relative;
             perspective:1000px;
             transform-style:preserve-3d;
         }
-
         .login-form .group{
             margin-bottom:15px;
         }
-
         .login-form .group .label,
         .login-form .group .input,
         .login-form .group .button{
@@ -50,7 +53,6 @@
             color:#fff;
             display:block;
         }
-
         .login-form .group .input,
         .login-form .group .button{
             border:none;
@@ -58,7 +60,6 @@
             border-radius:25px;
             background:rgba(255,255,255,.1);
         }
-
         .login-form .group .label{
             color:#aaa;
             font-size:12px;
@@ -66,7 +67,6 @@
         .login-form .group .button{
             background:#1161ee;
         }
-
         /*.login-form .group label .icon{
             width:15px;
             height:15px;
@@ -75,7 +75,6 @@
             display:inline-block;
             background:rgba(255,255,255,.1);
         }*/
-
         .hr{
             height:2px;
             margin:60px 0 50px 0;
@@ -89,46 +88,52 @@
 </head>
 <body>
 
+<%--<%--%>
+<%--String Email= (String) request.getAttribute("EmailID");--%>
+<%--String rollno= (String) request.getAttribute("rollNumber");--%>
+<%--%>--%>
 
 <div class="login-wrap">
     <div class="login-html">
-        <form action="LoginServlet" method="POST">
+        <form action="/resetPasswordServlet" method="POST">
             <div class="login-form">
-                <h1 style="text-align: center">Mentor System</h1>
+                <h1 style="text-align: center">Reset Password</h1>
                 <div class="group">
-                    <label for="user" class="label" >MIS ID</label>
-                    <input id="user" type="text" class="form-control input" name="login_mis_id" placeholder="Mis-id">
+                    <label for="email" class="label" >E-mail ID</label>
+                    <input id="email" type="text" class="form-control input" name="email" value="<%=session.getAttribute("EmailID")%>" readonly>
                 </div>
                 <div class="group">
-                    <label for="pass" class="label">Password</label>
-                    <input id="pass" type="password" class="form-control input" data-type="password" name="login_pswd" placeholder="Password">
+                    <label for="roll_no" class="label" >Roll Number</label>
+                    <input id="roll_no" type="text" class="form-control input" name="roll_no" value="<%=session.getAttribute("rollNumber")%>" readonly>
                 </div>
-                <!--<div class="group">
-                    <input id="check" type="checkbox" class="check" checked>
-                    <label for="check"><span class="icon"></span> Keep me Signed in</label>
-                </div>-->
+                <div class="group">
+                    <label for="password" class="label" >New Password</label>
+                    <input id="password" type="text" class="form-control input" name="password" placeholder="password">
+                </div>
                 <div class="group" style="padding-top: 20px">
-                    <input type="submit" class="button" value="Sign In">
+                    <input type="submit" class="button" value="Set New Password">
                 </div>
                 <div class="hr"></div>
-                <div class="foot-lnk">
-                    <a href="/jsp/forgot_password.jsp">Forgot Password?</a>
-                </div>
             </div>
         </form>
     </div>
 
 </div>
-
 <script>
     var Msg ='<%=session.getAttribute("getAlert")%>';
+    <%--<%--%>
+    <%--String email=(String) session.getAttribute("EmailID");--%>
+    <%--String roll_no=(String) session.getAttribute("rollNumber");--%>
+    <%--%>--%>
     if (Msg != "null") {
         function alertName(){
-            swal("Password updated successfully","New password is: "+Msg,"success");
+            swal("success","Your current password is: "+Msg,"success");
         }
     }
 </script>
+
 </body>
+
 <script type="text/javascript"> window.onload = alertName; </script>
-<%--<script type="text/javascript"> window.onload = errorName; </script>--%>
+
 </html>

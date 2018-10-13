@@ -189,6 +189,7 @@
     String roll = null;
     String batch = null;
     String div = null;
+    String fileid=null;
     if (rs.next()) {
         prn = rs.getString("stud_prn");
         roll = rs.getString("stud_roll_no");
@@ -199,9 +200,9 @@
     int roll_int = Integer.parseInt(roll);
 
     ResultSet rss3 = pss2.executeQuery("select count(a.activity_id) as ccount from activity_list a join student_activity_list s on s.activity_id = a.activity_id where stud_mis_id='"+s_stud_mis_id+"' and is_seen= 0");
-    int count=0;
+    int ccount=0;
     rss3.next();
-    count=rss3.getInt("ccount");
+    ccount=rss3.getInt("ccount");
 
 %>
 
@@ -238,7 +239,7 @@
 
         <li style="float:right"><a href='/LogoutServlet'><span>LogOut</span></a></li>
         <li style="float:right"><a href='#'><span><%=s_stud_name%></span></a></li>
-        <li class='last' style="float:right"><a href='#'><span><i class="fa fa-bell"></i> </span><% if (count!=0) {%><span class="badge badge-danger badge-pill"><%=count%></span><%}%></a></li>
+        <li class='last' style="float:right"><a href='../jsp/student_view_meetings.jsp'><span><i class="fa fa-bell"></i> </span><% if (ccount!=0) {%><span class="badge badge-danger badge-pill"><%=ccount%></span><%}%></a></li>
     </ul>
 </div>
 <div class="container-fluid">
@@ -247,6 +248,40 @@
         <div class="col-md-8">
             <div class="jumbotron">
                 <h2>Certificates</h2>
+
+                <%  String filetype="certificates";
+                    preparedStatement = con.prepareStatement("select stud_file_id from stud_documents where file_type=? and stud_mis_id=?");
+                    preparedStatement.setString(1,filetype);
+                    preparedStatement.setString(2, s_stud_mis_id);
+                    ResultSet resultSet2 = preparedStatement.executeQuery();
+                    int count=1;
+
+                    if(!resultSet2.first())
+                    {
+                        System.out.print(resultSet2.first());
+
+                %>
+                <p>View cetificates::<h6 style="color: red">NO UPLOADS</h6></p>
+
+                <%
+
+                }
+
+                else
+                {
+                    resultSet2.previous();
+                    while (resultSet2.next())
+                    {
+
+                        fileid=resultSet2.getString("stud_file_id");
+
+                %>
+                <p class="read-more">View certificate no ::<%=count%>::<a href="../MentorfileDownload?id=<%=s_stud_mis_id%>&fileid=<%=fileid%>" target="_blank">View</a></p>
+
+                <%
+                            count++;  }}%>
+
+
                 <p class="lead">Upload your achievement certificates for competitions and extra activities here.</p>
                 <hr class="my-4">
                 <p class="lead">upload certificates.
@@ -263,9 +298,49 @@
             <div class="jumbotron">
                 <h2>Parent Undertaking</h2>
                 <p class="lead">Download Undertaking. Get it signed by parents. Upload it here.</p>
+                <%  String filetype1="undertaking";
+                    preparedStatement = con.prepareStatement("select stud_file_id from stud_documents where file_type=? and stud_mis_id=?");
+                    preparedStatement.setString(1,filetype1);
+                    preparedStatement.setString(2, s_stud_mis_id);
+                    ResultSet resultSet3 = preparedStatement.executeQuery();
+                    int count1=1;
+
+                    if(!resultSet3.first())
+                    {
+                        System.out.print(resultSet3.first());
+
+                %>
+                <p>View undertaking::<h6 style="color: red">NO UPLOADS</h6></p>
+
+                <%
+
+                }
+
+                else
+                {
+                    resultSet3.previous();
+                    while (resultSet3.next())
+                    {
+
+                        fileid=resultSet3.getString("stud_file_id");
+
+                %>
+                <p class="read-more">View undertaking no ::<%=count1%>::<a href="../MentorfileDownload?id=<%=s_stud_mis_id%>&fileid=<%=fileid%>" target="_blank">View</a></p>
+
+                <%
+                            count1++;
+                    }}%>
+
+
                 <hr class="my-4">
                 <p class="lead">upload undertaking from here.
-                <div class="btn btn-primary btn-lg" href="#" role="button">Download</div><br><br><br>
+                <form action="../data/Undertaking.pdf" method="get" target="_blank">
+                    <div class="form-group">
+
+                        <input type="submit" class="btn btn-primary btn-lg" value="Download"><br><br><br>
+                    </div>
+                </form>
+                <%--<div class="btn btn-primary btn-lg" href="#" role="button">Download</div><br><br><br>--%>
                 <form action="#" method="post">
                     <div class="form-group">
                         <input type="file"><br><br>

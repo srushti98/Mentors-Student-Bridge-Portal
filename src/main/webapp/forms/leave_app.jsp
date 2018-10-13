@@ -49,31 +49,19 @@
         <div class="col-md-12"><!--</div>
         <div class="col-md-6 new_user_form" >-->
             <form action="../jsp/leave_app_back.jsp" method="post">
-                <h1 align="center"><u>Leave application</h1>
+                <h1 align="center"><u>Leave application </u></h1>
                 <br>
-                <div class="form-group">
-                    <label>Name :</label>
-                    <input type="text" class="form-control" name="student_name" required>
-                </div>
-                <div class="form-group">
-                    <label>Division :</label>
-                    <input type="text" class="form-control" name="student_div">
-                </div>
-                <div class="form-group">
-                    <label>Roll no :</label>
-                    <input type="number" class="form-control" name="student_roll_no" required>
-                </div>
                 <div class="form-group">
                     <label>Attendance prior to this leave :</label>
                     <input type="text" class="form-control" name="attendance" required>
                 </div>
                 <div class="form-group" align="left">
                     <label>Leave Start Date :</label>
-                    <input type="date" name="dateFrom" value="<?php echo date('Y-m-d'); ?>" required />
+                    <input type="date" name="dateFrom"  required />
                 </div>
                 <div class="form-group" align="left">
                     <label>Leave End Date :</label>
-                    <input type="date" name="dateTo" value="<?php echo date('Y-m-d'); ?>" required />
+                    <input type="date" name="dateTo" required />
                 </div>
                 <div class="form-group">
                     <label>Number of working hours falling in the leave period :</label>
@@ -84,7 +72,7 @@
                 <div class="form-group">
                     <label>Reason for this leave :</label>
                     <br>
-                    <textarea name="leave_reason" placeholder="Reason for leave" style="width:75%;height:100px;margin-top:6px;resize:no" required></textarea>
+                    <input type="text" name="leave_reason" placeholder="Reason for leave" required>
                 </div>
                 <div class="blockquote-footer">
                     <button type="submit" class="button1 button4" style="width:100px;height:50px; ">Request</button>

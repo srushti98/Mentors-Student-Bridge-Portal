@@ -208,10 +208,10 @@
         <h1>OTHER DETAILS</h1>
 
 
-        <p class="read-more">PERSONAL DETAILS : <a href="#">view</a></p>
-        <p class="read-more">PARENT DETAILS : <a href="#">view</a></p>
-        <p class="read-more">ACADEMIC DETAILS : <a href="#">view</a></p>
-        <p class="read-more">EXTRA CURRICULAR DETAILS : <a href="#">view</a></p>
+        <p class="read-more">PERSONAL DETAILS : <a href="../form_for_mentor/formentor_personal_details.jsp?id=<%=stud_mis_id%>">view</a></p>
+        <p class="read-more">PARENT DETAILS : <a href="../form_for_mentor/formentor_parent_details.jsp?id=<%=stud_mis_id%>">view</a></p>
+        <p class="read-more">ACADEMIC DETAILS : <a href="../form_for_mentor/formentor_academic_details.jsp?id=<%=stud_mis_id%>">view</a></p>
+        <p class="read-more">EXTRA CURRICULAR DETAILS : <a href="../form_for_mentor/formentor_extra_activities.jsp?id=<%=stud_mis_id%>">view</a></p>
 
 
     </div>

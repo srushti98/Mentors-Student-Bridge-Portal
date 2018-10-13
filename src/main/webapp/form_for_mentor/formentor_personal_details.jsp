@@ -77,12 +77,12 @@
     if (rs.next()) {
         stud_name = rs.getString("stud_name");
         stud_email = rs.getString("stud_email");
-        srud_roll_no = rs.getString("srud_roll_no");
+        srud_roll_no = rs.getString("stud_roll_no");
         stud_batch = rs.getString("stud_batch");
         stud_prn = rs.getString("stud_prn");
         stud_contact_no = rs.getString("stud_contact_no");
         stud_dob = rs.getString("stud_dob");
-        studblodgrp = rs.getString("studblodgrp");
+        studblodgrp = rs.getString("stud_blodgrp");
         stud_gender = rs.getString("stud_gender");
         stud_local_add = rs.getString("stud_local_add");
         stud_per_add = rs.getString("stud_per_add");
@@ -133,7 +133,7 @@
                 <label>Blood Group</label>
                 <input type="text" class="form-control" name="stud_bg" placeholder="Blood Group" value="<%=studblodgrp%>" readonly>
                 <label>Local Address</label>
-                <<input type="text" class="form-control" name="stud_local_add" placeholder="Local Address" value="<%=stud_local_add%>" readonly>
+                <input type="text" class="form-control" name="stud_local_add" placeholder="Local Address" value="<%=stud_local_add%>" readonly>
                 <label>Permanent Address</label>
                 <input type="text" class="form-control" name="stud_per_add" placeholder="Permanent Address" value="<%=stud_per_add%>" readonly>
             </div>

@@ -285,18 +285,6 @@
                 <h1 align="center"><u>Leave application</u></h1>
                 <br>
                 <div class="form-group">
-                    <label>Name :</label>
-                    <input type="text" class="form-control" name="student_name" required>
-                </div>
-                <div class="form-group">
-                    <label>Division :</label>
-                    <input type="text" class="form-control" name="student_div" required>
-                </div>
-                <div class="form-group">
-                    <label>Roll no :</label>
-                    <input type="number" class="form-control" name="student_roll_no" required>
-                </div>
-                <div class="form-group">
                     <label>Attendance prior to this leave :</label>
                     <input type="text" class="form-control" name="attendance_prior" required>
                 </div>

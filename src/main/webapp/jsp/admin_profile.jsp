@@ -196,7 +196,7 @@
                         <%--<option value="<%=fname %>"><%=fname %></option>--%>
                         <%--<%--%>
                             <%--}--%>
-                        <%--%>--%><select class="form-control" name="mentorselected">--%>
+                        <%--%><select class="form-control" name="mentorselected">&ndash;%&gt;--%>
     <%--<option value="" selected="selected">--SELECT--</option>--%>
     <%--<%--%>
     <%--while(rs.next())--%>
@@ -236,7 +236,7 @@
         <%--<input class="submit" name="submit" type="submit" value="ALLOCATE" style="width: 300px; height: 50px; margin: 0 auto;">--%>
     <%--</div>--%>
 <%--</form>--%>
-</body>
+
 
 <script type="text/javascript">
     var Msg ='<%=session.getAttribute("getAlert")%>';
@@ -249,10 +249,9 @@
     }
 </script>
 
-
+</body>
 
 <script type="text/javascript"> window.onload = alertName; </script>
-
 
 </html>
 
