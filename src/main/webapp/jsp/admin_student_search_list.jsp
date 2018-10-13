@@ -1,6 +1,9 @@
 <%@ page import="com.pict.database.DatabaseConnection" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.ResultSet" %>
 <%@ page import="static java.lang.System.out" %>
-<%@ page import="java.sql.*" %>
+<%@ page import="java.sql.DriverManager" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -16,6 +19,8 @@
 
     <title>Title</title>
     <style>
+        @import url(https://fonts.googleapis.com/css?family=Lato:900);
+
         .navbar,.navbar-expand-lg{
             background: linear-gradient(to right, #25c481, #25b7c4);
         }
@@ -54,6 +59,76 @@
 
         .dropdown:hover .dropdown-content {
             display: block;
+        }
+
+        *, *:before, *:after{
+            box-sizing:border-box;
+        }
+        body{
+            font-family: 'Lato', sans-serif;
+        ;
+        }
+        div.foo{
+            width: 90%;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .letter{
+            display: inline-block;
+            font-weight: 900;
+            font-size: 4em;
+            margin: 0.2em;
+            position: relative;
+            color: #0b2e13;
+            transform-style: preserve-3d;
+            perspective: 400;
+            z-index: 1;
+        }
+        .letter:before, .letter:after{
+            position:absolute;
+            content: attr(data-letter);
+            transform-origin: top left;
+            top:0;
+            left:0;
+        }
+        .letter, .letter:before, .letter:after{
+            transition: all 0.3s ease-in-out;
+        }
+        .letter:before{
+            color: #0b2e13;
+            text-shadow:
+                    -1px 0px 1px rgba(255,255,255,.8),
+                    1px 0px 1px rgba(0,0,0,.8);
+            z-index: 3;
+            transform:
+                    rotateX(0deg)
+                    rotateY(-15deg)
+                    rotateZ(0deg);
+        }
+        .letter:after{
+            color: rgba(0,0,0,.11);
+            z-index:2;
+            transform:
+                    scale(1.08,1)
+                    rotateX(0deg)
+                    rotateY(0deg)
+                    rotateZ(0deg)
+                    skew(0deg,1deg);
+        }
+        .letter:hover:before{
+            color: #fafafa;
+            transform:
+                    rotateX(0deg)
+                    rotateY(-40deg)
+                    rotateZ(0deg);
+        }
+        .letter:hover:after{
+            transform:
+                    scale(1.08,1)
+                    rotateX(0deg)
+                    rotateY(40deg)
+                    rotateZ(0deg)
+                    skew(0deg,22deg);
         }
 
         form {
@@ -108,7 +183,8 @@
         form > .button:hover {
             background-color: rgba(0, 150, 136, 0.8);
         }
-        
+
+
     </style>
 </head>
 
@@ -160,75 +236,80 @@
 </nav>
 <div class="col-4"></div>
 <div class="col-4" style="margin-left: 670px ;margin-top: 40px">
-    <h1 style="color: #0a8cc4"> MENTORS   LIST </h1>
+    <h1 style="color: #0a8cc4"> STUDENTS   LIST </h1>
 </div>
 <div class="container">
     <table class=".table-responsive" >
         <thead>
         <tr class=".table-responsive">
+            <th >ROllno</th>
             <th >Name</th>
-            <th >Mentorid</th>
-            <th><form action="admin_search_mentor_list.jsp">
+            <th >MISID</th>
+            <th><form action="admin_student_search_list.jsp">
                 <input type="text" class="textbox" placeholder="Search" name="Name">
                 <input title="Search" value="&#128269" type="submit" class="button">
             </form></th>
         </tr>
         </thead>
-            <%
-                Connection databaseConnection = DatabaseConnection.getDatabaseConnection();
-                Connection con;
-                PreparedStatement ps = null;
-                Class.forName("com.mysql.jdbc.Driver");
-                try {
-                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+
+        <%
+            Connection databaseConnection = DatabaseConnection.getDatabaseConnection();
+            Connection con;
+            PreparedStatement ps = null;
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+
+            String serach_result=request.getParameter("Name");
+
+            PreparedStatement preparedStatement = null;
+
+            preparedStatement = con.prepareStatement("select stud_mis_id,stud_name,stud_roll_no from student where stud_name like ? or stud_mis_id like ? or CAST(stud_roll_no as char) like ? order by stud_roll_no");
+            preparedStatement.setString(1,"%"+serach_result+"%");
+            preparedStatement.setString(2,"%"+serach_result+"%");
+            preparedStatement.setString(3,"%"+serach_result+"%");
+            ResultSet rs1=preparedStatement.executeQuery();
+
+            if(rs1.next()==false)
+            {%>
+        <div class="foo">
+            <span class="letter" data-letter="N">NO</span><span class="letter" data-letter="R">RESULTS</span><span class="letter" data-letter="F">FOUND</span>
+        </div>
+            <%}
+            else {
+                ResultSet rs = preparedStatement.executeQuery();
+            while(rs.next())
+            {
+                String fname = rs.getString("stud_name");
+                String froll=rs.getString("stud_roll_no");
+                int frollint=Integer.parseInt(froll);
+                String mis_id=rs.getString("stud_mis_id");
+
+        %>
+        <tbody class=".table-responsive">
+        <tr class=".table-responsive">
+            <td style="color: #2f28d6"><%=frollint %></td>
+            <td style="color: #2f28d6"><%=fname %></td>
+
+            <td style="color: #2f28d6"><%=mis_id %></td>
+        </tr>
+        <%
+            }
+            }
+        %>
 
 
-                PreparedStatement preparedStatement = null;
 
-                try {
-                    preparedStatement = databaseConnection.prepareStatement("select emp_id,mentorname from mentor order by mentorname");
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
 
-                ResultSet rs = null;
-                try {
-                    rs = preparedStatement.executeQuery();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+        </tbody>
+    </table>
 
-                while(rs.next())
-                {
-                    String fname = null;
-                    try {
-                        fname = rs.getString("mentorname");
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                    String emp_id= null;
-                    try {
-                        emp_id = rs.getString("emp_id");
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
 
-            %>
-            <tbody class=".table-responsive">
-            <tr class=".table-responsive">
-                <td style="color: #2f28d6"><%=fname %></td>
-                <td style="color: #2f28d6"><%=emp_id %></td>
-            </tr>
-            <%
-                }
-            %>
-            </tbody>
-        </table>
-    </div>
 </div>
+</div>
+
+
+
+
 
 </body>
 </html>

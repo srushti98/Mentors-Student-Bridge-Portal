@@ -108,7 +108,77 @@
         form > .button:hover {
             background-color: rgba(0, 150, 136, 0.8);
         }
-        
+
+        *, *:before, *:after{
+            box-sizing:border-box;
+        }
+        body{
+            font-family: 'Lato', sans-serif;
+        ;
+        }
+        div.foo{
+            width: 90%;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .letter{
+            display: inline-block;
+            font-weight: 900;
+            font-size: 4em;
+            margin: 0.2em;
+            position: relative;
+            color: #0b2e13;
+            transform-style: preserve-3d;
+            perspective: 400;
+            z-index: 1;
+        }
+        .letter:before, .letter:after{
+            position:absolute;
+            content: attr(data-letter);
+            transform-origin: top left;
+            top:0;
+            left:0;
+        }
+        .letter, .letter:before, .letter:after{
+            transition: all 0.3s ease-in-out;
+        }
+        .letter:before{
+            color: #0b2e13;
+            text-shadow:
+                    -1px 0px 1px rgba(255,255,255,.8),
+                    1px 0px 1px rgba(0,0,0,.8);
+            z-index: 3;
+            transform:
+                    rotateX(0deg)
+                    rotateY(-15deg)
+                    rotateZ(0deg);
+        }
+        .letter:after{
+            color: rgba(0,0,0,.11);
+            z-index:2;
+            transform:
+                    scale(1.08,1)
+                    rotateX(0deg)
+                    rotateY(0deg)
+                    rotateZ(0deg)
+                    skew(0deg,1deg);
+        }
+        .letter:hover:before{
+            color: #fafafa;
+            transform:
+                    rotateX(0deg)
+                    rotateY(-40deg)
+                    rotateZ(0deg);
+        }
+        .letter:hover:after{
+            transform:
+                    scale(1.08,1)
+                    rotateX(0deg)
+                    rotateY(40deg)
+                    rotateZ(0deg)
+                    skew(0deg,22deg);
+        }
+
     </style>
 </head>
 
@@ -139,7 +209,7 @@
                     <a class="dropdown-item" href="/jsp/admin_profile.jsp">Allot Multiple Students </a>
                 </div>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item">
                 <a class="nav-link" style="color: white" href="/jsp/admin_studentslist.jsp"><strong><b>View all Students</b></strong><span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
@@ -158,77 +228,84 @@
     </div>
 
 </nav>
+
 <div class="col-4"></div>
 <div class="col-4" style="margin-left: 670px ;margin-top: 40px">
-    <h1 style="color: #0a8cc4"> MENTORS   LIST </h1>
+    <h1 style="color: #0a8cc4"> ALLOTMENTS   LIST </h1>
 </div>
 <div class="container">
     <table class=".table-responsive" >
         <thead>
         <tr class=".table-responsive">
-            <th >Name</th>
-            <th >Mentorid</th>
-            <th><form action="admin_search_mentor_list.jsp">
+            <th >Mentor Name</th>
+            <th >Student Name</th>
+            <th >Student Roll No.</th>
+            <th><form action="admin_search_allotment_list.jsp">
                 <input type="text" class="textbox" placeholder="Search" name="Name">
                 <input title="Search" value="&#128269" type="submit" class="button">
             </form></th>
         </tr>
         </thead>
-            <%
-                Connection databaseConnection = DatabaseConnection.getDatabaseConnection();
-                Connection con;
+
+        <%
+            try
+            {   Connection con;
                 PreparedStatement ps = null;
                 Class.forName("com.mysql.jdbc.Driver");
-                try {
-                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-
-
-                PreparedStatement preparedStatement = null;
-
-                try {
-                    preparedStatement = databaseConnection.prepareStatement("select emp_id,mentorname from mentor order by mentorname");
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-
-                ResultSet rs = null;
-                try {
-                    rs = preparedStatement.executeQuery();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-
-                while(rs.next())
+                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+                System.out.println("SL3 "+ "database successfully opened.");
+                String search_result=request.getParameter("Name");
+                String sql = "select distinct s.stud_roll_no, s.stud_name , m.mentorname from student s, mentor m, studentmentorrel sm where s.stud_mis_id=sm.stud_mis_id and m.emp_id=sm.emp_id and CAST(s.stud_roll_no as char) like ? or m.mentorname like ? or s.stud_name like ? order by s.stud_roll_no;";
+                ps = con.prepareStatement(sql);
+                ps.setString(1,"%"+search_result+"%");
+                ps.setString(2,"%"+search_result+"%");
+                ps.setString(3,"%"+search_result+"%");
+                ResultSet rs1=ps.executeQuery();
+                if(rs1.next()==false)
+                {%>
+        <div class="foo">
+            <span class="letter" data-letter="N">NO</span><span class="letter" data-letter="R">RESULTS</span><span class="letter" data-letter="F">FOUND</span>
+        </div>
+                <%}
+                else{
+                ResultSet rs = ps.executeQuery();
+                String m1="   ";
+                while (rs.next())
                 {
-                    String fname = null;
-                    try {
-                        fname = rs.getString("mentorname");
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                    String emp_id= null;
-                    try {
-                        emp_id = rs.getString("emp_id");
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-
-            %>
-            <tbody class=".table-responsive">
-            <tr class=".table-responsive">
-                <td style="color: #2f28d6"><%=fname %></td>
-                <td style="color: #2f28d6"><%=emp_id %></td>
-            </tr>
-            <%
+                    String mentor_name=rs.getString("m.mentorname");
+                    String student_name=rs.getString("s.stud_name");
+                    int student_roll_no=rs.getInt("s.stud_roll_no");
+        %>
+        <tbody class=".table-responsive">
+        <%
+            if(!m1.equals(mentor_name))
+            {
+                m1=mentor_name;
+        %>
+        <td style="color: #2f28d6"><%=mentor_name%></td>
+        <%
+        }
+        else
+        {
+        %>
+        <td>    </td>
+        <%
+            }
+        %>
+        <td style="color: #2f28d6"><%=student_name%></td>
+        <td style="color: #2f28d6"><%=student_roll_no%></td>
+        <%
                 }
-            %>
-            </tbody>
-        </table>
-    </div>
+                }
+            }
+            catch(SQLException sqe)
+            {
+                System.out.println(sqe);
+            }
+        %>
+        </tbody>
+    </table>
 </div>
-
+</div>
 </body>
 </html>

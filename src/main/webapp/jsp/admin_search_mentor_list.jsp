@@ -108,7 +108,77 @@
         form > .button:hover {
             background-color: rgba(0, 150, 136, 0.8);
         }
-        
+
+        *, *:before, *:after{
+            box-sizing:border-box;
+        }
+        body{
+            font-family: 'Lato', sans-serif;
+        ;
+        }
+        div.foo{
+            width: 90%;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .letter{
+            display: inline-block;
+            font-weight: 900;
+            font-size: 4em;
+            margin: 0.2em;
+            position: relative;
+            color: #0b2e13;
+            transform-style: preserve-3d;
+            perspective: 400;
+            z-index: 1;
+        }
+        .letter:before, .letter:after{
+            position:absolute;
+            content: attr(data-letter);
+            transform-origin: top left;
+            top:0;
+            left:0;
+        }
+        .letter, .letter:before, .letter:after{
+            transition: all 0.3s ease-in-out;
+        }
+        .letter:before{
+            color: #0b2e13;
+            text-shadow:
+                    -1px 0px 1px rgba(255,255,255,.8),
+                    1px 0px 1px rgba(0,0,0,.8);
+            z-index: 3;
+            transform:
+                    rotateX(0deg)
+                    rotateY(-15deg)
+                    rotateZ(0deg);
+        }
+        .letter:after{
+            color: rgba(0,0,0,.11);
+            z-index:2;
+            transform:
+                    scale(1.08,1)
+                    rotateX(0deg)
+                    rotateY(0deg)
+                    rotateZ(0deg)
+                    skew(0deg,1deg);
+        }
+        .letter:hover:before{
+            color: #fafafa;
+            transform:
+                    rotateX(0deg)
+                    rotateY(-40deg)
+                    rotateZ(0deg);
+        }
+        .letter:hover:after{
+            transform:
+                    scale(1.08,1)
+                    rotateX(0deg)
+                    rotateY(40deg)
+                    rotateZ(0deg)
+                    skew(0deg,22deg);
+        }
+
     </style>
 </head>
 
@@ -174,60 +244,55 @@
             </form></th>
         </tr>
         </thead>
-            <%
-                Connection databaseConnection = DatabaseConnection.getDatabaseConnection();
-                Connection con;
-                PreparedStatement ps = null;
-                Class.forName("com.mysql.jdbc.Driver");
-                try {
-                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+        <%
+            Connection databaseConnection = DatabaseConnection.getDatabaseConnection();
+            Connection con;
+            PreparedStatement ps = null;
+            Class.forName("com.mysql.jdbc.Driver");
+            try {
+                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
 
+            String search_result=request.getParameter("Name");
 
-                PreparedStatement preparedStatement = null;
+            PreparedStatement preparedStatement = null;
+            preparedStatement = databaseConnection.prepareStatement("select emp_id,mentorname from mentor where emp_id like ? or mentorname like ? order by mentorname");
 
-                try {
-                    preparedStatement = databaseConnection.prepareStatement("select emp_id,mentorname from mentor order by mentorname");
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+            preparedStatement.setString(1,"%"+search_result+"%");
+            preparedStatement.setString(2,"%"+search_result+"%");
 
-                ResultSet rs = null;
-                try {
-                    rs = preparedStatement.executeQuery();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+            ResultSet rs1=preparedStatement.executeQuery();
+            if(rs1.next()==false)
+            {%>
+        <div class="foo">
+            <span class="letter" data-letter="N">NO</span><span class="letter" data-letter="R">RESULTS</span><span class="letter" data-letter="F">FOUND</span>
+        </div>
+            <%}
+            else
+            {
+                ResultSet rs = preparedStatement.executeQuery();
 
                 while(rs.next())
                 {
                     String fname = null;
-                    try {
-                        fname = rs.getString("mentorname");
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
+                    fname = rs.getString("mentorname");
                     String emp_id= null;
-                    try {
-                        emp_id = rs.getString("emp_id");
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-
-            %>
-            <tbody class=".table-responsive">
-            <tr class=".table-responsive">
-                <td style="color: #2f28d6"><%=fname %></td>
-                <td style="color: #2f28d6"><%=emp_id %></td>
-            </tr>
-            <%
+                    emp_id = rs.getString("emp_id");
+        %>
+        <tbody class=".table-responsive">
+        <tr class=".table-responsive">
+            <td style="color: #2f28d6"><%=fname %></td>
+            <td style="color: #2f28d6"><%=emp_id %></td>
+        </tr>
+        <%
                 }
-            %>
-            </tbody>
-        </table>
-    </div>
+            }
+        %>
+        </tbody>
+    </table>
+</div>
 </div>
 
 </body>

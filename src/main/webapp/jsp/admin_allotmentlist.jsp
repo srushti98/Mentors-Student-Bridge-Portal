@@ -56,6 +56,128 @@
             display: block;
         }
 
+        form {
+            outline: 0;
+            float: left;
+            -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+            -webkit-border-radius: 4px;
+            border-radius: 4px;
+        }
+
+        form > .textbox {
+            outline: 0;
+            height: 42px;
+            width: 244px;
+            line-height: 42px;
+            padding: 0 16px;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #212121;
+            border: 0;
+            float: left;
+            -webkit-border-radius: 4px 0 0 4px;
+            border-radius: 4px 0 0 4px;
+        }
+
+        form > .textbox:focus {
+            outline: 0;
+            background-color: #FFF;
+        }
+
+        form > .button {
+            outline: 0;
+            background: none;
+            background-color: rgba(38, 50, 56, 0.8);
+            float: left;
+            height: 42px;
+            width: 42px;
+            text-align: center;
+            line-height: 42px;
+            border: 0;
+            color: #FFF;
+            font: normal normal normal 14px/1 FontAwesome;
+            font-size: 16px;
+            text-rendering: auto;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+            -webkit-transition: background-color .4s ease;
+            transition: background-color .4s ease;
+            -webkit-border-radius: 0 4px 4px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        form > .button:hover {
+            background-color: rgba(0, 150, 136, 0.8);
+        }
+
+        *, *:before, *:after{
+            box-sizing:border-box;
+        }
+        body{
+            font-family: 'Lato', sans-serif;
+        ;
+        }
+        div.foo{
+            width: 90%;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .letter{
+            display: inline-block;
+            font-weight: 900;
+            font-size: 4em;
+            margin: 0.2em;
+            position: relative;
+            color: #0b2e13;
+            transform-style: preserve-3d;
+            perspective: 400;
+            z-index: 1;
+        }
+        .letter:before, .letter:after{
+            position:absolute;
+            content: attr(data-letter);
+            transform-origin: top left;
+            top:0;
+            left:0;
+        }
+        .letter, .letter:before, .letter:after{
+            transition: all 0.3s ease-in-out;
+        }
+        .letter:before{
+            color: #0b2e13;
+            text-shadow:
+                    -1px 0px 1px rgba(255,255,255,.8),
+                    1px 0px 1px rgba(0,0,0,.8);
+            z-index: 3;
+            transform:
+                    rotateX(0deg)
+                    rotateY(-15deg)
+                    rotateZ(0deg);
+        }
+        .letter:after{
+            color: rgba(0,0,0,.11);
+            z-index:2;
+            transform:
+                    scale(1.08,1)
+                    rotateX(0deg)
+                    rotateY(0deg)
+                    rotateZ(0deg)
+                    skew(0deg,1deg);
+        }
+        .letter:hover:before{
+            color: #fafafa;
+            transform:
+                    rotateX(0deg)
+                    rotateY(-40deg)
+                    rotateZ(0deg);
+        }
+        .letter:hover:after{
+            transform:
+                    scale(1.08,1)
+                    rotateX(0deg)
+                    rotateY(40deg)
+                    rotateZ(0deg)
+                    skew(0deg,22deg);
+        }
 
     </style>
 </head>
@@ -118,6 +240,10 @@
             <th >Mentor Name</th>
             <th >Student Name</th>
             <th >Student Roll No.</th>
+            <th><form action="admin_search_allotment_list.jsp">
+                <input type="text" class="textbox" placeholder="Search" name="Name">
+                <input title="Search" value="&#128269" type="submit" class="button">
+            </form></th>
         </tr>
         </thead>
 

@@ -11,6 +11,11 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script><title>Register!!!</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" rel="stylesheet" />
@@ -19,6 +24,8 @@
 
     <title>Title</title>
     <style>
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
         .navbar,.navbar-expand-lg{
             background: linear-gradient(to right, #25c481, #25b7c4);
         }
@@ -59,6 +66,62 @@
             display: block;
         }
 
+        body{
+            background: #f2f2f2;
+            font-family: 'Open Sans', sans-serif;
+        }
+        form {
+            outline: 0;
+            float: left;
+            -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+            -webkit-border-radius: 4px;
+            border-radius: 4px;
+        }
+
+        form > .textbox {
+            outline: 0;
+            height: 42px;
+            width: 244px;
+            line-height: 42px;
+            padding: 0 16px;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #212121;
+            border: 0;
+            float: left;
+            -webkit-border-radius: 4px 0 0 4px;
+            border-radius: 4px 0 0 4px;
+        }
+
+        form > .textbox:focus {
+            outline: 0;
+            background-color: #FFF;
+        }
+
+        form > .button {
+            outline: 0;
+            background: none;
+            background-color: rgba(38, 50, 56, 0.8);
+            float: left;
+            height: 42px;
+            width: 42px;
+            text-align: center;
+            line-height: 42px;
+            border: 0;
+            color: #FFF;
+            font: normal normal normal 14px/1 FontAwesome;
+            font-size: 16px;
+            text-rendering: auto;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+            -webkit-transition: background-color .4s ease;
+            transition: background-color .4s ease;
+            -webkit-border-radius: 0 4px 4px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        form > .button:hover {
+            background-color: rgba(0, 150, 136, 0.8);
+        }
 
     </style>
 </head>
@@ -109,17 +172,24 @@
     </div>
 
 </nav>
-<div class="col-4"></div>
+<form action="admin_student_search_list.jsp">
+    <input type="text" class="textbox" placeholder="Search" name="Name">
+    <input title="Search" value="" type="submit" class="button">
+</form>
 <div class="col-4" style="margin-left: 670px ;margin-top: 40px">
     <h1 style="color: #0a8cc4"> STUDENTS   LIST </h1>
 </div>
 <div class="container">
-    <table class=".table-responsive" >
+    <table class=".table-responsive" style="margin-top:100px; margin-left:10px;">
         <thead>
         <tr class=".table-responsive">
             <th >ROllno</th>
             <th >Name</th>
             <th >MISID</th>
+            <th><form action="admin_student_search_list.jsp">
+                <input type="text" class="textbox" placeholder="Search" name="Name">
+                <input title="Search" value="&#128269" type="submit" class="button">
+            </form></th>
         </tr>
         </thead>
 
