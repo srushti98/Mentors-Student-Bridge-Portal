@@ -235,7 +235,7 @@
 
 <div id='cssmenu' class="sticky-top">
     <ul style="font-size: 25px">
-        <li class="active"><a href=../jsp/student_profile.jsp'><span></span><span><i class="fa fa-home"></i> </span></a></li>
+        <li class="active"><a href='../jsp/student_profile.jsp'><span></span><span><i class="fa fa-home"></i> </span></a></li>
         <li class='has-sub'><a href='#'><span>Forms</span></a>
             <ul>
                 <li class='has-sub'><a href='#'><span>Edit</span></a>
