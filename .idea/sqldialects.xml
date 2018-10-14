@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/src/main/webapp/jsp/admin_mentorlist.jsp" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/jsp/admin_search_allotment_list.jsp" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/jsp/admin_search_mentor_list.jsp" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/jsp/admin_student_search_list.jsp" dialect="MySQL" />
+  </component>
+</project>
