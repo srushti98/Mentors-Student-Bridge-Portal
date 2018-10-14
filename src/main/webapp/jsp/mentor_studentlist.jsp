@@ -194,8 +194,8 @@
                 Class.forName("com.mysql.jdbc.Driver");
                 con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
                 System.out.println("SL3 "+ "database successfully opened.");
-                //String menid = (String)session.getAttribute("stud_name");
-                String menid="P123456787";
+                String menid = (String)session.getAttribute("stud_name");
+                //String menid="P123456787";
                 //System.out.println(menid);
                 String sql = "select s.stud_mis_id,s.stud_name from student s,studentmentorrel sm where  s.stud_mis_id=sm.stud_mis_id and sm.emp_id=? order by s.stud_roll_no;";
 
