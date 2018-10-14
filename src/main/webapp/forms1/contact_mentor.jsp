@@ -281,43 +281,30 @@
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6 new_user_form" >
-            <form action="/LeaveApps" method="post">
-                <h1 align="center"><u>Leave application</u></h1>
+            <form action="/contactMentorServlet" method="post">
+                <h1 align="center"><u>Contact Mentor</u></h1>
                 <br>
                 <div class="form-group">
-                    <label>Attendance prior to this leave :</label>
-                    <input type="text" class="form-control" name="attendance_prior" required>
-                </div>
-                <div class="form-group" align="left">
-                    <label>Leave Start Date :</label>
-                    <input type="date" name="start_date"  required />
-                </div>
-                <div class="form-group" align="left">
-                    <label>Leave End Date :</label>
-                    <input type="date" name="end_date"  required />
+                    <label>Reason:</label>
+                    <input type="text" class="form-control" name="reason" required>
                 </div>
                 <div class="form-group">
-                    <label>Number of working hours falling in the leave period :</label>
-                    <input type="number" class="form-control" name="no_of_hrs" required>
+                    <label>Description: </label>
+                    <%--<input type="tex" class="form-control" name="description" required>--%>
+                    <textarea name="description" class="form-control" cols="30" rows="10" placeholder="Start here" required></textarea>
                 </div>
 
-
-                <div class="form-group">
-                    <label>Reason for this leave :</label>
-                    <%--<input type="text" class="form-control" name="reason" required>--%>
-                    <textarea name="reason" class="form-control" cols="30" rows="10"required></textarea>
-                </div>
                 <div class="blockquote-footer">
-                    <button type="submit" class="button1 button4" style="width:100px;height:50px; ">Request</button>
+                    <button type="submit" class="button1 button4" style="width:100px;height:50px; ">Send</button>
                     <button type="Reset"  class="button2 button4" style="width:100px;height:50px;">Cancel</button>
                 </div>
 
             </form>
         </div>
         <div class="col-md-3"></div>
-        </div>
-
     </div>
+
+</div>
 </div>
 </body>
 

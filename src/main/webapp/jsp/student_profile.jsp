@@ -527,7 +527,7 @@
         </a>
     </div>
     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 project project-4 wow animated fadeInLeft">
-        <a href="#" style="text-decoration: none">
+        <a href="../forms1/contact_mentor.jsp" style="text-decoration: none">
             <div class="project-hover">
                 <h2>CONTACT MENTOR</h2>
                 <hr />
