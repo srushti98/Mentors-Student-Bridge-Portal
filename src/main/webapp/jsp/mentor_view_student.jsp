@@ -212,6 +212,8 @@
         <p class="read-more">PARENT DETAILS : <a href="../form_for_mentor/formentor_parent_details.jsp?id=<%=stud_mis_id%>">view</a></p>
         <p class="read-more">ACADEMIC DETAILS : <a href="../form_for_mentor/formentor_academic_details.jsp?id=<%=stud_mis_id%>">view</a></p>
         <p class="read-more">EXTRA CURRICULAR DETAILS : <a href="../form_for_mentor/formentor_extra_activities.jsp?id=<%=stud_mis_id%>">view</a></p>
+        <p class="read-more">LEAVE APPLICATIONS : <a href="mentor_view_leaves.jsp?id=<%=stud_mis_id%>">view</a></p>
+
 
 
     </div>

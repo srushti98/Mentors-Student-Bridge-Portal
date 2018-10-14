@@ -72,12 +72,11 @@
                 <a class="nav-link" style="color: white" href="/jsp/mentor_showmeetings.jsp"><strong><b>Track Students Attendance</b></strong></a>
             </li>
         </ul>
-        <a class="nav-link" href="#" style="color: white"><span><i class="fa fa-bell"></i></span><% if (ccount!=0) {%><span class="badge badge-danger badge-pill"><%=ccount%></span></a>
+        <a class="nav-link" href="mentor_notifications.jsp" style="color: white"><span><i class="fa fa-bell"></i></span><% if (ccount!=0) {%><span class="badge badge-danger badge-pill"><%=ccount%></span><%}%></a>
         <a class="nav-link" href="../LogoutServlet" style="color: white"><i class="material-icons-account_circle"></i> <strong><b>signout</b></strong></a>
     </div>
     <%
             }
-        }
         catch(SQLException sqe)
         {
             System.out.println(sqe);

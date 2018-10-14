@@ -57,7 +57,7 @@
 </nav>
 <div class="col-4"></div>
 <div class="col-4" style="margin-left: 670px ;margin-top: 40px">
-    <h1 style="color: #0a8cc4"> STUDENTS LIST </h1>
+    <h1 style="color: #0a8cc4"> LEAVES APPLICATIONS </h1>
 </div>
 <div class="container">
     <table class=".table-responsive" >
