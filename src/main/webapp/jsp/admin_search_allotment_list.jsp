@@ -25,9 +25,11 @@
         .navbar-expand-lg a:hover {
             background-color: #0d8ec4;
         }
+
         .navbar-collapse .toright {
             float: right;
         }
+
         .dropdown-content {
             display: none;
             position: absolute;
@@ -36,6 +38,7 @@
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
         }
+
         .dropdown-content a {
             float: none;
             color: black;
@@ -44,12 +47,15 @@
             display: block;
             text-align: left;
         }
+
         .dropdown-content a:hover {
             background-color: #ddd;
         }
+
         .dropdown:hover .dropdown-content {
             display: block;
         }
+
         form {
             outline: 0;
             float: left;
@@ -58,6 +64,7 @@
             -webkit-border-radius: 4px;
             border-radius: 4px;
         }
+
         form > .textbox {
             outline: 0;
             height: 42px;
@@ -71,10 +78,12 @@
             -webkit-border-radius: 4px 0 0 4px;
             border-radius: 4px 0 0 4px;
         }
+
         form > .textbox:focus {
             outline: 0;
             background-color: #FFF;
         }
+
         form > .button {
             outline: 0;
             background: none;
@@ -95,9 +104,11 @@
             -webkit-border-radius: 0 4px 4px 0;
             border-radius: 0 4px 4px 0;
         }
+
         form > .button:hover {
             background-color: rgba(0, 150, 136, 0.8);
         }
+
         *, *:before, *:after{
             box-sizing:border-box;
         }
@@ -167,6 +178,7 @@
                     rotateZ(0deg)
                     skew(0deg,22deg);
         }
+
     </style>
 </head>
 
@@ -234,6 +246,7 @@
             </form></th>
         </tr>
         </thead>
+
         <%
             try
             {   Connection con;
@@ -241,8 +254,20 @@
                 Class.forName("com.mysql.jdbc.Driver");
                 con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
                 System.out.println("SL3 "+ "database successfully opened.");
-                String sql = "select s.stud_name , m.mentorname, s.stud_roll_no from student s, mentor m, studentmentorrel sm where s.stud_mis_id=sm.stud_mis_id and m.emp_id=sm.emp_id order by s.stud_roll_no;";
+                String search_result=request.getParameter("Name");
+                String sql = "select distinct s.stud_roll_no, s.stud_name , m.mentorname from student s, mentor m, studentmentorrel sm where s.stud_mis_id=sm.stud_mis_id and m.emp_id=sm.emp_id and CAST(s.stud_roll_no as char) like ? or m.mentorname like ? or s.stud_name like ? order by s.stud_roll_no;";
                 ps = con.prepareStatement(sql);
+                ps.setString(1,"%"+search_result+"%");
+                ps.setString(2,"%"+search_result+"%");
+                ps.setString(3,"%"+search_result+"%");
+                ResultSet rs1=ps.executeQuery();
+                if(rs1.next()==false)
+                {%>
+        <div class="foo">
+            <span class="letter" data-letter="N">NO</span><span class="letter" data-letter="R">RESULTS</span><span class="letter" data-letter="F">FOUND</span>
+        </div>
+                <%}
+                else{
                 ResultSet rs = ps.executeQuery();
                 String m1="   ";
                 while (rs.next())
@@ -270,6 +295,7 @@
         <td style="color: #2f28d6"><%=student_name%></td>
         <td style="color: #2f28d6"><%=student_roll_no%></td>
         <%
+                }
                 }
             }
             catch(SQLException sqe)

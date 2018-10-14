@@ -25,9 +25,11 @@
         .navbar-expand-lg a:hover {
             background-color: #0d8ec4;
         }
+
         .navbar-collapse .toright {
             float: right;
         }
+
         .dropdown-content {
             display: none;
             position: absolute;
@@ -36,6 +38,7 @@
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
         }
+
         .dropdown-content a {
             float: none;
             color: black;
@@ -44,12 +47,15 @@
             display: block;
             text-align: left;
         }
+
         .dropdown-content a:hover {
             background-color: #ddd;
         }
+
         .dropdown:hover .dropdown-content {
             display: block;
         }
+
         form {
             outline: 0;
             float: left;
@@ -58,6 +64,7 @@
             -webkit-border-radius: 4px;
             border-radius: 4px;
         }
+
         form > .textbox {
             outline: 0;
             height: 42px;
@@ -71,10 +78,12 @@
             -webkit-border-radius: 4px 0 0 4px;
             border-radius: 4px 0 0 4px;
         }
+
         form > .textbox:focus {
             outline: 0;
             background-color: #FFF;
         }
+
         form > .button {
             outline: 0;
             background: none;
@@ -95,9 +104,11 @@
             -webkit-border-radius: 0 4px 4px 0;
             border-radius: 0 4px 4px 0;
         }
+
         form > .button:hover {
             background-color: rgba(0, 150, 136, 0.8);
         }
+
         *, *:before, *:after{
             box-sizing:border-box;
         }
@@ -167,6 +178,7 @@
                     rotateZ(0deg)
                     skew(0deg,22deg);
         }
+
     </style>
 </head>
 
@@ -197,7 +209,7 @@
                     <a class="dropdown-item" href="/jsp/admin_profile.jsp">Allot Multiple Students </a>
                 </div>
             </li>
-            <li class="nav-item">
+            <li class="nav-item ">
                 <a class="nav-link" style="color: white" href="/jsp/admin_studentslist.jsp"><strong><b>View all Students</b></strong><span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
@@ -216,70 +228,72 @@
     </div>
 
 </nav>
-
 <div class="col-4"></div>
 <div class="col-4" style="margin-left: 670px ;margin-top: 40px">
-    <h1 style="color: #0a8cc4"> ALLOTMENTS   LIST </h1>
+    <h1 style="color: #0a8cc4"> MENTORS   LIST </h1>
 </div>
 <div class="container">
     <table class=".table-responsive" >
         <thead>
         <tr class=".table-responsive">
-            <th >Mentor Name</th>
-            <th >Student Name</th>
-            <th >Student Roll No.</th>
-            <th><form action="admin_search_allotment_list.jsp">
+            <th >Name</th>
+            <th >Mentorid</th>
+            <th><form action="admin_search_mentor_list.jsp">
                 <input type="text" class="textbox" placeholder="Search" name="Name">
                 <input title="Search" value="&#128269" type="submit" class="button">
             </form></th>
         </tr>
         </thead>
         <%
-            try
-            {   Connection con;
-                PreparedStatement ps = null;
-                Class.forName("com.mysql.jdbc.Driver");
+            Connection databaseConnection = DatabaseConnection.getDatabaseConnection();
+            Connection con;
+            PreparedStatement ps = null;
+            Class.forName("com.mysql.jdbc.Driver");
+            try {
                 con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
-                System.out.println("SL3 "+ "database successfully opened.");
-                String sql = "select s.stud_name , m.mentorname, s.stud_roll_no from student s, mentor m, studentmentorrel sm where s.stud_mis_id=sm.stud_mis_id and m.emp_id=sm.emp_id order by s.stud_roll_no;";
-                ps = con.prepareStatement(sql);
-                ResultSet rs = ps.executeQuery();
-                String m1="   ";
-                while (rs.next())
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            String search_result=request.getParameter("Name");
+
+            PreparedStatement preparedStatement = null;
+            preparedStatement = databaseConnection.prepareStatement("select emp_id,mentorname from mentor where emp_id like ? or mentorname like ? order by mentorname");
+
+            preparedStatement.setString(1,"%"+search_result+"%");
+            preparedStatement.setString(2,"%"+search_result+"%");
+
+            ResultSet rs1=preparedStatement.executeQuery();
+            if(rs1.next()==false)
+            {%>
+        <div class="foo">
+            <span class="letter" data-letter="N">NO</span><span class="letter" data-letter="R">RESULTS</span><span class="letter" data-letter="F">FOUND</span>
+        </div>
+            <%}
+            else
+            {
+                ResultSet rs = preparedStatement.executeQuery();
+
+                while(rs.next())
                 {
-                    String mentor_name=rs.getString("m.mentorname");
-                    String student_name=rs.getString("s.stud_name");
-                    int student_roll_no=rs.getInt("s.stud_roll_no");
+                    String fname = null;
+                    fname = rs.getString("mentorname");
+                    String emp_id= null;
+                    emp_id = rs.getString("emp_id");
         %>
         <tbody class=".table-responsive">
-        <%
-            if(!m1.equals(mentor_name))
-            {
-                m1=mentor_name;
-        %>
-        <td style="color: #2f28d6"><%=mentor_name%></td>
-        <%
-        }
-        else
-        {
-        %>
-        <td>    </td>
-        <%
-            }
-        %>
-        <td style="color: #2f28d6"><%=student_name%></td>
-        <td style="color: #2f28d6"><%=student_roll_no%></td>
+        <tr class=".table-responsive">
+            <td style="color: #2f28d6"><%=fname %></td>
+            <td style="color: #2f28d6"><%=emp_id %></td>
+        </tr>
         <%
                 }
-            }
-            catch(SQLException sqe)
-            {
-                System.out.println(sqe);
             }
         %>
         </tbody>
     </table>
 </div>
 </div>
+
 </body>
 </html>
