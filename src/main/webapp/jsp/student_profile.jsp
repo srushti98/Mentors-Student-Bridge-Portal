@@ -384,9 +384,12 @@
     System.out.println(div);
     //System.out.println(checkimg);
 
-    ResultSet rss4 = pss4.executeQuery("select e.mentorname from mentor e join studentmentorrel s on e.emp_id = s.emp_id where s.stud_mis_id='"+s_stud_mis_id+"'");
-    rss4.next();
-    String mentorname = rss4.getString("mentorname");
+    String mentorname = " ";
+    if(rs.getInt("stud_flag")==1) {
+        ResultSet rss4 = pss4.executeQuery("select e.mentorname from mentor e join studentmentorrel s on e.emp_id = s.emp_id where s.stud_mis_id='"+s_stud_mis_id+"'");
+        rss4.next();
+        mentorname = rss4.getString("mentorname");
+    }
 
     ResultSet rss3 = pss2.executeQuery("select count(a.activity_id) as ccount from activity_list a join student_activity_list s on s.activity_id = a.activity_id where stud_mis_id='"+s_stud_mis_id+"' and is_seen= 0");
     int count=0;
@@ -395,6 +398,7 @@
 //        rss3.last();
 //        count = rss3.getRow() + 1;
 //        rss3.beforeFirst();
+    System.out.println("Reahed here !!! 1");
 %>
 
 <div id='cssmenu' class="sticky-top">
@@ -437,7 +441,7 @@
 //                ResultSet rss = pss.executeQuery();
 
             ResultSet rss = pss.executeQuery("select * from activity_list a join student_activity_list s on s.activity_id = a.activity_id where stud_mis_id='"+s_stud_mis_id+"' and is_seen= 0 order by activity_date desc");
-
+            System.out.println("Reahed here !!! 2");
 
         %>
 
@@ -487,6 +491,7 @@
             </form>
             <%
                 }
+                System.out.println("Reahed here !!! 3");
 
             %>
         </div>
