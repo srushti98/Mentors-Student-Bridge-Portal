@@ -244,7 +244,7 @@
         function alertName(){
             swal("error",Msg,"error");
         }
-        Msg=null;
+
         <%session.setAttribute("getAlert",null);%>
     }
 </script>

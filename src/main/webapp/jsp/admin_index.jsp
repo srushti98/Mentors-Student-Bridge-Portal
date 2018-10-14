@@ -166,13 +166,15 @@
 
 <script type="text/javascript">
     var Msg ='<%=session.getAttribute("getAlert")%>';
+    <%String Msg=(String) session.getAttribute("getAlert");
+    System.out.print(Msg);%>
     if (Msg != "null") {
         function alertName(){
             swal("success","Students alloted to mentor ID: "+Msg,"success");
         }
     }
     <%session.setAttribute("getAlert",null);%>
-    Msg=null;
+
 
 </script>
 

@@ -285,11 +285,14 @@
                 <p class="lead">Upload your achievement certificates for competitions and extra activities here.</p>
                 <hr class="my-4">
                 <p class="lead">upload certificates.
-                <form action="#" method="post">
-                    <div class="form-group">
-                        <input type="file"><br><br>
-                        <input type="submit" class="btn btn-primary btn-lg" value="Upload">
-                    </div>
+                <form method="post" action="../FileCertificateUploadDBServlet" enctype="multipart/form-data">
+                    <%--<input type="file" name="File" multiple="multiple" onchange="readURL(this);">--%>
+                    <input type="file" name="File" id="file">
+                    <a href="#" target="_blank" class="preview">View</a>
+                    <button type="submit">
+                        upload
+                    </button>
+
                 </form>
                 </p>
             </div>
@@ -341,11 +344,14 @@
                     </div>
                 </form>
                 <%--<div class="btn btn-primary btn-lg" href="#" role="button">Download</div><br><br><br>--%>
-                <form action="#" method="post">
-                    <div class="form-group">
-                        <input type="file"><br><br>
-                        <input type="submit" class="btn btn-primary btn-lg" value="Upload">
-                    </div>
+                <form method="post" action="../FileUploadDBServlet" enctype="multipart/form-data">
+                    <%--<input type="file" name="File" multiple="multiple" onchange="readURL(this);">--%>
+                    <input type="file" name="File" id="file">
+                    <a href="#" target="_blank" class="preview">View</a>
+                    <button type="submit">
+                        upload
+                    </button>
+
                 </form>
                 </p>
             </div>
@@ -355,4 +361,27 @@
     </div>
 </div>
 </body>
+<script>
+    var $preview = $(".preview");
+    $preview.hide();
+
+    $("input").on("change", function(){
+
+        var files = this.files;
+        var fileReader = new FileReader();
+
+        fileReader.onload = function(e){
+            $preview.attr("href", e.target.result);
+            $preview.show();
+        };
+
+        fileReader.readAsDataURL(files[0]);
+    });
+</script>
 </html>
+
+
+
+
+
+
