@@ -478,7 +478,7 @@
             <%
                 if (checkimg==null){
             %>
-            <form action="/FileUploadServlet"  method="POST" enctype="multipart/form-data">
+            <form action="../FileUploadServlet"  method="POST" enctype="multipart/form-data">
                 <div class="form-group" style="margin-top: 10px" >
                     <label>Upload Picture</label>
                     <input type="file" name="photo">

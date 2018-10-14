@@ -171,6 +171,9 @@
             swal("success","Students alloted to mentor ID: "+Msg,"success");
         }
     }
+    <%session.setAttribute("getAlert",null);%>
+    Msg=null;
+
 </script>
 
 

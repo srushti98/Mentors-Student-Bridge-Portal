@@ -142,7 +142,7 @@
                 <a class="nav-link" style="color: white" href="/jsp/admin_index.jsp"><strong><b>Home</b></strong> </a>
             </li>
             <%--<li class="nav-item">--%>
-                <%--<a class="nav-link" href="/jsp/admin_profile.jsp">Allot mentor to Student</a>--%>
+            <%--<a class="nav-link" href="/jsp/admin_profile.jsp">Allot mentor to Student</a>--%>
             <%--</li>--%>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" style="color: white" href="#" id="navbarDropdownMenuLink1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black">
@@ -172,24 +172,28 @@
     </div>
 
 </nav>
-<form action="admin_student_search_list.jsp">
-    <input type="text" class="textbox" placeholder="Search" name="Name">
-    <input title="Search" value="" type="submit" class="button">
-</form>
+<%--<form action="admin_student_search_list.jsp">--%>
+    <%--<input type="text" class="textbox" placeholder="Search" name="Name">--%>
+    <%--<input title="Search" value="" type="submit" class="button">--%>
+<%--</form>--%>
 <div class="col-4" style="margin-left: 670px ;margin-top: 40px">
     <h1 style="color: #0a8cc4"> STUDENTS   LIST </h1>
 </div>
-<div class="container">
-    <table class=".table-responsive" style="margin-top:100px; margin-left:10px;">
+<div class="col-4" style="margin-left: 670px ;margin-top: 40px">
+    <form action="admin_student_search_list.jsp">
+        <input type="text" class="textbox" placeholder="Search" name="Name">
+        <input title="Search" value="&#128269" type="submit" class="button">
+    </form>
+
+</div>
+<div class="container" style="margin-top: 100px;margin-left: 500px">
+    <table  style="margin-top:100px; margin-left:10px;">
         <thead>
-        <tr class=".table-responsive">
+        <tr >
             <th >ROllno</th>
             <th >Name</th>
             <th >MISID</th>
-            <th><form action="admin_student_search_list.jsp">
-                <input type="text" class="textbox" placeholder="Search" name="Name">
-                <input title="Search" value="&#128269" type="submit" class="button">
-            </form></th>
+
         </tr>
         </thead>
 

@@ -161,17 +161,22 @@
 <div class="col-4"></div>
 <div class="col-4" style="margin-left: 670px ;margin-top: 40px">
     <h1 style="color: #0a8cc4"> MENTORS   LIST </h1>
+
 </div>
-<div class="container">
+<div class="col-4" style="margin-left: 670px ;margin-top: 40px">
+
+    <form action="admin_search_mentor_list.jsp">
+        <input type="text" class="textbox" placeholder="Search" name="Name">
+        <input title="Search" value="&#128269" type="submit" class="button">
+    </form>
+</div>
+<div class="container" style="margin-top: 100px;margin-left: 500px">
     <table class=".table-responsive" >
         <thead>
         <tr class=".table-responsive">
             <th >Name</th>
             <th >Mentorid</th>
-            <th><form action="admin_search_mentor_list.jsp">
-                <input type="text" class="textbox" placeholder="Search" name="Name">
-                <input title="Search" value="&#128269" type="submit" class="button">
-            </form></th>
+
         </tr>
         </thead>
             <%
