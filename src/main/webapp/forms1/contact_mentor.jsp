@@ -273,7 +273,7 @@
         </li>
 
         <li style="float:right"><a href='/LogoutServlet'><span>LogOut</span></a></li>
-        <li style="float:right"><a href='#'><span><%=s_stud_name%></span></a></li>
+        <li style="float:right"><a href='../jsp/student_profile.jsp'><span><%=s_stud_name%></span></a></li>
         <li class='last' style="float:right"><a href='../jsp/student_view_meetings.jsp'><span><i class="fa fa-bell"></i> </span><% if (count!=0) {%><span class="badge badge-danger badge-pill"><%=count%></span><%}%></a></li>
     </ul>
 </div>

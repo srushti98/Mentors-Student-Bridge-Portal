@@ -95,6 +95,19 @@
         <form action="LoginServlet" method="POST">
             <div class="login-form">
                 <h1 style="text-align: center">Mentor System</h1>
+                <%
+                    if (session.getAttribute("error")!=null) {
+                        String error = (String) session.getAttribute("error");
+                %>
+                <div class="alert alert-dismissible alert-danger">
+                    <%--<button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>--%>
+                    <a href="index.jsp" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Oh snap!</strong> <a href="#" class="alert-link"><%=error%></a> Try again.
+                </div>
+                <%
+                    }
+//                    session.invalidate();
+                %>
                 <div class="group">
                     <label for="user" class="label" >MIS ID</label>
                     <input id="user" type="text" class="form-control input" name="login_mis_id" placeholder="Mis-id">

@@ -90,7 +90,7 @@
         JEE_marks = rs.getString("JEE_marks");
         diploma_percentage = rs.getString("diploma_percentage");
         admission_category = rs.getString("admission_category");
-        subject_area_of_interest = rs.getString("subject_area_of_interest");
+        subject_area_of_interest = rs.getString("subject_area_interest");
         career_plan = rs.getString("career_plan");
         preference = rs.getString("preference");
         affinity = rs.getString("affinity");

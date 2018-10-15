@@ -53,6 +53,9 @@ public class LoginServlet extends HttpServlet {
                     session.setAttribute("stud_name",username);
                     response.sendRedirect("/jsp/mentor_profile.jsp");
                 }else{
+                    HttpSession session= request.getSession();
+                    session.setAttribute("error","Error! Invalid user or password");
+                    response.sendRedirect("index.jsp");
                     out.print("Inavalid");
                 }
 
@@ -76,6 +79,9 @@ public class LoginServlet extends HttpServlet {
 
                     response.sendRedirect("/jsp/student_profile.jsp");
                 }else{
+                    HttpSession session= request.getSession();
+                    session.setAttribute("error","Error! Invalid user or password");
+                    response.sendRedirect("index.jsp");
                     out.print("Inavalid");
                 }
 
@@ -97,6 +103,9 @@ public class LoginServlet extends HttpServlet {
 
                     response.sendRedirect("/jsp/admin_index.jsp");
                 }else{
+                    HttpSession session= request.getSession();
+                    session.setAttribute("error","Error! Invalid user or password");
+                    response.sendRedirect("index.jsp");
                     out.print("Inavalid");
                 }
 

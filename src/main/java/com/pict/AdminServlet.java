@@ -38,6 +38,7 @@ public class AdminServlet extends HttpServlet {
             PreparedStatement not_existing_roll_no = null;
             ArrayList<String> error = new ArrayList<>();
             String mentormis="";
+
             String startmis="";
             int test_flag=0;
             int test_roll_no=0;
@@ -147,12 +148,14 @@ public class AdminServlet extends HttpServlet {
                 }
 
                 HttpSession session = request.getSession();
+                System.out.print(mentormis);
                 session.setAttribute("getAlert", mentormis);//Just initialize a random variable.
                 response.sendRedirect("/jsp/admin_index.jsp");
 
             }
             else
             {
+                System.out.print(error);
                 HttpSession session = request.getSession();
                 session.setAttribute("getAlert", error);//Just initialize a random variable.
                 response.sendRedirect("/jsp/admin_profile.jsp");
