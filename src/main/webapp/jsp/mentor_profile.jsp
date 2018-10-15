@@ -1,5 +1,6 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="java.io.Writer" %>
+<%@ page import="com.pict.database.DatabaseConnection" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,6 +13,16 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <link rel="stylesheet" href="/css/mentorprofile.css">
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/bootstrap.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
     <style>
         .navbar,.navbar-expand-lg{
             background: linear-gradient(to right, #25c481, #25b7c4);
@@ -30,6 +41,36 @@
         }
     </style>
 </head>
+<%
+    if (session.getAttribute("stud_name")==null)
+        response.sendRedirect("/index.jsp");
+    String mentor_id = (String)session.getAttribute("stud_name");
+    System.out.println(mentor_id);
+
+    Connection databaseConnection = DatabaseConnection.getDatabaseConnection();
+    Connection con;
+    int count = 0;
+    try {
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+        System.out.println(count);
+        PreparedStatement preparedStatement = null;
+        preparedStatement = con.prepareStatement("select count(id) as ccount from student_mentor_communication where seen=0 and emp_id=?");
+        preparedStatement.setString(1, mentor_id);
+
+        ResultSet rs = preparedStatement.executeQuery();
+        if (rs.next()) {
+            count = rs.getInt("ccount");
+            System.out.println(count);
+        }
+        System.out.println(count);
+    }catch (ClassNotFoundException e) {
+        e.printStackTrace();
+    }
+    catch (SQLException e) {
+        e.printStackTrace();
+    }
+%>
 <body>
 <nav class="navbar navbar-expand-lg " >
     <h1 class="navbar-brand"  style="color: white"><strong><b style="font-family: URW Chancery L, cursive ">Mentors' Portal</b></strong></h1>
@@ -54,6 +95,7 @@
                 <a class="nav-link" style="color: white" href="/jsp/mentor_showmeetings.jsp"><strong><b>Track Students Attendance</b></strong></a>
             </li>
         </ul>
+        <li class='last' style="float:right"><a href='student_mentor_contact.jsp'><span><i class="fa fa-bell"></i></span><% if (count!=0) {%><span class="badge badge-danger badge-pill"><%=count%></span><%}%></a></li>
         <a class="nav-link" href="../LogoutServlet" style="color: white"><i class="material-icons">
             account_circle
         </i> <strong><b>signout</b></strong></a>

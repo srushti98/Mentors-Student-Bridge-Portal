@@ -21,6 +21,12 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <link rel="stylesheet" href="/css/one_profile.css">
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/bootstrap.js"></script>
+
     <style>
 
         .navbar,.navbar-expand-lg{
@@ -45,12 +51,34 @@
 <%
     if (session.getAttribute("stud_name")==null)
         response.sendRedirect("/index.jsp");
+    String mentor_id = (String)session.getAttribute("stud_name");
     String stud_mis_id = (String)request.getParameter("id");
     Connection databaseConnection = DatabaseConnection.getDatabaseConnection();
     Connection con;
     PreparedStatement ps = null;
     Class.forName("com.mysql.jdbc.Driver");
     con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+    int ccount = 0;
+    try {
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+        System.out.println(ccount);
+        PreparedStatement preparedStatement = null;
+        preparedStatement = con.prepareStatement("select count(id) as ccount from student_mentor_communication where seen=0 and emp_id=?");
+        preparedStatement.setString(1, mentor_id);
+
+        ResultSet rs = preparedStatement.executeQuery();
+        if (rs.next()) {
+            ccount = rs.getInt("ccount");
+            System.out.println(ccount);
+        }
+        System.out.println(ccount);
+    }catch (ClassNotFoundException e) {
+        e.printStackTrace();
+    }
+    catch (SQLException e) {
+        e.printStackTrace();
+    }
     PreparedStatement preparedStatement = null;
     preparedStatement = con.prepareStatement("select * from student where stud_mis_id=?");
     preparedStatement.setString(1, stud_mis_id);
@@ -85,10 +113,10 @@
         <ul class="navbar-nav mr-auto">
 
             <li class="nav-item ">
-                <a class="nav-link " style="color: white" href="/jsp/mentor_profile.jsp"><strong><b>Home</b></strong> </a>
+                <a class="nav-link" style="color: white" href="/jsp/mentor_profile.jsp"><strong><b>Home</b></strong> </a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link active" style="color: white " href="/jsp/mentor_studentlist.jsp"><strong><b>View Students Profile</b></strong></a>
+                <a class="nav-link  active " style="color: white " href="/jsp/mentor_studentlist.jsp"><strong><b>View Students Profile</b></strong></a>
             </li>
             <li class="nav-item ">
                 <a class="nav-link" style="color: white" href="/jsp/mentor_meeting.jsp"><strong><b>Arrange a meeting</b></strong></a>
@@ -100,6 +128,7 @@
                 <a class="nav-link" style="color: white" href="/jsp/mentor_showmeetings.jsp"><strong><b>Track Students Attendance</b></strong></a>
             </li>
         </ul>
+        <li class='last' style="float:right"><a href='student_mentor_contact.jsp'><span><i class="fa fa-bell"></i></span><% if (ccount!=0) {%><span class="badge badge-danger badge-pill"><%=count%></span><%}%></a></li>
         <a class="nav-link" href="../LogoutServlet" style="color: white"><i class="material-icons">
             account_circle
         </i> <strong><b>signout</b></strong></a>

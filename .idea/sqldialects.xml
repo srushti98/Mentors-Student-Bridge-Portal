@@ -5,5 +5,7 @@
     <file url="file://$PROJECT_DIR$/src/main/webapp/jsp/admin_search_allotment_list.jsp" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/jsp/admin_search_mentor_list.jsp" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/jsp/admin_student_search_list.jsp" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/jsp/mentor_profile.jsp" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/jsp/student_mentor_contact.jsp" dialect="MySQL" />
   </component>
 </project>
