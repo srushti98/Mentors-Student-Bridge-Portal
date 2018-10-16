@@ -96,8 +96,7 @@
             </li>
         </ul>
         <li class='last' style="float:right"><a href='student_mentor_contact.jsp'><span><i class="fa fa-bell"></i></span><% if (count!=0) {%><span class="badge badge-danger badge-pill"><%=count%></span><%}%></a></li>
-        <a class="nav-link" href="../LogoutServlet" style="color: white"><i class="material-icons">
-            account_circle
+        <a class="nav-link" href="../LogoutServlet" style="color: white"><i class="material-icons-account_circle">
         </i> <strong><b>signout</b></strong></a>
     </div>
 
