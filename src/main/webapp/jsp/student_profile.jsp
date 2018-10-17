@@ -429,7 +429,7 @@
             </ul>
         </li>
 
-        <li style="float:right"><a href='/LogoutServlet'><span>LogOut</span></a></li>
+        <li style="float:right"><a href='/LogoutServlet'><span>Logout</span></a></li>
         <li style="float:right"><a href='student_profile.jsp'><span><%=s_stud_name%></span></a></li>
         <%
 
