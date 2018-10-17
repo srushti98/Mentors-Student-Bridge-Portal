@@ -134,40 +134,22 @@
 
 
 </body>
-<%--<div class="container">--%>
-
-<%--<div class="row"><div class="col-md-4"></div>--%>
-<%--<div class="col-md-4" >--%>
-
-<%--<form style="margin-top: 500px;border: solid; border-color: #1b1e21; padding: 10px">--%>
-
-<%--<div class="form-group">--%>
-<%--<label for="exampleInputEmail1">Email address</label>--%>
-<%--<input class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" type="email">--%>
-<%--</div>--%>
-
-<%--<div class="form-group">--%>
-<%--<label for="exampleSelect1">Example select</label>--%>
-<%--<select class="form-control" id="exampleSelect1">--%>
-<%--<option>1</option>--%>
-<%--<option>2</option>--%>
-<%--<option>3</option>--%>
-<%--<option>4</option>--%>
-<%--<option>5</option>--%>
-<%--</select>--%>
-<%--</div>--%>
+    <script type="text/javascript">
+        var Msg ='<%=session.getAttribute("getAlert")%>';
+        <%String Msg=(String) session.getAttribute("getAlert");
+        System.out.print(Msg);%>
+        if (Msg != "null") {
+            function alertName(){
+                swal("success",Msg,"success");
+            }
+        }
+        <%session.setAttribute("getAlert",null);%>
 
 
+    </script>
 
 
-<%--<button type="submit" class="btn btn-primary">Submit</button>--%>
-
-<%--</form>--%>
-<%--</div>--%>
-<%--<div class="col-md-4"></div>--%>
-<%--</div>--%>
-
-<%--</div>--%>
+    <script type="text/javascript"> window.onload = alertName; </script>
 
 
 

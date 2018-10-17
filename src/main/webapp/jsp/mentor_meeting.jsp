@@ -153,12 +153,24 @@
 
 
 </body>
+    <script type="text/javascript">
+        var Msg ='<%=session.getAttribute("getAlert")%>';
+        <%String Msg=(String) session.getAttribute("getAlert");
+        System.out.print(Msg);%>
+        if (Msg != "null") {
+            function alertName(){
+                swal("success",Msg,"success");
+            }
+        }
+        <%session.setAttribute("getAlert",null);%>
 
+
+    </script>
 
     <%--<form id="setupform" action="post">--%>
         <%--&lt;%&ndash;<div id="loading2" style="display:none;"><img src="http://article.onlinewebtool.com/wp-content/images/loading.gif" alt="" />Loading!</div>&ndash;%&gt;--%>
         <%--&lt;%&ndash;<input id="submit" value="Click!" type="submit" />&ndash;%&gt;--%>
     <%--</form>--%>
-
+    <script type="text/javascript"> window.onload = alertName; </script>
 
 </html>

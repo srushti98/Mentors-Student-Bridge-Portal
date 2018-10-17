@@ -551,6 +551,6 @@
         <%session.setAttribute("getAlert",null);%>
     }
 </script>
-
+<script type="text/javascript"> window.onload = alertName; </script>
 </body>
 </html>
