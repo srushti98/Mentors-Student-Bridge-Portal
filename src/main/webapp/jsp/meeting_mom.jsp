@@ -18,6 +18,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <script src="../js/bootstrap.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://loading.io/css/loading-btn.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="https://loading.io/css/loading.css"/>
+
 
     <style>
         .navbar,.navbar-expand-lg{
@@ -119,9 +123,11 @@
             <input type="text" placeholder="POINTS OF MEETING" name="meeting_agenda" id="agenda_input" required>
         </div>
 
-        <div class="submit">
-            <input type="submit" value="Send Message" id="form_button" />
-        </div>
+        <button  class=" ld-ext-right submit" type="submit" value="Send Message" id="form_button" onclick="this.classList.add('running');">
+
+            SEND MESSAGE
+                <div class="ld ld-ball ld-bounce"></div>
+        </button>
     </form><!-- // End form -->
 
 </div><!-- // End #container -->
