@@ -261,6 +261,7 @@
             <tr>
                 <th scope="col">Sr. no</th>
                 <th scope="col">Name</th>
+                <th scope="col">Title</th>
                 <th scope="col">Description</th>
                 <th scope="col">Date</th>
 
@@ -270,15 +271,17 @@
                 while(rs.next())
                 {
                     String act_id = rs.getString("activity_id");
-                    String act_name = rs.getString("activity_type");
-                    String act_desc = rs.getString("activity_details");
+                    String act_name = rs.getString("activity_name");
+                    String act_desc = rs.getString("activity_content");
                     String act_date = rs.getString("activity_date");
+                    String act_title = rs.getString("activity_title");
 
             %>
             <tbody>
             <tr class="table-primary">
                 <td><%=act_id %></td>
                 <td><%=act_name %></td>
+                <td><%=act_title %></td>
                 <td><%=act_desc %></td>
                 <td><%=act_date %></td>
             </tr>
