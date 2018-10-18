@@ -423,8 +423,8 @@
         <!--<li><a href='#'><span>Other</span></a></li>-->
         <li class='has-sub'><a href='#'><span>Other</span></a>
             <ul>
-                <li class='has-sub'><a href='#'><span>Contact Mentor</span></a></li>
-                <li class='has-sub'><a href='#'><span>View Students</span></a></li>
+                <li class='has-sub'><a href='../forms1/contact_mentor.jsp'><span>Contact Mentor</span></a></li>
+                <li class='has-sub'><a href='student_view_leaves.jsp'><span>View Leaves Taken</span></a></li>
                 <li class='has-sub'><a href='student_view_meetings.jsp'><span>View Meetings</span></a></li>
             </ul>
         </li>
@@ -496,7 +496,7 @@
 </div>
 
 <div class="container-fluid">
-    <div class="title-arch" style="height: 100px">Welcome to Student Portal<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pulvinar ex pulvinar est laoreet ullamcorper.</p></div>
+    <div class="title-arch" style="height: 100px">Welcome to Student Portal<p></p></div>
 
     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 project wow animated animated4 fadeInLeft ">
         <a href="../forms1/upload_docs.jsp" style="text-decoration: none">
