@@ -17,12 +17,10 @@ import static java.lang.System.out;
 
 @WebServlet("/AdminServlet")
 public class AdminServlet extends HttpServlet {
-    private Connection databaseConnection;
-//    String checkUserQuery = "";
+    //    String checkUserQuery = "";
 
     public AdminServlet() {
         super();
-        databaseConnection = DatabaseConnection.getDatabaseConnection();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,7 +28,7 @@ public class AdminServlet extends HttpServlet {
             Connection con;
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
-            out.println("SL3 " + "database successfully opened.");
+            out.println("exporting " + "database successfully opened.");
             PreparedStatement preparedStatementstu = null;
             PreparedStatement preparedStatementmen = null;
             PreparedStatement preparedStatementallo = null;
