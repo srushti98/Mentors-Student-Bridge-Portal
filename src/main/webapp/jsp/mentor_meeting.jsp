@@ -1,5 +1,6 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="com.pict.database.DatabaseConnection" %>
+
 <html>
 
 <head>
@@ -18,8 +19,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <script src="../js/bootstrap.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/loading.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="/css/loadingbutton.css"/>
+
+
 
     <style>
+        @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css);
+
         .navbar,.navbar-expand-lg{
             background: linear-gradient(to right, #25c481, #25b7c4);
         }
@@ -29,6 +37,14 @@
         .navbar-expand-lg a:hover {
             background-color: #0d8ec4;
         }
+
+
+
+
+
+
+
+
     </style>
 
 
@@ -104,7 +120,8 @@
     <div class="icon_wrapper">
 
     </div>
-    <form action="../arrangeMeetServlet" method="post" id="contact_form">
+    <%--<form action="../arrangeMeetServlet" method="post" id="contact_form" onsubmit="myFunction()">--%>
+    <form action="../arrangeMeetServlet" method="post" id="contact_form" onsubmit="this.classList.add('running');">
         <div class="name">
 
             <input type="text" placeholder="TITLE OF MEETING" name="name" id="name_input" required>
@@ -118,51 +135,42 @@
             <input type="text" placeholder="AGENDA OF MEETING" name="meeting_agenda" id="agenda_input" required>
         </div>
 
-        <div class="submit">
-            <input type="submit" value="Send Message" id="form_button" />
-        </div>
+        <%--<div class="submit">--%>
+        <%--<div >--%>
+            <%--<input type="submit" class="btn ld-ext-right" value="Send Message" id="submit" />--%>
+            <%--<div class="ld ld-ball ld-bounce"></div>--%>
+        <%--</div>--%>
+        <button  class=" ld-ext-right submit" type="submit" value="Send Message" id="form_button" onclick="this.classList.add('running');">
+
+            SEND MESSAGE
+            <div class="ld ld-ball ld-bounce"></div>
+        </button>
+
+
     </form><!-- // End form -->
 
 </div><!-- // End #container -->
 
 
 </body>
-<%--<div class="container">--%>
-
-<%--<div class="row"><div class="col-md-4"></div>--%>
-<%--<div class="col-md-4" >--%>
-
-<%--<form style="margin-top: 500px;border: solid; border-color: #1b1e21; padding: 10px">--%>
-
-<%--<div class="form-group">--%>
-<%--<label for="exampleInputEmail1">Email address</label>--%>
-<%--<input class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" type="email">--%>
-<%--</div>--%>
-
-<%--<div class="form-group">--%>
-<%--<label for="exampleSelect1">Example select</label>--%>
-<%--<select class="form-control" id="exampleSelect1">--%>
-<%--<option>1</option>--%>
-<%--<option>2</option>--%>
-<%--<option>3</option>--%>
-<%--<option>4</option>--%>
-<%--<option>5</option>--%>
-<%--</select>--%>
-<%--</div>--%>
+    <script type="text/javascript">
+        var Msg ='<%=session.getAttribute("getAlert")%>';
+        <%String Msg=(String) session.getAttribute("getAlert");
+        System.out.print(Msg);%>
+        if (Msg != "null") {
+            function alertName(){
+                swal("success",Msg,"success");
+            }
+        }
+        <%session.setAttribute("getAlert",null);%>
 
 
+    </script>
 
+    <%--<form id="setupform" action="post">--%>
+        <%--&lt;%&ndash;<div id="loading2" style="display:none;"><img src="http://article.onlinewebtool.com/wp-content/images/loading.gif" alt="" />Loading!</div>&ndash;%&gt;--%>
+        <%--&lt;%&ndash;<input id="submit" value="Click!" type="submit" />&ndash;%&gt;--%>
+    <%--</form>--%>
+    <script type="text/javascript"> window.onload = alertName; </script>
 
-<%--<button type="submit" class="btn btn-primary">Submit</button>--%>
-
-<%--</form>--%>
-<%--</div>--%>
-<%--<div class="col-md-4"></div>--%>
-<%--</div>--%>
-
-<%--</div>--%>
-
-
-
-<%--</div>--%>
 </html>

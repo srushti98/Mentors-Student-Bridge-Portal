@@ -60,7 +60,7 @@ public class LeaveApps extends HttpServlet {
 
             out.println("SL3 " + "database successfully opened. in edit leave 3");
 
-            ps=con.prepareStatement("insert into leave_apps values (?,?,?,?,?,?)");
+            ps=con.prepareStatement("insert into leave_apps(stud_mis_id, attendance_prior, start_date, end_date, no_of_hrs, reason) values (?,?,?,?,?,?)");
             ps.setString(1,stud_mis_id);
             ps.setString(2,attendance_prior);
             ps.setDate(3, (java.sql.Date) start_date);

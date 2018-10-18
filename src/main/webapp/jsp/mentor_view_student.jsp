@@ -9,6 +9,7 @@
 <%@ page import="com.pict.database.DatabaseConnection" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="static java.lang.System.out" %>
+<%@ page import="java.util.Base64" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -104,6 +105,14 @@
     System.out.println(roll);
     System.out.println(batch);
     System.out.println(div);
+
+//    Statement pss =null;
+//    Connection con2;
+//    con2 = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+//
+//    pss = con2.prepareStatement("select stud_");
+//    preparedStatement.setString(1, s_stud_name);
+
 %>
 <nav class="navbar navbar-expand-lg " >
     <h1 class="navbar-brand"  style="color: white"><strong><b style="font-family: URW Chancery L, cursive ">Mentors' Portal</b></strong></h1>
@@ -129,16 +138,19 @@
             </li>
         </ul>
         <li class='last' style="float:right"><a href='student_mentor_contact.jsp'><span><i class="fa fa-bell"></i></span><% if (ccount!=0) {%><span class="badge badge-danger badge-pill"><%=count%></span><%}%></a></li>
-        <a class="nav-link" href="../LogoutServlet" style="color: white"><i class="material-icons">
-            account_circle
+        <a class="nav-link" href="../LogoutServlet" style="color: white"><i class="material-icons-account_circle">
         </i> <strong><b>signout</b></strong></a>
     </div>
 
 </nav>
+<%--style="background-image: url(https://storage.googleapis.com/chydlx/codepen/blog-cards/image-1.jpg)"--%>
 <div class="blog-card">
     <div class="meta">
 
-        <div class="photo" style="background-image: url(https://storage.googleapis.com/chydlx/codepen/blog-cards/image-1.jpg)"></div>
+        <div class="photo" >
+            <img style="height: 200px; width: 200px" src="data:image/png;base64,<%=Base64.getEncoder().encodeToString(rs.getBytes("stud_img"))%>" alt="Card image cap " >
+
+        </div>
         <ul class="details">
             <li class="author" style="font-size: larger">NAME:<%=name%></li>
             <li class="date" style="font-size: larger">ROLL NO:<%=roll%></li>

@@ -102,8 +102,11 @@ public class arrangeMeetServlet extends HttpServlet {
         catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        if (flag==1)
+        if (flag==1) {
+            HttpSession session = request.getSession();
+            session.setAttribute("getAlert", "YOUR MEETING HAS BEEN SCHEDULED");
             response.sendRedirect("/jsp/mentor_meeting.jsp");
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

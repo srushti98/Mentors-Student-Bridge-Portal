@@ -102,8 +102,12 @@ public class sendMOMServlet extends HttpServlet {
         catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        if (flag==1)
+        if (flag==1) {
+            HttpSession session = request.getSession();
+            session.setAttribute("getAlert", "YOUR M.O.M HAS BEEN SENT");
+
             response.sendRedirect("/jsp/meeting_mom.jsp");
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
