@@ -2,14 +2,12 @@ package com.pict;
 
 import com.pict.database.DatabaseConnection;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.sql.*;
 
 import  org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -24,6 +22,7 @@ import static java.lang.System.out;
 public class ExportToExcelSheetServlet extends HttpServlet {
 
     private Connection databaseconnection;
+    private static final int BUFFER_SIZE = 4096;
 
 //    private ExportToExcelSheetServlet(){
 //        super();
@@ -82,16 +81,48 @@ public class ExportToExcelSheetServlet extends HttpServlet {
 
             FileOutputStream out1=new FileOutputStream(new File("Student_mentor_information.xls"));
 
-            out.println("9");
             workbook.write(out1);
-            out.println("10");
             out1.close();
 
             out.println("File created successfully");
 
-            con.close();
+            String fileName ="Student_mentor_information.xls";
 
-            out.println("6");
+            InputStream inputStream = new FileInputStream(fileName);
+            int fileLength = inputStream.available();
+
+            System.out.println("fileLength = " + fileLength);
+
+            ServletContext context = getServletContext();
+
+            // sets MIME type for the file download
+            String mimeType = context.getMimeType(fileName);
+            if (mimeType == null) {
+                mimeType = "application/octet-stream";
+            }
+
+            // set content properties and header attributes for the response
+            response.setContentType(mimeType);
+            response.setContentLength(fileLength);
+            response.setContentType("application/vnd.ms-excel");
+            String headerKey = "Content-Disposition";
+            String headerValue = String.format("attachment; filename=\"%s\"", fileName);
+            response.setHeader(headerKey, headerValue);
+
+            // writes the file to the client
+            OutputStream outStream = response.getOutputStream();
+
+            byte[] buffer = new byte[BUFFER_SIZE];
+            int bytesRead = -1;
+
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                outStream.write(buffer, 0, bytesRead);
+            }
+
+            inputStream.close();
+            outStream.close();
+
+            con.close();
 
             HttpSession session= request.getSession();
             session.setAttribute("getAlert","Successfully");
