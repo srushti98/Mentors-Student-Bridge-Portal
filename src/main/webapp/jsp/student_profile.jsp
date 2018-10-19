@@ -384,9 +384,10 @@
     System.out.println(div);
     //System.out.println(checkimg);
 
-    ResultSet rss4 = pss4.executeQuery("select e.mentorname from mentor e join studentmentorrel s on e.emp_id = s.emp_id where s.stud_mis_id='"+s_stud_mis_id+"'");
     String mentorname = "";
-    if(rss4.next()) {
+    if(rs.getInt("stud_flag")==1) {
+        ResultSet rss4 = pss4.executeQuery("select e.mentorname from mentor e join studentmentorrel s on e.emp_id = s.emp_id where s.stud_mis_id='"+s_stud_mis_id+"'");
+        rss4.next();
         mentorname = rss4.getString("mentorname");
     }
     ResultSet rss3 = pss2.executeQuery("select count(a.activity_id) as ccount from activity_list a join student_activity_list s on s.activity_id = a.activity_id where stud_mis_id='"+s_stud_mis_id+"' and is_seen= 0");

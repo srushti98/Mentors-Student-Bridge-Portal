@@ -122,10 +122,11 @@
                 String menid = (String)session.getAttribute("stud_name");
                 //String menid="P123456787";
                 //System.out.println(menid);
-                String sql = "select s.stud_mis_id,s.stud_name from student s,studentmentorrel sm where  s.stud_mis_id=sm.stud_mis_id and sm.emp_id=? order by s.stud_roll_no;";
+                String sql = "select s.stud_mis_id,s.stud_name from student s,studentmentorrel sm where  s.stud_mis_id=sm.stud_mis_id and sm.emp_id=? and sm.changeflag=? order by s.stud_roll_no;";
 
                 ps = con.prepareStatement(sql);
                 ps.setString(1,menid);
+                ps.setInt(2,0);
                 ResultSet rs = ps.executeQuery();
                 while (rs.next())
                 {
