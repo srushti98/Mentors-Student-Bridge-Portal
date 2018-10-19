@@ -85,6 +85,7 @@
                 <div class="dropdown-content" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="/jsp/admin_allotsingle.jsp">Allot single Student</a>
                     <a class="dropdown-item" href="/jsp/admin_profile.jsp">Allot Multiple Students </a>
+                    <a class="dropdown-item" href="/jsp/admin_changementor.jsp">Change mentor of student </a>
                 </div>
             </li>
             <li class="nav-item">

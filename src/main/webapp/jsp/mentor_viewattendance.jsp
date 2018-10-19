@@ -122,7 +122,7 @@
                 <th >MIS ID</th>
                 <th >Roll No</th>
                 <th >Name</th>
-                <th> Mark</th>
+                <th> Status</th>
             </tr>
             </thead>
 
@@ -149,15 +149,27 @@
                         String mis=rs.getString("stud_mis_id");
                         String stud_roll_no=rs.getString("stud_roll_no");
                         String studentname=rs.getString("stud_name");
-                        String attend=rs.getString("attended");
-                        boolean attendance=rs.getBoolean("attended");
+                        String attend;
+                        boolean attendm=rs.getBoolean("attended");
+                        //boolean attendance=rs.getBoolean("attended");
+                        if(attendm)
+                        {
+                            attend="P";
+                        }
+                        else
+                        {
+                            attend="A";
+                        }
+
             %>
+
             <tbody class=".table-responsive">
             <tr class=".table-responsive">
                 <td style="color: #2f28d6"><%=stud_mis_id%></td>
                 <td style="color: #2f28d6"><%=stud_roll_no%></td>
                 <td style="color: #2f28d6"><%=studentname%></td>
-                <td ><input type="checkbox" name="attendance" value="attendance" onclick="return false" <%if(attendance){%>checked<%}%> > </td>
+                <td style="color: #2f28d6"><b><%=attend%></b></td>
+                <%--<td ><input type="checkbox" name="attendance" value="attendance" onclick="return false" <%if(attendance){%>checked<%}%> > </td>--%>
             </tr>
 
             <%
