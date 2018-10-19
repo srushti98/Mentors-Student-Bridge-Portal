@@ -30,6 +30,14 @@
     </style>
 </head>
 <body>
+
+
+<%
+    if (session.getAttribute("mentor_id")==null)
+        response.sendRedirect("/index.jsp");
+%>
+
+
 <nav class="navbar navbar-expand-lg " >
     <h1 class="navbar-brand"  style="color: white"><strong><b style="font-family: URW Chancery L, cursive ">Mentors' Portal</b></strong></h1>
 
@@ -83,7 +91,7 @@
                     Class.forName("com.mysql.jdbc.Driver");
                     con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
                     System.out.println("SL3 "+ "database successfully opened.");
-                    String menid = (String)session.getAttribute("stud_name");
+                    String menid = (String)session.getAttribute("mentor_id");
                     System.out.println(menid);
                     String sql = "select activity_id,activity_date from activity_list where activity_name=? and mentor_id=? order by activity_id;";
                     ps = con.prepareStatement(sql);

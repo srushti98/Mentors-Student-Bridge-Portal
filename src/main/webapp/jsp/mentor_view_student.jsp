@@ -43,7 +43,7 @@
 
 
 <%
-    if (session.getAttribute("stud_name")==null)
+    if (session.getAttribute("mentor_id")==null)
         response.sendRedirect("/index.jsp");
     String stud_mis_id = (String)request.getParameter("id");
     Connection databaseConnection = DatabaseConnection.getDatabaseConnection();

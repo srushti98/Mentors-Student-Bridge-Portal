@@ -29,6 +29,14 @@
 
 
 <body >
+
+
+<%
+    if (session.getAttribute("mentor_id")==null)
+        response.sendRedirect("/index.jsp");
+%>
+
+
 <nav class="navbar navbar-expand-lg " >
     <h1 class="navbar-brand"  style="color: white"><strong><b style="font-family: URW Chancery L, cursive ">Mentors' Portal</b></strong></h1>
 

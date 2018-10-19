@@ -27,7 +27,10 @@
 
 <body>
 
-
+<%
+    if (session.getAttribute("admin_id")==null)
+        response.sendRedirect("/index.jsp");
+%>
 
 
 <div id='cssmenu'>

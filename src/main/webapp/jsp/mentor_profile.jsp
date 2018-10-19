@@ -31,6 +31,15 @@
         }
     </style>
 </head>
+
+
+<%
+    if (session.getAttribute("mentor_id")==null)
+        response.sendRedirect("/index.jsp");
+%>
+
+
+
 <body>
 <%
     try
@@ -39,7 +48,7 @@
         Class.forName("com.mysql.jdbc.Driver");
         con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
         System.out.println("SL3 "+ "database successfully opened.");
-        String menid = (String)session.getAttribute("stud_name");
+        String menid = (String)session.getAttribute("mentor_id");
         System.out.println(menid);
         String sql = "select count(*) as ccount from student_mentor_communication where emp_id=? and seen=0;";
         ps = con.prepareStatement(sql);

@@ -105,9 +105,9 @@
 <body>
 <nav class="navbar navbar-expand-lg">
     <%
-        if (session.getAttribute("stud_name")==null)
+        if (session.getAttribute("admin_id")==null)
             response.sendRedirect("/index.jsp");
-        String stud_name = (String)session.getAttribute("stud_name");
+        String stud_name = (String)session.getAttribute("admin_id");
     %>
     <%--<a class="navbar-brand" href="#">WELCOME <%=stud_name%></a>--%>
     <h1 class="navbar-brand"  style="color: white"><strong><b style="font-family: URW Chancery L, cursive ">Admin' Portal</b></strong></h1>

@@ -1,6 +1,5 @@
 package com.pict;
 
-import com.pict.database.DatabaseConnection;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,7 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.*;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 import static java.lang.System.out;
 
@@ -46,6 +46,8 @@ public class LogoutServlet extends HttpServlet {
 
         HttpSession session=request.getSession();
         session.removeAttribute("stud_name");
+        session.removeAttribute("mentor_id");
+        session.removeAttribute("admin_id");
         session.invalidate();
         response.sendRedirect("../index.jsp");
 

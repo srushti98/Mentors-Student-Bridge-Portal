@@ -21,10 +21,11 @@
     <title>Insert title here</title>
 </head>
 <body>
-<%Connection con;
-    Class.forName("com.mysql.jdbc.Driver");
-    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
-    System.out.println("SL3 "+ "database successfully opened.");%>
+<%--<%--%>
+    <%--Connection con;--%>
+    <%--Class.forName("com.mysql.jdbc.Driver");--%>
+    <%--con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");--%>
+    <%--System.out.println("SL3 "+ "database successfully opened.");%>--%>
 <%!
 
     //Connection con;
