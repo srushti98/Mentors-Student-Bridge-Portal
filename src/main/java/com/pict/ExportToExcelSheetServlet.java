@@ -15,10 +15,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
 
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import  org.apache.poi.hssf.usermodel.HSSFSheet;
+import  org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import  org.apache.poi.hssf.usermodel.HSSFRow;
+import  org.apache.poi.hssf.usermodel.HSSFCell;
 
 import static java.lang.System.out;
 
@@ -33,7 +33,7 @@ public class ExportToExcelSheetServlet extends HttpServlet {
         databaseconnection= DatabaseConnection.getDatabaseConnection();
     }
 
-    public static void expoty(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             Connection con;
             Class.forName("com.mysql.jdbc.Driver");
@@ -45,14 +45,14 @@ public class ExportToExcelSheetServlet extends HttpServlet {
             out.println("1");
             ResultSet rs=ps.executeQuery();
 
-            XSSFWorkbook workbook=new XSSFWorkbook();
+            HSSFWorkbook workbook=new HSSFWorkbook();
             out.println("2");
-            XSSFSheet sheet=workbook.createSheet("Old_Mentor_student");
+            HSSFSheet sheet=workbook.createSheet("Old_Mentor_student");
             out.println("3");
-            XSSFRow row=sheet.createRow(1);
+            HSSFRow row=sheet.createRow(1);
 
             out.println("4");
-            XSSFCell cell;
+            HSSFCell cell;
             out.println("5");
             cell=row.createCell(0);
             cell.setCellValue("Mentor ID");
@@ -78,6 +78,7 @@ public class ExportToExcelSheetServlet extends HttpServlet {
 
             con.close();
 
+
             response.sendRedirect("/jsp/admin_index.jsp");
         }
         catch (ClassNotFoundException e) {
@@ -88,10 +89,6 @@ public class ExportToExcelSheetServlet extends HttpServlet {
             e.printStackTrace();
             out.println(e);
         }
-    }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        expoty(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
