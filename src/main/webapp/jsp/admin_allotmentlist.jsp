@@ -207,6 +207,7 @@
                 <div class="dropdown-content" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="/jsp/admin_allotsingle.jsp">Allot single Student</a>
                     <a class="dropdown-item" href="/jsp/admin_profile.jsp">Allot Multiple Students </a>
+                    <a class="dropdown-item" href="/jsp/admin_changementor.jsp">Change mentor of student </a>
                 </div>
             </li>
             <li class="nav-item">
@@ -254,8 +255,9 @@
                     Class.forName("com.mysql.jdbc.Driver");
                     con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
                     System.out.println("SL3 "+ "database successfully opened.");
-                    String sql = "select s.stud_name , m.mentorname, s.stud_roll_no from student s, mentor m, studentmentorrel sm where s.stud_mis_id=sm.stud_mis_id and m.emp_id=sm.emp_id order by s.stud_roll_no;";
+                    String sql = "select s.stud_name , m.mentorname, s.stud_roll_no from student s, mentor m, studentmentorrel sm where s.stud_mis_id=sm.stud_mis_id and m.emp_id=sm.emp_id and sm.changeflag=? order by s.stud_roll_no ;";
                     ps = con.prepareStatement(sql);
+                    ps.setInt(1,0);
                     ResultSet rs = ps.executeQuery();
                     String m1="   ";
                     while (rs.next())

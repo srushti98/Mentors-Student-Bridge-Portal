@@ -118,7 +118,7 @@ public class AdminServlet extends HttpServlet {
                           /* createStatement() is used for create statement
                   object that is used for
             sending sql statements to the specified database. */
-                    preparedStatementallo = con.prepareStatement("insert into studentmentorrel values (?,?)");
+                    preparedStatementallo = con.prepareStatement("insert into studentmentorrel(stud_mis_id,emp_id) values (?,?)");
                     preparedStatementallo.setString(1, startmis);
                     preparedStatementallo.setString(2, mentormis);
                     int updateQuery = preparedStatementallo.executeUpdate();
