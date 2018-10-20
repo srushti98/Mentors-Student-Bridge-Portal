@@ -1,18 +1,19 @@
 package com.pict;
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import com.pict.database.DatabaseConnection;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.*;
 import java.sql.*;
+
+import  org.apache.poi.hssf.usermodel.HSSFSheet;
+import  org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import  org.apache.poi.hssf.usermodel.HSSFRow;
+import  org.apache.poi.hssf.usermodel.HSSFCell;
 
 import static java.lang.System.out;
 
@@ -33,25 +34,21 @@ public class ExportToExcelSheetServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        out.print("in servlet!!!!!!!!!!!");
         try {
             Connection con;
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
             out.println("export " + "database successfully opened.");
             PreparedStatement ps = null;
-            ps=con.prepareStatement("select * from studentmentorrel where changeflag=0");
+            ps=con.prepareStatement("select * from studentmentorrel, student where student.stud_mis_id=studentmentorrel.stud_mis_id order by stud_roll_no");
 
-            out.println("\n\n\n\n");
             out.println("1");
             ResultSet rs=ps.executeQuery();
-
 
             HSSFWorkbook workbook=new HSSFWorkbook();
             out.println("2");
             HSSFSheet sheet=workbook.createSheet("Old_Mentor_student");
             out.println("3");
-
             HSSFRow row=sheet.createRow(1);
 
             out.println("4");
@@ -61,26 +58,37 @@ public class ExportToExcelSheetServlet extends HttpServlet {
             cell.setCellValue("Mentor ID");
             cell=row.createCell(1);
             cell.setCellValue("MIS ID");
+            out.println("6");
 
             int i=2;
             row = sheet.createRow(i);
+            out.println("7");
+            String mentor="";
+            String mentor1="";
             while(rs.next()){
                 cell = row.createCell(0);
-                cell.setCellValue(rs.getString("emp_id"));
+                mentor1=rs.getString("emp_id");
+                if(!mentor.equals(mentor1)) {
+                    cell.setCellValue(mentor1);
+                    mentor=mentor1;
+                }
                 cell = row.createCell(1);
                 cell.setCellValue(rs.getString("stud_mis_id"));
                 row=sheet.createRow(++i);
             }
 
+            out.println("8");
 
-            FileOutputStream out1=new FileOutputStream(new File("information.xls"));
-            System.out.print(out1.toString());
+            FileOutputStream out1=new FileOutputStream(new File("Student_mentor_information.xls"));
 
             workbook.write(out1);
             out1.close();
-            String fileName ="information.xls";
 
-             InputStream inputStream = new FileInputStream(fileName);
+            out.println("File created successfully");
+
+            String fileName ="Student_mentor_information.xls";
+
+            InputStream inputStream = new FileInputStream(fileName);
             int fileLength = inputStream.available();
 
             System.out.println("fileLength = " + fileLength);
@@ -114,24 +122,10 @@ public class ExportToExcelSheetServlet extends HttpServlet {
             inputStream.close();
             outStream.close();
 
-
-
-            // set content properties and header attributes for the response
-
-
-
-
-
-            // writes the file to the client
-
-
-
-
-
-
-
             con.close();
 
+            HttpSession session= request.getSession();
+            session.setAttribute("getAlert","Successfully");
             response.sendRedirect("/jsp/admin_index.jsp");
         }
         catch (ClassNotFoundException e) {
