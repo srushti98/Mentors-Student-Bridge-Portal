@@ -98,7 +98,7 @@
                 <a class="nav-link" style="color: white" href="/jsp/admin_allotmentlist.jsp"><strong><b>View Allotments</b></strong></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" style="color: white" href="/jsp/admin_excelsheet.jsp"><strong><b>Import Excelsheets</b></strong></a>
+                <a class="nav-link" style="color: white" href="/jsp/admin_importexcel.jsp"><strong><b>Import Excelsheets</b></strong></a>
             </li>
         </ul>
         <a class="nav-link" href="../LogoutServlet" style="color: white"><i class="material-icons">
