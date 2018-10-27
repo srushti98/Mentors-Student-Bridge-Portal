@@ -2,27 +2,23 @@
 package com.pict;
 
         import org.apache.poi.hssf.usermodel.HSSFCell;
-        import org.apache.poi.hssf.usermodel.HSSFRow;
-        import org.apache.poi.hssf.usermodel.HSSFSheet;
-        import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-        import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 
-        import javax.servlet.ServletException;
-        import javax.servlet.annotation.MultipartConfig;
-        import javax.servlet.annotation.WebServlet;
-        import javax.servlet.http.HttpServlet;
-        import javax.servlet.http.HttpServletRequest;
-        import javax.servlet.http.HttpServletResponse;
-        import javax.servlet.http.Part;
-        import java.io.FileInputStream;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+        import javax.servlet.http.*;
         import java.io.IOException;
-        import java.io.InputStream;
-        import java.sql.Connection;
-        import java.sql.DriverManager;
-        import java.sql.PreparedStatement;
-        import java.sql.SQLException;
-        import java.util.ArrayList;
-        import java.util.Iterator;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 @WebServlet("/FileUploadExcelFinalServlet")
 @MultipartConfig
@@ -54,7 +50,8 @@ public class FileUploadExcelFinalServlet extends HttpServlet {
             PreparedStatement ps = null;
 
             ArrayList dataHolder=readExcelFile(inputStream);
-            String query="insert into student(stud_mis_id,stud_name,stud_roll_no) values(?,?,?)";
+            String temppass="123456";
+            String query="insert into student(stud_mis_id,stud_name,stud_roll_no,stud_password) values(?,?,?,?)";
             ps=con.prepareStatement(query);
             int count=0;
             ArrayList cellStoreArrayList=null;
@@ -79,6 +76,7 @@ public class FileUploadExcelFinalServlet extends HttpServlet {
 
                 System.out.print("\nthe value in int is::"+introll);
                 ps.setInt(3,introll);
+                ps.setString(4,temppass);
                 count= ps.executeUpdate();
                 //System.out.print(((HSSFCell)cellStoreArrayList.get(1)).toString() + "t");
             }
@@ -97,6 +95,11 @@ public class FileUploadExcelFinalServlet extends HttpServlet {
             e.printStackTrace();
         }
         catch (SQLException e) {
+            HttpSession session = request.getSession();
+            String error="Some students already exist";
+            System.out.print(error);
+            session.setAttribute("getAlert", error);//Just initialize a random variable.
+            response.sendRedirect("/jsp/admin_excelsheet.jsp");
             e.printStackTrace();
         }
 

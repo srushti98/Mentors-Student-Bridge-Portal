@@ -133,6 +133,16 @@
     </form>
     </p>
 </div>
+<script type="text/javascript">
+    var Msg ='<%=session.getAttribute("getAlert")%>';
+    if (Msg != "null") {
+        function alertName(){
+            swal("error",Msg,"error");
+        }
 
+        <%session.setAttribute("getAlert",null);%>
+    }
+</script>
 </body>
+<script type="text/javascript"> window.onload = alertName; </script>
 </html>
