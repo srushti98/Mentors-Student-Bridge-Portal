@@ -8,6 +8,7 @@
 
     <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/stud_profile_navbar.css">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -16,146 +17,6 @@
     <script src="../js/bootstrap.js"></script>
 
     <style>
-        #cssmenu > ul,
-        #cssmenu > ul li,
-        #cssmenu > ul ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-        #cssmenu > ul {
-            position: relative;
-            z-index: 597;
-            height: 60px;
-
-        }
-        #cssmenu > ul li {
-            float: left;
-            min-height: 1px;
-            line-height: 1.3em;
-            vertical-align: middle;
-        }
-        #cssmenu > ul li.hover,
-        #cssmenu > ul li:hover {
-            position: relative;
-            z-index: 599;
-            cursor: default;
-        }
-        #cssmenu > ul ul {
-            visibility: hidden;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            z-index: 598;
-            width: 100%;
-        }
-        #cssmenu > ul ul li {
-            float: none;
-        }
-        #cssmenu > ul ul ul {
-            top: 1px;
-            left: 99%;
-        }
-        #cssmenu > ul li:hover > ul {
-            visibility: visible;
-        }
-        /* Align last drop down RTL */
-        #cssmenu > ul > li.last ul ul {
-            left: auto !important;
-            right: 99%;
-        }
-        #cssmenu > ul > li.last ul {
-            left: auto;
-            right: 0;
-        }
-        #cssmenu > ul > li.last {
-            text-align: right;
-        }
-        /* Theme Styles */
-        #cssmenu > ul {
-            border-top: 4px solid #3f28f8;
-            /*border-top: 4px solid #40bbd6;*/
-            font-family: Calibri, Tahoma, Arial, sans-serif;
-            font-size: 14px;
-            background: #442ec7;
-            /*background: #109eac;*/
-            /*background: -moz-linear-gradient(top, #1e1e1e 0%, #2f9ed6 100%);*/
-            /*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1e1e1e), color-stop(100%, #2f9ed6));*/
-            /*background: -webkit-linear-gradient(top, #1e1e1e 0%, #2f9ed6 100%);*/
-            /*background: linear-gradient(top, #1e1e1e 0%, #2f9ed6 100%);*/
-            background: -moz-linear-gradient(top, #1e1e1e 0%, #436bd6 100%);
-            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1e1e1e), color-stop(100%, #3c7ad6));
-            background: -webkit-linear-gradient(top, #1e1e1e 0%, #3c7ad6 100%);
-            background: linear-gradient(top, #1e1e1e 0%, #3c7ad6 100%);
-            width: auto;
-            zoom: 1;
-        }
-        #cssmenu > ul:before {
-            content: '';
-            display: block;
-        }
-        #cssmenu > ul:after {
-            content: '';
-            display: table;
-            clear: both;
-        }
-        #cssmenu > ul li a {
-            display: inline-block;
-            padding: 10px 22px;
-        }
-        #cssmenu > ul > li.active,
-        #cssmenu > ul > li.active:hover {
-            /*background-color: #3f28f8;*/
-            /*background-color: #40bbd6;*/
-            background-color: #3c7ad6;
-        }
-        #cssmenu > ul > li > a:link,
-        #cssmenu > ul > li > a:active,
-        #cssmenu > ul > li > a:visited {
-            color: #ffffff;
-        }
-        #cssmenu > ul > li > a:hover {
-            color: #ffffff;
-        }
-        #cssmenu > ul ul ul {
-            top: 0;
-        }
-        #cssmenu > ul li li {
-            background-color: #ffffff;
-            border-bottom: 1px solid #ebebeb;
-            font-size: 20px;
-
-        }
-        #cssmenu > ul li.hover,
-        #cssmenu > ul li:hover {
-            background-color: #F5F5F5;
-        }
-        #cssmenu > ul > li.hover,
-        #cssmenu > ul > li:hover {
-            background-color: #3c7ad6;
-            /*background-color: #40bbd6;*/
-            -webkit-box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.15);
-            -moz-box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.15);
-            box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.15);
-        }
-        #cssmenu > ul a:link,
-        #cssmenu > ul a:visited {
-            color: #9a9a9a;
-            text-decoration: none;
-        }
-        #cssmenu > ul a:hover {
-            color: #9a9a9a;
-        }
-        #cssmenu > ul a:active {
-            color: #9a9a9a;
-        }
-        #cssmenu > ul ul {
-            border: 1px solid #CCC \9;
-            -webkit-box-shadow: 0 0px 2px 1px rgba(0, 0, 0, 0.15);
-            -moz-box-shadow: 0 0px 2px 1px rgba(0, 0, 0, 0.15);
-            box-shadow: 0 0px 2px 1px rgba(0, 0, 0, 0.15);
-            width: 150px;
-        }
 
         .form{
             background-color: rgba(86, 86, 86.0.8);
@@ -212,22 +73,11 @@
 
     PreparedStatement preparedStatement = null;
 
-    preparedStatement = con.prepareStatement("select * from student where stud_name=?");
-    preparedStatement.setString(1, s_stud_name);
+    preparedStatement = con.prepareStatement("select * from Student_parent_details where stud_mis_id=?");
+    preparedStatement.setString(1, s_stud_mis_id);
 
     ResultSet rs = preparedStatement.executeQuery();
-    String prn = null;
-    String roll = null;
-    String batch = null;
-    String div = null;
-    if (rs.next()) {
-        prn = rs.getString("stud_prn");
-        roll = rs.getString("stud_roll_no");
-        batch = rs.getString("stud_batch");
-        div = rs.getString("stud_div");
-    }
-    int prn_int = Integer.parseInt(prn);
-    int roll_int = Integer.parseInt(roll);
+    rs.next();
 
     ResultSet rss3 = pss2.executeQuery("select count(a.activity_id) as ccount from activity_list a join student_activity_list s on s.activity_id = a.activity_id where stud_mis_id='"+s_stud_mis_id+"' and is_seen= 0");
     int count=0;
@@ -260,8 +110,8 @@
         <!--<li><a href='#'><span>Other</span></a></li>-->
         <li class='has-sub'><a href='#'><span>Other</span></a>
             <ul>
-                <li class='has-sub'><a href='#'><span>Contact Mentor</span></a></li>
-                <li class='has-sub'><a href='#'><span>View Students</span></a></li>
+                <li class='has-sub'><a href='contact_mentor.jsp'><span>Contact Mentor</span></a></li>
+                <li class='has-sub'><a href='../jsp/student_view_leaves.jsp'><span>View Leaves Taken</span></a></li>
                 <li class='has-sub'><a href='../jsp/student_view_meetings.jsp'><span>View Meetings</span></a></li>
             </ul>
         </li>
@@ -279,39 +129,39 @@
                 <h1>Parent Details</b> </h1>
                 <div class="form-group">
                     <label>Father Name</label>
-                    <input type="text" class="form-control" name="father_name" placeholder="Full Name">
+                    <input type="text" class="form-control" name="father_name" placeholder="Full Name" value="<%=rs.getString("father_name")%>">
                     <label>Education</label>
-                    <input type="text" class="form-control" name="father_edu" placeholder="">
+                    <input type="text" class="form-control" name="father_edu" placeholder="" value="<%=rs.getString("father_edu")%>">
                     <label>Occupation</label>
-                    <input type="text" class="form-control" name="father_occ" placeholder="">
+                    <input type="text" class="form-control" name="father_occ" placeholder="" value="<%=rs.getString("father_occ")%>">
                     <label>Contact no.</label>
-                    <input type="text" class="form-control" name="father_contact" placeholder="Contact no.">
+                    <input type="text" class="form-control" name="father_contact" placeholder="Contact no." value="<%=rs.getString("father_contact")%>">
                     <label>Email</label>
-                    <input type="email" class="form-control" name="father_email" placeholder="Email id">
+                    <input type="email" class="form-control" name="father_email" placeholder="Email id" value="<%=rs.getString("father_email")%>">
                     <label>Permanent Address</label>
-                    <textarea class="form-control" rows="3" name="father_add" placeholder="Permanent Address"></textarea>
+                    <input type="text" class="form-control" name="father_add" placeholder="Permanent Address" value="<%=rs.getString("father_add")%>">
                 </div>
 
                 <div class="form-group">
                     <label>Mother Name</label>
-                    <input type="text" class="form-control" name="mother_name" placeholder="Full Name">
+                    <input type="text" class="form-control" name="mother_name" placeholder="Full Name" value="<%=rs.getString("mother_name")%>">
                     <label>Education</label>
-                    <input type="text" class="form-control" name="mother_edu" placeholder="">
+                    <input type="text" class="form-control" name="mother_edu" placeholder="" value="<%=rs.getString("mother_edu")%>">
                     <label>Occupation</label>
-                    <input type="text" class="form-control" name="mother_occ" placeholder="">
+                    <input type="text" class="form-control" name="mother_occ" placeholder="" value="<%=rs.getString("mother_occ")%>">
                     <label>Contact no.</label>
-                    <input type="text" class="form-control" name="mother_contact" placeholder="Contact no.">
+                    <input type="text" class="form-control" name="mother_contact" placeholder="Contact no." value="<%=rs.getString("mother_contact")%>">
                     <label>Email</label>
-                    <input type="email" class="form-control" name="mother_email" placeholder="Email id">
+                    <input type="email" class="form-control" name="mother_email" placeholder="Email id" value="<%=rs.getString("mother_email")%>">
                     <label>Permanent Address</label>
-                    <textarea class="form-control" rows="3" name="mother_add" placeholder="Permanent Address"></textarea>
+                    <input type="text" class="form-control" name="mother_add" placeholder="Permanent Address" value="<%=rs.getString("mother_add")%>">
                 </div>
 
                 <div class="form-group">
                     <label>Siblings</label>
-                    <input type="text" class="form-control" name="siblings" placeholder="Number of siblings">
+                    <input type="text" class="form-control" name="siblings" placeholder="Number of siblings" value="<%=rs.getString("siblings")%>">
                     <label>Academics</label>
-                    <input type="text" class="form-control" name="sib_academics" placeholder="">
+                    <input type="text" class="form-control" name="sib_academics" placeholder="" value="<%=rs.getString("sibling_academics")%>">
                 </div>
 
                 <div class="form-group">

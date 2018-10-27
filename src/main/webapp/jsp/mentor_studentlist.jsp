@@ -39,9 +39,9 @@
 </head>
 <body>
 <%
-    if (session.getAttribute("stud_name")==null)
+    if (session.getAttribute("mentor_id")==null)
         response.sendRedirect("/index.jsp");
-    String mentor_id = (String)session.getAttribute("stud_name");
+    String mentor_id = (String)session.getAttribute("mentor_id");
     System.out.println(mentor_id);
 
     Connection databaseConnection = DatabaseConnection.getDatabaseConnection();

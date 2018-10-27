@@ -16,7 +16,7 @@
     <title>Meetings</title>
 
     <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-    <link rel="stylesheet" href="../stud_profile_navbar.css">
+    <link rel="stylesheet" href="../css/stud_profile_navbar.css">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -83,8 +83,8 @@
         <!--<li><a href='#'><span>Other</span></a></li>-->
         <li class='has-sub'><a href='#'><span>Other</span></a>
             <ul>
-                <li class='has-sub'><a href='#'><span>Contact Mentor</span></a></li>
-                <li class='has-sub'><a href='#'><span>View Students</span></a></li>
+                <li class='has-sub'><a href='../forms1/contact_mentor.jsp'><span>Contact Mentor</span></a></li>
+                <li class='has-sub'><a href='student_view_leaves.jsp'><span>View Leaves Taken</span></a></li>
                 <li class='has-sub'><a href='student_view_meetings.jsp'><span>View Meetings</span></a></li>
             </ul>
         </li>

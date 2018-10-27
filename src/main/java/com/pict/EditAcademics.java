@@ -84,7 +84,7 @@ public class EditAcademics extends HttpServlet {
 
             out.println("SL3 " + "database successfully opened. in edit academics 2");
 
-            ps=con.prepareStatement("update StudentAcademicDetails set SSC_school=?, SSC_percentage=?, HSC_school=?, HSC_percentage=?, PCM_marks_total=?, CET_marks=?, JEE_marks=?, diploma_percentage=?, admission_category=?, subject_area_interest=?, career_plan=?, preference=?, affinity=? where stud_mis_id=?");
+            ps=con.prepareStatement("update StudentAcademicDetails set SSC_school=?, SSC_percentage=?, HSC_school=?, HSC_percentage=?, PCM_marks_total=?, CET_marks=?, JEE_marks=?, diploma_percentage=?, admission_category=?, subject_area_interest=?, career_plan=?, preference=?, affinity=?,updated=1 where stud_mis_id=?");
             ps.setString(1,ssc_sch);
             ps.setFloat(2, ssc_pc_int);
             ps.setString(3,hsc_sch);

@@ -61,7 +61,7 @@ public class EditExtraDetails extends HttpServlet {
 
             out.println("SL3 " + "database successfully opened. in edit extra 3");
 
-            ps=con.prepareStatement("update StudentExtraDetails set stud_hobbies=?, stud_extra_activities=?, stud_sports=?, stud_achievements=?, stud_scholarships=? where stud_mis_id=?");
+            ps=con.prepareStatement("update StudentExtraDetails set stud_hobbies=?, stud_extra_activities=?, stud_sports=?, stud_achievements=?, stud_scholarships=?,updated=1 where stud_mis_id=?");
             ps.setString(1,stud_hobbies);
             ps.setString(2,stud_extra_activities);
             ps.setString(3,stud_sports);

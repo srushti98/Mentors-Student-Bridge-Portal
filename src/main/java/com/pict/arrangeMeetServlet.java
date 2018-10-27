@@ -39,6 +39,9 @@ public class arrangeMeetServlet extends HttpServlet {
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
             out.println ("SL3 "+ "database successfully opened.");
             PreparedStatement preparedStatement=null;
+            PreparedStatement preparedStatement2=null;
+
+
 
             preparedStatement=con.prepareStatement("insert into activity_list (mentor_id, activity_name, activity_date, activity_title, activity_content) values(?, 'meeting', ?, ?, ?)");
             preparedStatement.setString(1,mentor_mis);

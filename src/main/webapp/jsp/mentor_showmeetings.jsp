@@ -37,9 +37,9 @@
 </head>
 <body>
     <%
-    if (session.getAttribute("stud_name")==null)
+    if (session.getAttribute("mentor_id")==null)
         response.sendRedirect("/index.jsp");
-    String mentor_id = (String)session.getAttribute("stud_name");
+    String mentor_id = (String)session.getAttribute("mentor_id");
     System.out.println(mentor_id);
 
     Connection databaseConnection = DatabaseConnection.getDatabaseConnection();
@@ -121,7 +121,7 @@
                     Class.forName("com.mysql.jdbc.Driver");
                     con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
                     System.out.println("SL3 "+ "database successfully opened.");
-                    String menid = (String)session.getAttribute("stud_name");
+                    String menid = (String)session.getAttribute("mentor_id");
                     System.out.println(menid);
                     String sql = "select activity_id,activity_date from activity_list where activity_name=? and mentor_id=? order by activity_id;";
                     ps = con.prepareStatement(sql);

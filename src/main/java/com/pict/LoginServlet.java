@@ -50,7 +50,7 @@ public class LoginServlet extends HttpServlet {
                     String username = resultSet.getString("emp_id");
 
                     HttpSession session= request.getSession();
-                    session.setAttribute("stud_name",username);
+                    session.setAttribute("mentor_id",username);
                     response.sendRedirect("/jsp/mentor_profile.jsp");
                 }else{
                     HttpSession session= request.getSession();
@@ -99,7 +99,7 @@ public class LoginServlet extends HttpServlet {
 
                     String username="ADMIN";
                     HttpSession session= request.getSession();
-                    session.setAttribute("stud_name",username);
+                    session.setAttribute("admin_id",username);
 
                     response.sendRedirect("/jsp/admin_index.jsp");
                 }else{

@@ -65,7 +65,7 @@ public class EditPersonal extends HttpServlet {
 //            int contact_int = Integer.parseInt(contact.trim());
             int year_int = Integer.parseInt(year);
 
-            ps=con.prepareStatement("update student set stud_roll_no=?,stud_batch=?,stud_blodgrp=?,stud_contact_no=?,stud_div=?,stud_dob=?,stud_email=?,stud_gender=?,stud_year=? where stud_mis_id=?");
+            ps=con.prepareStatement("update student set stud_roll_no=?,stud_batch=?,stud_blodgrp=?,stud_contact_no=?,stud_div=?,stud_dob=?,stud_email=?,stud_gender=?,stud_year=?,updated=1 where stud_mis_id=?");
             ps.setInt(1,roll_int);
             ps.setString(2,batch);
             ps.setString(3,bg);

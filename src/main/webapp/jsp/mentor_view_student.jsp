@@ -50,9 +50,9 @@
 
 
 <%
-    if (session.getAttribute("stud_name")==null)
+    if (session.getAttribute("mentor_id")==null)
         response.sendRedirect("/index.jsp");
-    String mentor_id = (String)session.getAttribute("stud_name");
+    String mentor_id = (String)session.getAttribute("mentor_id");
     String stud_mis_id = (String)request.getParameter("id");
     Connection databaseConnection = DatabaseConnection.getDatabaseConnection();
     Connection con;

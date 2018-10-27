@@ -83,7 +83,7 @@ public class EditParentDetails extends HttpServlet {
 
             out.println("SL3 " + "database successfully opened. in edit parents 3");
 
-            ps=con.prepareStatement("update Student_parent_details set father_name=?, father_edu=?, father_occ=?, father_contact=?, father_email=?, father_add=?, mother_name=?, mother_edu=?, mother_occ=?, mother_contact=?, mother_email=?, mother_add=?, siblings=?,sibling_academics=? where stud_mis_id=?");
+            ps=con.prepareStatement("update Student_parent_details set father_name=?, father_edu=?, father_occ=?, father_contact=?, father_email=?, father_add=?, mother_name=?, mother_edu=?, mother_occ=?, mother_contact=?, mother_email=?, mother_add=?, siblings=?,sibling_academics=?,updated=1 where stud_mis_id=?");
             ps.setString(1,father_name);
             ps.setString(2,father_edu);
             ps.setString(3,father_occ);
