@@ -125,7 +125,7 @@
     <div class="row">
         <div class="col-3 "></div>
         <div class="col-6 form">
-            <form action="../EditParentDetails" accept-charset=utf-8 method="POST" name="formm" onsubmit="validateReg()">
+            <form action="../EditParentDetails" accept-charset=utf-8 method="POST" name="formm" onsubmit="return validateReg()">
                 <h1>Parent Details</b> </h1>
                 <div class="form-group">
                     <label>Father Name</label>

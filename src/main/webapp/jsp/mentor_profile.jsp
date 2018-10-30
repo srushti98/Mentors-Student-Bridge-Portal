@@ -46,6 +46,7 @@
     if (session.getAttribute("mentor_id")==null)
         response.sendRedirect("/index.jsp");
     String mentor_id = (String)session.getAttribute("mentor_id");
+    String mentor_name = (String)session.getAttribute("mentor_name");
     System.out.println(mentor_id);
 
 
@@ -138,6 +139,9 @@
             </li>
         </ul>
         <li class='last' style="float:right"><a href='student_mentor_contact.jsp'><span><i class="fa fa-bell"></i></span><% if (count!=0) {%><span class="badge badge-danger badge-pill"><%=count%></span><%}%></a></li>
+
+        <a class="nav-link" href="#" style="color: white"><strong><b><%=mentor_name%></b></strong></a>
+
         <a class="nav-link" href="../LogoutServlet" style="color: white"><i class="material-icons-account_circle">
         </i> <strong><b>signout</b></strong></a>
     </div>

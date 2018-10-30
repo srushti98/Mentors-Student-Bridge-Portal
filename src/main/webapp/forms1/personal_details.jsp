@@ -132,7 +132,7 @@
     <div class="row">
         <div class="col-3 "></div>
         <div class="col-6 form">
-            <form action="../EditPersonal" name="formm" method="POST">
+            <form action="../EditPersonal" name="formm" method="POST" onsubmit="return validateReg()">
                 <h1><b>Personal Details</b> </h1>
                 <div class="form-group">
                     <label>Student Name</label>
@@ -184,14 +184,14 @@
                         <label>Select Gender</label>
                         <select class="form-control" name="stud_gender">
                             <%
-                                if (rs.getString("stud_gender")=="Male") {
+                                if (rs.getString("stud_gender").equals("Male")) {
                             %>
                             <option value="Male" selected>Male</option>
                             <% } else { %>
                             <option value="Male" >Male</option>
                             <% } %>
                             <%
-                                if (rs.getString("stud_gender")=="Female") {
+                                if (rs.getString("stud_gender").equals("Female")) {
                             %>
                             <option value="Female" selected>Female</option>
                             <% } else { %>
@@ -204,9 +204,9 @@
                     <label>Blood Group</label>
                     <input type="text" class="form-control" name="stud_bg" placeholder="Blood Group" value="<%=rs.getString("stud_blodgrp")%>">
                     <label>Local Address</label>
-                    <textarea class="form-control" rows="3" name="stud_local_add" placeholder="Local Address"></textarea>
+                    <input type="text" class="form-control" name="stud_local_add" placeholder="Local Address" value="<%=rs.getString("stud_local_add")%>">
                     <label>Permanent Address</label>
-                    <textarea class="form-control" rows="3" name="stud_per_add" placeholder="Permanent Address"></textarea>
+                    <input type="text" class="form-control" name="stud_per_add" placeholder="Permanent Address" value="<%=rs.getString("stud_per_add")%>">
                 </div>
 
                 <div class="form-group">

@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet {
             if(login_mis_id.startsWith("P"))
             {
                 out.print("in mentor");
-                preparedStatement = con.prepareStatement("select emp_id,mentorpassword from mentor where emp_id=? and mentorpassword=?");
+                preparedStatement = con.prepareStatement("select emp_id,mentorpassword,mentorname from mentor where emp_id=? and mentorpassword=?");
                 preparedStatement.setString(1,login_mis_id);
                 preparedStatement.setString(2,login_pswd);
 
@@ -48,9 +48,11 @@ public class LoginServlet extends HttpServlet {
                 if(resultSet.next()){
                     out.print("Success");
                     String username = resultSet.getString("emp_id");
+                    String usernamee = resultSet.getString("mentorname");
 
                     HttpSession session= request.getSession();
                     session.setAttribute("mentor_id",username);
+                    session.setAttribute("mentor_name",usernamee);
                     response.sendRedirect("/jsp/mentor_profile.jsp");
                 }else{
                     HttpSession session= request.getSession();

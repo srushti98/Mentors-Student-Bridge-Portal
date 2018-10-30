@@ -50,6 +50,9 @@ public class EditPersonal extends HttpServlet {
             String gender = null;
             String bg = null;
             String year = null;
+            String prn = null;
+            String local = null;
+            String permanent = null;
 
             roll = request.getParameter("stud_roll");
             div = request.getParameter("stud_div");
@@ -60,12 +63,15 @@ public class EditPersonal extends HttpServlet {
             gender = request.getParameter("stud_gender");
             bg = request.getParameter("stud_bg");
             year = request.getParameter("stud_year");
+            prn = request.getParameter("prn_no");
+            local = request.getParameter("stud_local_add");
+            permanent = request.getParameter("stud_per_add");
 
             int roll_int = Integer.parseInt(roll);
 //            int contact_int = Integer.parseInt(contact.trim());
             int year_int = Integer.parseInt(year);
 
-            ps=con.prepareStatement("update student set stud_roll_no=?,stud_batch=?,stud_blodgrp=?,stud_contact_no=?,stud_div=?,stud_dob=?,stud_email=?,stud_gender=?,stud_year=?,updated=1 where stud_mis_id=?");
+            ps=con.prepareStatement("update student set stud_roll_no=?,stud_batch=?,stud_blodgrp=?,stud_contact_no=?,stud_div=?,stud_dob=?,stud_email=?,stud_gender=?,stud_year=?,stud_prn=?,stud_local_add=?,stud_per_add=?,updated=1 where stud_mis_id=?");
             ps.setInt(1,roll_int);
             ps.setString(2,batch);
             ps.setString(3,bg);
@@ -75,7 +81,10 @@ public class EditPersonal extends HttpServlet {
             ps.setString(7,email);
             ps.setString(8,gender);
             ps.setInt(9,year_int);
-            ps.setString(10,stud_mis_id);
+            ps.setString(10,prn);
+            ps.setString(11,local);
+            ps.setString(12,permanent);
+            ps.setString(13,stud_mis_id);
 
             int rs = ps.executeUpdate();
 

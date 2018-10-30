@@ -120,7 +120,7 @@
     <div class="row">
         <div class="col-3 "></div>
         <div class="col-6 form">
-            <form action="../EditExtraDetails" name="formm" method="POST" onsubmit="validateReg()">
+            <form action="../EditExtraDetails" name="formm" method="POST" onsubmit="return validateReg()">
                 <h1>Extra</b> </h1>
                 <div class="form-group">
                     <label>Hobbies</label>

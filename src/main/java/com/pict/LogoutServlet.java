@@ -45,10 +45,18 @@ public class LogoutServlet extends HttpServlet {
         out.print(login_pswd);
 
         HttpSession session=request.getSession();
-        session.removeAttribute("stud_name");
-        session.removeAttribute("mentor_id");
-        session.removeAttribute("admin_id");
-        session.invalidate();
+        if (session.getAttribute("stud_name")!=null) {
+            session.removeAttribute("stud_name");
+            //session.invalidate();
+        }
+        if (session.getAttribute("mentor_id")!=null) {
+            session.removeAttribute("mentor_id");
+            //session.invalidate();
+        }
+        if (session.getAttribute("admin_id")!=null) {
+            session.removeAttribute("admin_id");
+            //session.invalidate();
+        }
         response.sendRedirect("../index.jsp");
 
 
@@ -56,10 +64,18 @@ public class LogoutServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session=request.getSession();
-        session.removeAttribute("stud_name");
-        session.removeAttribute("mentor_id");
-        session.removeAttribute("admin_id");
-        session.invalidate();
+        if (session.getAttribute("stud_name")!=null) {
+            session.removeAttribute("stud_name");
+            //session.invalidate();
+        }
+        if (session.getAttribute("mentor_id")!=null) {
+            session.removeAttribute("mentor_id");
+            //session.invalidate();
+        }
+        if (session.getAttribute("admin_id")!=null) {
+            session.removeAttribute("admin_id");
+            //session.invalidate();
+        }
         response.sendRedirect("../index.jsp");
 
 

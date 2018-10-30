@@ -85,7 +85,7 @@
     preparedStatement.setString(1, stud_mis_id);
     ResultSet rs = preparedStatement.executeQuery();
     String name = null;
-    int prn = 0;
+    String prn = null;
     String roll = null;
     String fileid=null;
     String batch = null;
@@ -95,7 +95,7 @@
     int count=1;
     if (rs.next()) {
         name = rs.getString("stud_name") ;
-        prn = rs.getInt("stud_prn");
+        prn = rs.getString("stud_prn");
         roll = rs.getString("stud_roll_no");
         batch = rs.getString("stud_batch");
         div = rs.getString("stud_div");
@@ -149,11 +149,17 @@
 <%--style="background-image: url(https://storage.googleapis.com/chydlx/codepen/blog-cards/image-1.jpg)"--%>
 <div class="blog-card">
     <div class="meta">
-
+        <%  if (checkimg==null) {%>
         <div class="photo" >
-            <img style="height: 200px; width: 200px" src="data:image/png;base64,<%=Base64.getEncoder().encodeToString(rs.getBytes("stud_img"))%>" alt="Card image cap " >
+            <img style="height: 200px; width: 200px" alt="Photo not uploaded " >
 
         </div>
+        <%  } else { %>
+        <div class="photo" >
+            <img style="height: 200px; width: 200px" src="data:image/png;base64,<%=Base64.getEncoder().encodeToString(rs.getBytes("stud_img"))%>" alt="Photo not uploaded " >
+
+        </div>
+        <%  } %>
         <ul class="details">
             <li class="author" style="font-size: larger">NAME:<%=name%></li>
             <li class="date" style="font-size: larger">ROLL NO:<%=roll%></li>
