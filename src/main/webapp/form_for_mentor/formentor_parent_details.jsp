@@ -52,7 +52,7 @@
 </head>
 <body>
 <%
-    if (session.getAttribute("stud_name") == null)
+    if (session.getAttribute("mentor_id") == null)
         response.sendRedirect("/index.jsp");
 
     String s_stud_mis_id = (String) request.getParameter("id");

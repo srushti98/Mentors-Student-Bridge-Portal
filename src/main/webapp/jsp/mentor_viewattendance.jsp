@@ -116,9 +116,10 @@
         <h2 style="color: #0a8cc4"> View Meeting Attendance </h2>
     </div>
     <div class="container">
-        <table class=".table-responsive" >
+        <div class="table-responsive">
+        <table class="table table-striped">
             <thead>
-            <tr class=".table-responsive">
+            <tr >
                 <th >MIS ID</th>
                 <th >Roll No</th>
                 <th >Name</th>
@@ -129,7 +130,7 @@
             <%
                 try
                 {
-                    if (session.getAttribute("stud_name")==null)
+                    if (session.getAttribute("mentor_id")==null)
                         response.sendRedirect("/index.jsp");
                     String activityid = (String)request.getParameter("id");
                     Connection con;
@@ -137,7 +138,7 @@
                     Class.forName("com.mysql.jdbc.Driver");
                     con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
                     System.out.println("SL3 "+ "database successfully opened.");
-                    String menid = (String)session.getAttribute("stud_name");
+                    String menid = (String)session.getAttribute("mentor_id");
                     System.out.println(menid);
                     String sql = "select sa.stud_mis_id,s.stud_roll_no,s.stud_name,sa.attended from student s,student_activity_list sa where sa.activity_id=? and s.stud_mis_id=sa.stud_mis_id order by s.stud_roll_no;";
                     ps = con.prepareStatement(sql);
@@ -163,8 +164,8 @@
 
             %>
 
-            <tbody class=".table-responsive">
-            <tr class=".table-responsive">
+            <tbody >
+            <tr >
                 <td style="color: #2f28d6"><%=stud_mis_id%></td>
                 <td style="color: #2f28d6"><%=stud_roll_no%></td>
                 <td style="color: #2f28d6"><%=studentname%></td>
@@ -182,6 +183,7 @@
             %>
             </tbody>
         </table>
+        </div>
     </div>
     </div>
 

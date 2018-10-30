@@ -27,7 +27,8 @@ public class arrangeMeetServlet extends HttpServlet {
 
         try {
             HttpSession sess=request.getSession(false);
-            String mentor_mis= (String) sess.getAttribute("stud_name");
+            String mentor_mis = (String)sess.getAttribute("mentor_id");
+            //String = (String) sess.getAttribute("stud_name");
             String Title=request.getParameter("name");
             String Agenda=request.getParameter("meeting_agenda");
             String date1 =request.getParameter("meeting_date");

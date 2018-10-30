@@ -123,8 +123,7 @@
                 <%
                     try
                     {
-                        if (session.getAttribute("stud_name")==null)
-                            response.sendRedirect("/index.jsp");
+
                         String activityid = (String)request.getParameter("id");
                         Connection con;
                         PreparedStatement ps = null;

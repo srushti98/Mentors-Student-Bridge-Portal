@@ -85,19 +85,22 @@
     preparedStatement.setString(1, stud_mis_id);
     ResultSet rs = preparedStatement.executeQuery();
     String name = null;
-    String prn = null;
+    int prn = 0;
     String roll = null;
     String fileid=null;
     String batch = null;
     String div = null;
+     int year= 0;
     String checkimg = null;
     int count=1;
     if (rs.next()) {
         name = rs.getString("stud_name") ;
-        prn = rs.getString("stud_prn");
+        prn = rs.getInt("stud_prn");
         roll = rs.getString("stud_roll_no");
         batch = rs.getString("stud_batch");
         div = rs.getString("stud_div");
+        year = rs.getInt("stud_year");
+
         checkimg = rs.getString("stud_img");
     }
     System.out.println(stud_mis_id);
@@ -162,13 +165,11 @@
 
 
         <p>PRN : <%=prn%></p>
-        <p>Year : <%=prn%></p>
+        <p>Year : <%=year%></p>
         <p>Division : <%=div%></p>
         <p>Batch : <%=batch%></p>
         <p>Roll no : <%=roll%></p>
-        <p class="read-more">
-            <a href="#">Read More</a>
-        </p>
+
     </div>
 </div>
 <div class="blog-card">

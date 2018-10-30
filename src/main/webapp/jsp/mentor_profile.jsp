@@ -41,24 +41,38 @@
         }
     </style>
 </head>
+
 <%
     if (session.getAttribute("mentor_id")==null)
         response.sendRedirect("/index.jsp");
     String mentor_id = (String)session.getAttribute("mentor_id");
     System.out.println(mentor_id);
 
+
     Connection databaseConnection = DatabaseConnection.getDatabaseConnection();
     Connection con;
     int count = 0;
+    int tempcount=0;
     try {
         Class.forName("com.mysql.jdbc.Driver");
         con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
         System.out.println(count);
         PreparedStatement preparedStatement = null;
+        Statement preparedStatement1 = null;
+
         preparedStatement = con.prepareStatement("select count(id) as ccount from student_mentor_communication where seen=0 and emp_id=?");
         preparedStatement.setString(1, mentor_id);
 
+        preparedStatement1 = con.createStatement();
+        ResultSet rs1=preparedStatement1.executeQuery("select count(stud_mis_id) as tempcount from studentmentorrel where emp_id='"+mentor_id+"'");
+
+
         ResultSet rs = preparedStatement.executeQuery();
+
+        if (rs1.next()) {
+            tempcount = rs1.getInt("tempcount");
+            System.out.println(count);
+        }
         if (rs.next()) {
             count = rs.getInt("ccount");
             System.out.println(count);
@@ -85,12 +99,40 @@
             <li class="nav-item ">
                 <a class="nav-link" style="color: white " href="/jsp/mentor_studentlist.jsp"><strong><b>View Students Profile</b></strong></a>
             </li>
+            <%
+                if(tempcount==0)
+                {
+            %>
+            <li class="nav-item ">
+                <a class="nav-link" style="color: white" onclick="alertallot()"><strong><b>Arrange a meeting</b></strong></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="color: white"  onclick="alertallot()"><strong><b>Send MOM</b></strong></a>
+            </li>
+            <%
+                session.setAttribute("allotalert","You dont have any student under you");
+                System.out.println(tempcount);
+            %>
+
+
+            <%
+            }
+
+            else
+            {
+            %>
+
             <li class="nav-item ">
                 <a class="nav-link" style="color: white" href="/jsp/mentor_meeting.jsp"><strong><b>Arrange a meeting</b></strong></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" style="color: white" href="/jsp/meeting_mom.jsp"><strong><b>Send MOM</b></strong></a>
             </li>
+
+            <%
+                }
+            %>
+
             <li class="nav-item">
                 <a class="nav-link" style="color: white" href="/jsp/mentor_showmeetings.jsp"><strong><b>Track Students Attendance</b></strong></a>
             </li>
@@ -101,29 +143,22 @@
     </div>
 
 </nav>
-<%--<div class="c1">--%>
-    <%--<div class="content" style="min-height: 600px;margin-top: 50px">--%>
-        <%--<div class="baner_image">--%>
-            <%--<div class="inner_baner_image" style="margin-left: 600px">--%>
-                <%--<div class="baner_content">--%>
-                    <%--<h1>Welcome to Mentor Portal</h1>--%>
-                    <%--<p>View . Arrange . Manage</p>--%>
 
-                <%--</div>--%>
-
-            <%--</div>--%>
-
-        <%--</div>--%>
-
-
-    <%--</div>--%>
-
-<%--</div>--%>
 <div style="margin-top: 200px;margin-left: 450px;max-width: 1200px;height: 400px;background-color: rgba(0, 0, 0, 0.7);">
     <h1 style="color: white;padding-left: 300px;padding-top: 150px">Welcome to Mentor Portal</h1>
 
 </div>
 </body>
+<script type="text/javascript">
+    var Msg ='<%=session.getAttribute("allotalert")%>';
+    if (Msg != "null") {
+        function alertallot(){
+            swal("error",Msg,"error");
+        }
+
+        <%session.setAttribute("getAlert",null);%>
+    }
+</script>
 
 
 </html>

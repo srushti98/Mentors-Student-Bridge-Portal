@@ -48,9 +48,9 @@
 </head>
 <body>
 <%
-    if (session.getAttribute("stud_name")==null)
+    if (session.getAttribute("mentor_id")==null)
         response.sendRedirect("/index.jsp");
-    String mentor_id = (String)session.getAttribute("stud_name");
+    String mentor_id = (String)session.getAttribute("mentor_id");
     System.out.println(mentor_id);
 
     Connection databaseConnection = DatabaseConnection.getDatabaseConnection();
@@ -136,7 +136,7 @@
                 String sql = "select smc.id, s.stud_roll_no, s.stud_name, smc.title, smc.date from student s, student_mentor_communication smc where s.stud_mis_id=smc.stud_mis_id and smc.emp_id=? order by smc.date";
 
                 ps = (PreparedStatement) con.prepareStatement(sql);
-                ps.setString(1,menid);
+                ps.setString(1,mentor_id);
                 ResultSet rs = ps.executeQuery();
                 while (rs.next())
                 {

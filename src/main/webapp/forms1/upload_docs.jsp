@@ -53,8 +53,7 @@
         batch = rs.getString("stud_batch");
         div = rs.getString("stud_div");
     }
-    int prn_int = Integer.parseInt(prn);
-    int roll_int = Integer.parseInt(roll);
+
 
     ResultSet rss3 = pss2.executeQuery("select count(a.activity_id) as ccount from activity_list a join student_activity_list s on s.activity_id = a.activity_id where stud_mis_id='"+s_stud_mis_id+"' and is_seen= 0");
     int ccount=0;

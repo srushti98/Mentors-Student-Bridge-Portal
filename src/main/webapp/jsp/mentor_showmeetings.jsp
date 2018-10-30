@@ -126,7 +126,7 @@
                     String sql = "select activity_id,activity_date from activity_list where activity_name=? and mentor_id=? order by activity_id;";
                     ps = con.prepareStatement(sql);
                     ps.setString(1,"meeting");
-                    ps.setString(2,menid);
+                    ps.setString(2,mentor_id);
                     ResultSet rs = ps.executeQuery();
                     while (rs.next())
                     {

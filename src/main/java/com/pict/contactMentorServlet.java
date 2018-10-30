@@ -57,8 +57,8 @@ public class contactMentorServlet extends HttpServlet {
             int rs=ps.executeUpdate();
             if(rs>0){
                 //JOptionPane.showMessageDialog(null, "Profile Edited!!!");
-                error.add("Leave Application Recorded");
-                session.setAttribute("getAlert", error);
+                //error.add("Leave Application Recorded");
+                session.setAttribute("getAlert", " SENT TO MENTOR");
 
             }
             else{

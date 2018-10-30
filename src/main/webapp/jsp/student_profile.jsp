@@ -427,9 +427,9 @@
     var Msg ='<%=session.getAttribute("getAlert")%>';
     if (Msg != "null") {
         function alertName(){
-            swal("Profile Updated", Msg, "success")
+            swal("SUCCESS", Msg, "success")
         }
-        Msg=null;
+
         <%session.setAttribute("getAlert",null);%>
     }
 </script>
