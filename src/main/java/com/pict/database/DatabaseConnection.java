@@ -3,9 +3,7 @@ package com.pict.database;
 import com.sun.istack.internal.NotNull;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.*;
-import java.util.Properties;
 
 public class DatabaseConnection {
     private static Connection databaseConnection;
@@ -21,8 +19,8 @@ public class DatabaseConnection {
 */
 
                 String url = "jdbc:mysql://localhost:3306/mentorsys";
-                String userName = "hello";
-                String password = "hello";
+                String userName = "root";
+                String password = "root@123";
                 Class.forName("com.mysql.jdbc.Driver");
                 databaseConnection = DriverManager.getConnection(url, userName, password);
 

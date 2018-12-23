@@ -1,7 +1,5 @@
 package com.pict;
 
-import com.pict.database.DatabaseConnection;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,7 +25,7 @@ public class AdminServlet extends HttpServlet {
         try {
             Connection con;
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "root", "root@123");
             out.println("exporting " + "database successfully opened.");
             PreparedStatement preparedStatementstu = null;
             PreparedStatement preparedStatementmen = null;

@@ -253,7 +253,7 @@
             {   Connection con;
                 PreparedStatement ps = null;
                 Class.forName("com.mysql.jdbc.Driver");
-                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "root", "root@123");
                 System.out.println("SL3 "+ "database successfully opened.");
                 String search_result=request.getParameter("Name");
                 String sql = "select distinct s.stud_roll_no, s.stud_name , m.mentorname from student s, mentor m, studentmentorrel sm where s.stud_mis_id=sm.stud_mis_id and m.emp_id=sm.emp_id and CAST(s.stud_roll_no as char) like ? or m.mentorname like ? or s.stud_name like ? order by s.stud_roll_no;";

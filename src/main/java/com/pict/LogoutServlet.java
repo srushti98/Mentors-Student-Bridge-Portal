@@ -36,7 +36,7 @@ public class LogoutServlet extends HttpServlet {
             e.printStackTrace();
         }
         try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "roo", "root@123");
         } catch (SQLException e) {
             e.printStackTrace();
         }

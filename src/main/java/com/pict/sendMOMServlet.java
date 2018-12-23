@@ -36,7 +36,7 @@ public class sendMOMServlet extends HttpServlet {
             Date date=Date.valueOf(date1);
             Connection con;
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "root", "root@123");
             out.println ("SL3 "+ "database successfully opened.");
             PreparedStatement preparedStatement=null;
 

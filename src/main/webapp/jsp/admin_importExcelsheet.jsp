@@ -23,7 +23,7 @@
 <body>
 <%Connection con;
     Class.forName("com.mysql.jdbc.Driver");
-    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "root", "root@123");
     System.out.println("SL3 "+ "database successfully opened.");%>
 <%!
 
@@ -66,7 +66,7 @@
     Connection con;
     ResultSet rs=null;
     Class.forName("com.mysql.jdbc.Driver");
-    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "root", "root@123");
     System.out.println("SL3 " + "database successfully opened. in student profile");
 
     PreparedStatement ps = null;

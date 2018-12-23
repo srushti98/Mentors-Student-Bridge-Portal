@@ -29,7 +29,7 @@ public class resetPasswordServlet extends HttpServlet {
             ArrayList error=new ArrayList();
             Connection con;
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "root", "root@123");
             PreparedStatement preparedStatement=null;
             out.println("hello world1");
             String new_password=request.getParameter("password");

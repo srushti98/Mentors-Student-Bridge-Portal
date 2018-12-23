@@ -186,7 +186,7 @@
                 PreparedStatement ps = null;
                 Class.forName("com.mysql.jdbc.Driver");
                 try {
-                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "root", "root@123");
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }

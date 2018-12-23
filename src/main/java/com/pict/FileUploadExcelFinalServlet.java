@@ -45,7 +45,7 @@ public class FileUploadExcelFinalServlet extends HttpServlet {
         Connection con;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "root", "root@123");
             System.out.println("SL3 " + "database successfully opened.");
             PreparedStatement ps = null;
 

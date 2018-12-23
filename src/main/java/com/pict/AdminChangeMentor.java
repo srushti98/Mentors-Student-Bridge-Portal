@@ -1,16 +1,15 @@
 package com.pict;
-import com.pict.database.DatabaseConnection;
 import javax.servlet.ServletException;
-        import javax.servlet.annotation.WebServlet;
-        import javax.servlet.http.HttpServlet;
-        import javax.servlet.http.HttpServletRequest;
-        import javax.servlet.http.HttpServletResponse;
-        import javax.servlet.http.HttpSession;
-        import java.io.IOException;
-        import java.sql.*;
-        import java.util.ArrayList;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.sql.*;
+import java.util.ArrayList;
 
-        import static java.lang.System.out;
+import static java.lang.System.out;
 
 
 @WebServlet("/AdminChangeMentor")
@@ -25,7 +24,7 @@ public class AdminChangeMentor extends HttpServlet {
         try {
             Connection con;
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "root", "root@123");
             out.println("exporting " + "database successfully opened.");
             PreparedStatement preparedStatementstu = null;
             PreparedStatement preparedStatementmen = null;

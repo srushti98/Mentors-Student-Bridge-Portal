@@ -58,7 +58,7 @@
         int count = 0;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "root", "root@123");
             System.out.println(count);
             PreparedStatement preparedStatement = null;
             preparedStatement = (PreparedStatement) con.prepareStatement("select count(id) as ccount from student_mentor_communication where seen=0 and emp_id=?");
@@ -122,7 +122,7 @@
                             try {
                                 PreparedStatement ps = null;
                                 Class.forName("com.mysql.jdbc.Driver");
-                                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+                                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "root", "root@123");
                                 System.out.println("SL3 " + "database successfully opened.");
                                 int id = Integer.parseInt(request.getParameter("id"));
 

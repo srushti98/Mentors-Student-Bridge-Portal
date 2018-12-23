@@ -62,8 +62,8 @@
     PreparedStatement ps = null;
     Statement pss2 = null;
     Class.forName("com.mysql.jdbc.Driver");
-    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
-    con2 = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "root", "root@123");
+    con2 = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "root", "root@123");
     pss2=con2.createStatement();
 
 

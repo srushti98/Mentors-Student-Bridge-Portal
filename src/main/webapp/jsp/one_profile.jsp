@@ -44,7 +44,7 @@
     Connection con;
     PreparedStatement ps = null;
     Class.forName("com.mysql.jdbc.Driver");
-    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "root", "root@123");
     PreparedStatement preparedStatement = null;
     preparedStatement = con.prepareStatement("select * from student where stud_mis_id=?");
     preparedStatement.setString(1, stud_mis_id);

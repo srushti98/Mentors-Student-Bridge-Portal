@@ -47,7 +47,7 @@ public class FileUploadDBServlet extends HttpServlet {
                 // connects to the database
                 Connection con;
                 Class.forName("com.mysql.jdbc.Driver");
-                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "root", "root@123");
                 out.println("SL3 " + "database successfully opened.");
                 PreparedStatement ps = null;
 

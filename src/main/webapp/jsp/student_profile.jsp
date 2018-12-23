@@ -211,9 +211,9 @@
     Statement pss2 = null;
     Statement pss4 = null;
     Class.forName("com.mysql.jdbc.Driver");
-    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
-    con2 = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
-    con3 = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "root", "root@123");
+    con2 = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "root", "root@123");
+    con3 = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "root", "root@123");
     pss=con2.createStatement();
     pss2=con2.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
             ResultSet.CONCUR_READ_ONLY);

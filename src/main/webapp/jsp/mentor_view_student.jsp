@@ -58,11 +58,11 @@
     Connection con;
     PreparedStatement ps = null;
     Class.forName("com.mysql.jdbc.Driver");
-    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "root", "root@123");
     int ccount = 0;
     try {
         Class.forName("com.mysql.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "root", "root@123");
         System.out.println(ccount);
         PreparedStatement preparedStatement = null;
         preparedStatement = con.prepareStatement("select count(id) as ccount from student_mentor_communication where seen=0 and emp_id=?");

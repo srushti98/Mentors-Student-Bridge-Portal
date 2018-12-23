@@ -52,7 +52,7 @@
     int count = 0;
     try {
         Class.forName("com.mysql.jdbc.Driver");
-        con1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+        con1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "root", "root@123");
         System.out.println(count);
         PreparedStatement preparedStatement = null;
         preparedStatement = con1.prepareStatement("select count(id) as ccount from student_mentor_communication where seen=0 and emp_id=?");
@@ -128,7 +128,7 @@
                         Connection con;
                         PreparedStatement ps = null;
                         Class.forName("com.mysql.jdbc.Driver");
-                        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+                        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "root", "root@123");
                         System.out.println("SL3 "+ "database successfully opened.");
                         String menid = (String)session.getAttribute("mentor_id");
                         System.out.println(menid);

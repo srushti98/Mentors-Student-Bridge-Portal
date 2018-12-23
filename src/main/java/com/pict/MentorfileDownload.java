@@ -17,8 +17,8 @@ public class MentorfileDownload extends HttpServlet {
 
     // database connection settings
     private String dbURL = "jdbc:mysql://localhost:3306/mentorsys";
-    private String dbUser = "hello";
-    private String dbPass = "hello";
+    private String dbUser = "root";
+    private String dbPass = "root@123";
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }

@@ -83,7 +83,7 @@
             {   Connection con;
                 PreparedStatement ps = null;
                 Class.forName("com.mysql.jdbc.Driver");
-                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "hello", "hello");
+                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentorsys", "root", "root@123");
                 System.out.println("SL3 "+ "database successfully opened.");
                 String menid = (String)session.getAttribute("mentor_id");
                 String s_stud_mis_id = (String)request.getParameter("id");

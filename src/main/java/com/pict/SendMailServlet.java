@@ -71,7 +71,7 @@ public class SendMailServlet extends HttpServlet {
             out.println("Send reset link to: "+to);
             Connection con;
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentor_sys", "hello", "hello");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mentor_sys", "root", "root@123");
             PreparedStatement preparedStatement=null;
             Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
             Properties properties=new Properties();
